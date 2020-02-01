@@ -1,11 +1,62 @@
 body {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 100;
+    background-color: #2c2828;
 }
-
 a {
-    color: navy;
+    color: #85cfcb;
 }
-
 img {
     width: 300px;
+}
+#file-btn {
+    float: right;
+    color: white;
+}
+.slide-container {
+    align-items: center;
+    margin: 15px;
+}
+.slider {
+    -webkit-appearance: none;
+    width: 200px;
+    height: 5px;
+    border-radius: 5px;  
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+  }
+  
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%; 
+    background: #85cfcb;
+    cursor: pointer;
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #85cfcb;
+    cursor: pointer;
+  }
+.purple {
+    background-color: #3b2c85;
+}
+.visualizer {
+    width: 100%;
+}
+.visualizer img {
+    width: 100%;
+}
+.btn {
+    background-color: #219897;
+    margin: 10px;
 }
