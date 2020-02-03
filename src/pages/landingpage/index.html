@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="author" content="Alex Wong and Gavin Sreesangkom">
+    <meta name="description" content="Creates a music visualizer where you can upload a music file and create a pulsing display">
+    <meta name="keywords" content="music, playlist, visualizer, mp3, mp4">
     <!-- bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -19,23 +21,30 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
 
     <link rel="stylesheet" href="css/style.css">
     <title>Music Visualizer</title>
+    <link rel="icon" type="image/png" href="../../imgs/equalizer.png">
 </head>
 
 <body>
     <!-- NavBar -->
-    <nav class="navbar navbar-expand-lg navbar-dark purple">
-        <a class="navbar-brand" href="#">Music Visualizer</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <nav class="navbar navbar-expand-lg navbar-dark purple d-flex" id="bignav">
+        <a href="../landingpage/index.html"><img src="../../imgs/equalizer.png" alt="equalizer icon" class="icon mr-3" id="viz"></a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="../userpage/index.html">Collection<span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link active" href="../userpage/index.html">My Playlist<span class="sr-only">(current)</span></a>
             </div>
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="#">About<span class="sr-only">(current)</span></a>
+            </div>
+        </div>
+        <div id="hamburger-menu">
+            <a href="#" class="">
+                <i class="fa fa-bars mr-4"></i>
+            </a>
         </div>
     </nav>
 
@@ -53,10 +62,10 @@
             <div class="visualizer">
                 <img src="../../imgs/placeholderviz.jpg" alt="visualizer placeholder">
             </div>
-            <div class="choose-file">
+            <div class="choose-file mr-3">
                 <button class="btn" id="file-btn">Choose File</button>
             </div>
-            <div class="d-flex">
+            <div class="d-flex flex-wrap">
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
