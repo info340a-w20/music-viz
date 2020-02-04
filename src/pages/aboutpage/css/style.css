@@ -34,6 +34,12 @@ i {
     width: 5vh;
     height: auto;
 }
+#navbarNav a:hover, #navbarNav a:focus {
+    background-color: #3282b8;
+    border-bottom: .6rem solid #bbe1fa;
+    padding-bottom: .65rem;
+  }
+
 /* Make responsive */
 @media (min-width: 768px) {
     img {

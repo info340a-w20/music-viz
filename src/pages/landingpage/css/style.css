@@ -53,14 +53,14 @@ i {
     width: 15px;
     height: 15px;
     border-radius: 50%;
-    background: #85cfcb;
+    background: #3282b8;
     cursor: pointer;
 }
 .slider::-moz-range-thumb {
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    background: #85cfcb;
+    background: #3282b8;
     cursor: pointer;
 }
 #file-btn {
@@ -68,11 +68,15 @@ i {
     color: white;
 }
 .btn {
-    background-color: #219897;
+    background-color: #0f4c75;
     margin: 1vh;
-    box-shadow: 3px 6px #85cfcb;
+    box-shadow: 3px 6px #3282b8;
 }
-
+#navbarNav a:hover, #navbarNav a:focus {
+    background-color: #3282b8;
+    border-bottom: .6rem solid #bbe1fa;
+    padding-bottom: .65rem;
+  }
 
 @media (min-width: 768px) {
     img {
@@ -100,7 +104,7 @@ i {
     background-color: #1b262c;
 }
 a {
-    color: #85cfcb;
+    color: #3282b8;
 }
 img {
     width: 300px;
