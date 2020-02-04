@@ -4,6 +4,10 @@
      
  }
 
+ .fa-bars {
+   color: white;
+ }
+
  .purple {
   background-color: #0f4c75;
 }
@@ -54,6 +58,7 @@ img {
 tr {
   background-color: #1b262c;
   color: white;
+  text-align: left;
 }
 
 tr:hover {
@@ -73,8 +78,8 @@ tr:hover {
   
 
   .fa-play-circle {
-    color:black;
-    size: 20rem;
+    color:#bbe1fa;
+    /* size: 20rem; */
     /* size: 100%; */
   }
 
@@ -115,6 +120,19 @@ tr:hover {
   left: 10px;
   
 }
+
+body {
+  background: linear-gradient(90deg, #0a2132, #267bb4);
+}
+
+#footer {
+  color: white;
+  position: absolute;
+  bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
   /* Style the active link (or home/logo) */
   @media (min-width: 598px) 
   {
@@ -141,14 +159,6 @@ tr:hover {
     nav li {
       display: inline;
     }
-
-    nav ul {
-    display: inline-block;
-    margin: 0px;
-    padding: 0px;
-    float: right;
-}
-
 
 }
 
