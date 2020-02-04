@@ -3,6 +3,9 @@ body {
     background-color: #1b262c;
     font-family: 'Noto Sans JP', sans-serif;
 }
+a {
+    color: #bbe1fa;
+}
 
 nav {
     width: 100%;
