@@ -1,15 +1,13 @@
 body {
     color: white;
-    background-color: #2c2828;
+    background-color: #1b262c;
     font-family: 'Noto Sans JP', sans-serif;
 }
+
 nav {
     width: 100%;
     height: 7vh;
     display: flex;
-}
-.purple {
-    background-color: #3b2c85;
 }
 img {
     width:320px;
@@ -18,6 +16,7 @@ img {
 i {
     color: white;
 }
+
 #hamburger-menu {
     position: absolute;
     display: block;
@@ -25,11 +24,14 @@ i {
     top: 2;
     margin: 4px;
 }
-
+.blue {
+    background-color: #0f4c75;
+}
 #viz {
     width: 5vh;
     height: auto;
 }
+
 .slide-container {
     align-items: center;
     margin: 15px;
@@ -70,6 +72,8 @@ i {
     margin: 1vh;
     box-shadow: 3px 6px #85cfcb;
 }
+
+
 @media (min-width: 768px) {
     img {
         width: 786px;
@@ -93,7 +97,7 @@ i {
     color: white;
     font-family: 'Noto Sans JP', sans-serif;
     font-weight: 100;
-    background-color: #2c2828;
+    background-color: #1b262c;
 }
 a {
     color: #85cfcb;
