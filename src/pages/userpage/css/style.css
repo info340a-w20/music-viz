@@ -68,8 +68,8 @@ tr:hover {
 
 #navbarNav a:hover, #navbarNav a:focus {
   background-color: #3282b8;
-  border-bottom: .6rem solid #bbe1fa;
-  padding-bottom: .65rem;
+  padding-bottom: 4px;
+  border-bottom: 4px solid #bbe1fa;
 }
  
  
