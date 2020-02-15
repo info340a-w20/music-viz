@@ -13,8 +13,11 @@ nav {
     display: flex;
 }
 img {
-    width:320px;
-    height: auto;
+    display: inline-block;
+    position: relative;
+    width:100%;
+    height: 100%;
+    overflow: hidden;
 }
 i {
     color: white;
@@ -32,7 +35,7 @@ i {
 }
 #viz {
     width: 5vh;
-    height: auto;
+    height: 70%;
 }
 
 .slide-container {
@@ -73,7 +76,6 @@ i {
 .btn {
     background-color: #0f4c75;
     margin: 1vh;
-    box-shadow: 3px 6px #3282b8;
 }
 #navbarNav a:hover, #navbarNav a:focus {
     background-color: #3282b8;
@@ -81,24 +83,59 @@ i {
     border-bottom: 4px solid #bbe1fa;
   }
 
+.card {
+    background-color: rgba(255, 255, 255, .15);   
+    backdrop-filter: blur(5px);
+    display: inline-block;
+}
+.bg-image {
+    position: absolute;
+    background-image: url("../src/imgs/placeholderviz.jpg");
+      /* Add the blur effect */
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+
+    /* Full height */
+    width: 100%;
+    height: 80%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 1;
+}
+.song-info {
+    position: relative;
+    z-index: 2;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;  
+}
+
+.visualizer {
+    position: relative;
+    z-index: 2;
+    height: 70%;
+    width: 70%;
+    align-self: center;
+    justify-content: center;
+}
+
 @media (min-width: 768px) {
-    img {
-        width: 786px;
-    }
+   
 }
 @media (min-width: 992px) {
     #hamburger-menu {
         display: none;
     }
-    img {
-        width: 992px;
-    }
+    /* .song-info::-webkit-scrollbar {
+        display: none;
+      } */
+    
 }
 @media (min-width: 1440px)
 {
-    img {
-        width: 1440px;
-    }
+    
 }
 /* body {
     color: white;
