@@ -35,5 +35,9 @@
         "error"
       ]
     }
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "spotify-web-api-js": "^1.2.0"
   }
 }

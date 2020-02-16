@@ -2,8 +2,8 @@ body {
 	margin: 0;
 	padding: 0;
 	background: #642B73;  /* fallback for old browsers */
-	background: -webkit-linear-gradient(to right, #C6426E, #642B73);  /* Chrome 10-25, Safari 5.1-6 */
-	background: linear-gradient(to right, #C6426E, #642B73); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	background: -webkit-linear-gradient(to right, #37d5d6, #1752ab);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #37d5d6, #1752ab); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 	font-family: spotify-circular,Helvetica Neue,Helvetica,Arial,Hiragino Kaku Gothic Pro,Meiryo,MS Gothic,sans-serif;
 }
 
@@ -77,7 +77,7 @@ body {
 }
 .fa-play-circle:hover {
 	transform: scale(1.1);
-}
+}   
 
 .toplist {
     width: 70%;
