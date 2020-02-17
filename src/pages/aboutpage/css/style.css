@@ -42,10 +42,66 @@ i {
     padding-bottom: 4px;
     border-bottom: 4px solid #bbe1fa;
   }
+<<<<<<< HEAD
   #dropMenu {
     position: absolute; 
     right: 15px;
 }
+=======
+
+  body, html {
+    height: 100%;
+  }
+  
+  .parallax1 {
+    /* The image used */
+    background-image: url(https://wallpapercave.com/wp/wp3031960.jpg);
+  
+    /* Full height */
+    height: 100%;
+  
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .parallax2 {
+    /* The image used */
+    background-image: url(https://images.8tracks.com/cover/i/002/163/717/worlds-4234.png?rect=99,0,1531,1531&q=98&fm=jpg&fit=max&w=1024&h=1024);
+  
+    /* Full height */
+    height: 100%;
+  
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  section {
+      width: 70%;
+      margin-right: auto;
+      margin-left: auto;
+      background:rgba(73, 77, 74, 0.6);
+  }
+
+  #heading h1{
+      padding: 1rem;
+      margin-bottom: 0px;
+  }
+
+  ol {
+      margin-bottom: 0px;
+  }
+
+  .h6 {
+      margin-bottom: 0px;
+  }
+
+>>>>>>> 08c4a2ff0b9fcb05278814072881ccbccc553c5d
 /* Make responsive */
 @media (min-width: 768px) {
     img {
