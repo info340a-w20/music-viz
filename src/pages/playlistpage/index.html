@@ -28,26 +28,38 @@
 </head>
 
 <body>
-    <!-- NavBar -->
-    <nav class="navbar navbar-expand-lg navbar-dark purple d-flex" id="bignav">
-        <!-- <a href="../../../index.html"><img src="../../imgs/equalizer.png" alt="equalizer icon" class="icon mr-3" id="viz"></a> -->
+     <!-- NavBar -->
+     <nav class="navbar navbar-expand-lg navbar-dark blue d-flex" id="bignav">
+        <a href="../../../index.html"><img src="../../imgs/equalizer.png" alt="equalizer icon" class="icon mr-3" id="viz"></a>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <div class="navbar-nav"}
-                <a class="nav-item nav-link active" href="../userpage/index.html">My Playlist<span class="sr-only">(current)</span></a>
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="../playlistpage/index.html">My Playlist<span
+                        class="sr-only">(current)</span></a>
             </div>
             <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="../aboutpage/index.html">About<span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link active" href="../aboutpage/index.html">About<span
+                        class="sr-only">(current)</span></a>
             </div>
             <div class="navbar-nav">
                 <a class="nav-item nav-link active" href="#footer">Contact<span class="sr-only">(current)</span></a>
             </div>
         </div>
         <div id="hamburger-menu">
-            <a href="#" class="">
-                <i class="fa fa-bars mr-4"></i>
-            </a>
+            <div class="pos-f-t">
+                <button class="navbar-toggler navbar-light m1-auto" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="collapse" id="navbarToggleExternalContent">
+                <div class="bg-light p-2" id="dropMenu">
+                      <a class="dropdown-item" href="../playlistpage/index.html">My Playlist</a>
+                      <a class="dropdown-item" href="../aboutpage/index.html">About<span class="sr-only">(current)</span></a>
+                      <a class="dropdown-item" href="#footer">Contact</a>
+                </div>
+            </div>
         </div>
     </nav>
+
     <main>
         <div class="parallax"></div>
 
@@ -76,43 +88,51 @@
                 <div class="cards">
                     
                     <div class="card">
-                        <div class="overlayer">
-                            <i class="fa fa-play-circle"></i>
-                        </div>
+                        <a href="../userpage/index.html">
+                            <div class="overlayer" href="../userpage/index.html">
+                                <i class="fa fa-play-circle"></i>
+                            </div>
+                        </a>
                         <img src="https://i.pinimg.com/736x/02/b8/94/02b894f7ea6ad9f724648ee511ad018f--edm-music-house-music.jpg" alt="">
                         <div class="title">
-                            <a href="#">Hover over</a>
+                            <a href="../userpage/index.html">Hover over</a>
                         </div>
                     </div>	
                     
                     
                     <div class="card">
-                        <div class="overlayer">
-                            <i class="fa fa-play-circle"></i>
-                        </div>
+                        <a href="../userpage/index.html">
+                            <div class="overlayer">
+                                <i class="fa fa-play-circle"></i>
+                            </div>
+                        </a>
                         <img src="https://altwall.net/img/albums/adb1c0cbab29b842b28e6aa1e8e57f47_2013.jpg" alt="">
                         <div class="title">
-                            <a href="#">Hover over</a>
+                            <a href="../userpage/index.html">Hover over</a>
                         </div>
                     </div>	
                     
                     <div class="card">
-                        <div class="overlayer">
-                            <i class="fa fa-play-circle"></i>
-                        </div>
+                        <a href="../userpage/index.html">
+                            <div class="overlayer">
+                                <i class="fa fa-play-circle"></i>
+                            </div>
+                        </a>
                         <img src="https://is4-ssl.mzstatic.com/image/thumb/Music7/v4/4b/06/29/4b062955-ecce-e362-78f1-025f18eed20a/source/1200x1200bb.jpg" alt="">
                         <div class="title">
-                            <a href="#">Hover over</a>
+                            <a href="../userpage/index.html">Hover over</a>
                         </div>
                     </div>	
                     
                     <div class="card">
-                        <div class="overlayer">
-                            <i class="fa fa-play-circle"></i>
-                        </div>
+                        <a href="../userpage/index.html">
+                            <div class="overlayer">
+                                <i class="fa fa-play-circle"></i>
+                            </div>
+                        </a>
                         <img src="https://media1.popsugar-assets.com/files/thumbor/L-VT9k0GKckWWnpo3n2YBq4f9tE/fit-in/1024x1024/filters:format_auto-!!-:strip_icc-!!-/2017/08/03/846/n/37139775/2d0d134e5983773fe90560.65157921_edit_img_image_17921777_1501786115/i/Camila-Cabello-Havana-Song.jpg" alt="">
                         <div class="title">
-                            <a href="#">Hover over</a>
+                            <a href="../userpage/index.html">Hover over</a>
                         </div>
                     </div>		
                 </div>
@@ -264,7 +284,24 @@
 
 
     </main>
-
+    <footer id="footer" class="mb-5">
+        <div class="text-center">
+            <p class="mb-0">Contact us at:</p c>
+            <div class="d-flex text-center justify-content-center">
+                <div class="m-5">
+                    <strong>Alex Wong</strong>
+                    <a class="d-block" href="mailto: alwong34@uw.edu">alwong34@uw.edu</a>
+                </div>
+                <div class="m-5">
+                    <strong>Gavin Sreesangkom</strong>
+                    <a class="d-block" href="mailto: sreesg@uw.edu">sreesg@uw.edu</a>
+                </div>
+            </div>
+        </div>
+        <div class="text-center">Icons made by <a href="https://www.flaticon.com/authors/freepik"
+                title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"
+                title="Flaticon">www.flaticon.com</a></div>
+    </footer>
     
     
 </body>
