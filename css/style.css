@@ -120,7 +120,11 @@ i {
     align-self: center;
     justify-content: center;
 }
-
+#dropMenu {
+    position: absolute; 
+    right: 15px;
+    z-index: 3;
+}
 @media (min-width: 768px) {
    
 }
@@ -128,9 +132,9 @@ i {
     #hamburger-menu {
         display: none;
     }
-    /* .song-info::-webkit-scrollbar {
+    .song-info::-webkit-scrollbar {
         display: none;
-      } */
+      }
     
 }
 @media (min-width: 1440px)
