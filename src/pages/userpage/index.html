@@ -26,7 +26,6 @@
         <link rel="stylesheet" href="css/style.css">
         <title>Music Visualizer</title>
         <link rel="icon" type="image/png" href="../../imgs/equalizer.png">
-        <script src="js/index.js"></script>
     </head>
 <body>
 
@@ -72,81 +71,82 @@
             </div> 
             <div id="add-song">
                 <!-- <button id="play" type="button">Play</button> -->
-                <form class="example" style="margin:auto;max-width:300px">
-                    <input type="text" placeholder="Search.." name="search">
+                <form class="example">
+                    <input id="search-add-song" type="text" placeholder="Search songs.." name="search">
                     <!-- <button type="submit"><i class="fa fa-search"></i></button> -->
                     <button id="btn-add-song" type="button">Add Song</button>
-
                 </form>
             </div>
         </div>
         
         
-    
-        <div class="search m-2">
-            <span class="fa fa-search"></span>
-            <input aria-label="search bar" placeholder="Search songs in playlist...">
+        <div class="wrapper-tbl">
+            <div class="search m-2">
+                <span class="fa fa-search"></span>
+                <input aria-label="search bar" placeholder="Search songs in playlist...">
+            </div>
+            <div class="m-2">
+                <table>
+                    <tr>
+                        <th>#</th>
+                        <th class="padding-song">Song</th>
+                        <th>Artist</th>
+                        <!-- <th>Play</th> -->
+                        <th class="small-col"></th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td class="padding-song">Lost in Paris</td>
+                        <td class="artist">Tom Misch</td>
+                        <!-- <td><i class="fa fa-play-circle fa-2x"></i></td> -->
+                        <td><i class="fa fa-heart"></i></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td class="padding-song">Skyline</td>
+                        <td class="artist">FKJ</td>
+                        <!-- <td><i class="fa fa-play-circle fa-2x"></i></td> -->
+                        <td><i class="fa fa-heart"></i></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td class="padding-song">Don't Look Back In Anger</td>
+                        <td class="artist"> Oasis</td>
+                        <!-- <td><i class="fa fa-play-circle fa-2x"></i></td> -->
+                        <td><i class="fa fa-heart"></i></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td class="padding-song">In the Midst of it All</td>
+                        <td class="artist">Tom Misch</td>
+                        <!-- <td><i class="fa fa-play-circle fa-2x"></i></td> -->
+                        <td><i class="fa fa-heart"></i></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td class="padding-song">In the Midst of it All</td>
+                        <td class="artist">Tom Misch</td>
+                        <!-- <td><i class="fa fa-play-circle fa-2x"></i></td> -->
+                        <td><i class="fa fa-heart"></i></td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td class="padding-song">In the Midst of it All</td>
+                        <td class="artist">Tom Misch</td>
+                        <!-- <td><i class="fa fa-play-circle fa-2x"></i></td> -->
+                        <td><i class="fa fa-heart"></i></td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td class="padding-song">In the Midst of it All</td>
+                        <td class="artist">Tom Misch</td>
+                        <!-- <td><i class="fa fa-play-circle fa-2x"></i></td> -->
+                        <td><i class="fa fa-heart"></i></td>
+                    </tr>
+                </table>
+            </div>
         </div>
-        <div class="m-2">
-            <table>
-                <tr>
-                    <th>#</th>
-                    <th class="padding-song">Song</th>
-                    <th>Artist</th>
-                    <!-- <th>Play</th> -->
-                    <th class="small-col"></th>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td class="padding-song">Lost in Paris</td>
-                    <td class="artist">Tom Misch</td>
-                    <!-- <td><i class="fa fa-play-circle fa-2x"></i></td> -->
-                    <td><i class="fa fa-heart"></i></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td class="padding-song">Skyline</td>
-                    <td class="artist">FKJ</td>
-                    <!-- <td><i class="fa fa-play-circle fa-2x"></i></td> -->
-                    <td><i class="fa fa-heart"></i></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td class="padding-song">Don't Look Back In Anger</td>
-                    <td class="artist"> Oasis</td>
-                    <!-- <td><i class="fa fa-play-circle fa-2x"></i></td> -->
-                    <td><i class="fa fa-heart"></i></td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td class="padding-song">In the Midst of it All</td>
-                    <td class="artist">Tom Misch</td>
-                    <!-- <td><i class="fa fa-play-circle fa-2x"></i></td> -->
-                    <td><i class="fa fa-heart"></i></td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td class="padding-song">In the Midst of it All</td>
-                    <td class="artist">Tom Misch</td>
-                    <!-- <td><i class="fa fa-play-circle fa-2x"></i></td> -->
-                    <td><i class="fa fa-heart"></i></td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td class="padding-song">In the Midst of it All</td>
-                    <td class="artist">Tom Misch</td>
-                    <!-- <td><i class="fa fa-play-circle fa-2x"></i></td> -->
-                    <td><i class="fa fa-heart"></i></td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td class="padding-song">In the Midst of it All</td>
-                    <td class="artist">Tom Misch</td>
-                    <!-- <td><i class="fa fa-play-circle fa-2x"></i></td> -->
-                    <td><i class="fa fa-heart"></i></td>
-                </tr>
-            </table>
-        </div>
+        
     </main>
 
     <footer id="footer">
@@ -165,6 +165,6 @@
         </div>
         <div class="text-center">Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
     </footer>
-      
+    <script src="js/index.js"></script>
 </body>
 </html>

@@ -1,16 +1,23 @@
 
 
-let button = document.querySelector("btn-add-song");
+let state = {addSongText:'',
+searchSongText:''}
+
+// if addSong is not '' display:nonefor the class=wrapper-tbl
+
+let input = document.querySelector('#search-add-song');
+console.log(input, "hi");
+input.addEventListener('input', function() {
+    state.addSongText = this.value;
+    console.log(state.addSongText)
+    renderInput();
+})
 
 
-jQuery(function($){
-    $( '.menu-btn' ).click(function(){
- $('.responsive-menu').addClass('expand')
- $('.menu-btn').addClass('btn-none')
-    })
-    
- $( '.close-btn' ).click(function(){
- $('.responsive-menu').removeClass('expand')
- $('.menu-btn').removeClass('btn-none')
-    })
-  })
+
+// const urlBase = "http://localhost:3000/?search="
+
+
+
+
+
