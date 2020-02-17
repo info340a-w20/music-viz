@@ -42,7 +42,10 @@ i {
     padding-bottom: 4px;
     border-bottom: 4px solid #bbe1fa;
   }
-
+  #dropMenu {
+    position: absolute; 
+    right: 15px;
+}
 /* Make responsive */
 @media (min-width: 768px) {
     img {
