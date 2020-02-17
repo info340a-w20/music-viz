@@ -42,12 +42,10 @@ i {
     padding-bottom: 4px;
     border-bottom: 4px solid #bbe1fa;
   }
-<<<<<<< HEAD
   #dropMenu {
     position: absolute; 
     right: 15px;
 }
-=======
 
   body, html {
     height: 100%;
@@ -101,7 +99,6 @@ i {
       margin-bottom: 0px;
   }
 
->>>>>>> 08c4a2ff0b9fcb05278814072881ccbccc553c5d
 /* Make responsive */
 @media (min-width: 768px) {
     img {
