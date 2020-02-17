@@ -69,7 +69,7 @@ i {
     background: #3282b8;
     cursor: pointer;
 }
-#file-btn {
+.choose-file {
     float: right;
     color: white;
 }
@@ -120,6 +120,31 @@ i {
     align-self: center;
     justify-content: center;
 }
+
+/* ---------------------------------------------visualizer styling---------------------------------------------*/
+#thefile {
+    position: relative;
+    top: 10px;
+    left: 10px;
+    z-index: 100;
+  }
+  
+  #canvas {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  audio {
+    position: relative;
+    left: 10px;
+    bottom: 10px;
+    width: calc(100% - 20px);
+  }
+
+
 #dropMenu {
     position: absolute; 
     right: 15px;
