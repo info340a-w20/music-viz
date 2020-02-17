@@ -128,9 +128,9 @@ i {
     #hamburger-menu {
         display: none;
     }
-    /* .song-info::-webkit-scrollbar {
+    .song-info::-webkit-scrollbar {
         display: none;
-      } */
+      }
     
 }
 @media (min-width: 1440px)

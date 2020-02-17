@@ -24,6 +24,8 @@
 #viz {
   width: 5vh;
   height: auto;
+  position: fixed;
+  top: 10px;
 }
 
  nav {
@@ -247,10 +249,16 @@ form.example::after {
   clear: both;
   display: table;
 }
+#hamburger-menu {
+  /* position: absolute;
+  left: 80%; */
 
-/* form.input {
-  width: 30%;
-} */
+}
+
+#dropMenu {
+  position: absolute; 
+  right: 15px;
+}
 
 
   /* Style the active link (or home/logo) */
@@ -291,7 +299,9 @@ form.example::after {
   #hamburger-menu {
     display: none;
   }
-
+  #viz {
+    position: static;
+  }
     
 }
 
