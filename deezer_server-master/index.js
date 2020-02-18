@@ -7,7 +7,8 @@ const PORT = 3000
 
 app.get("/", (req, res) => {
     let query = req.query.search;
-    axios.get(`${DEEZER_URL}/search?q=${query}`)
+    console.log(query);
+    axios.get(`${DEEZER_URL}/search?q=album:"good things"`)
         .then((response) => {
             res.send(response.data);
         })
