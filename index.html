@@ -49,63 +49,71 @@
         </div>
         <div id="hamburger-menu">
             <div class="pos-f-t">
-                <button class="navbar-toggler navbar-light m1-auto" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler navbar-light m1-auto" type="button" data-toggle="collapse"
+                    data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
             </div>
             <div class="collapse" id="navbarToggleExternalContent">
                 <div class="bg-light p-2" id="dropMenu">
-                      <a class="dropdown-item" href="./src/pages/playlistpage/index.html">My Playlist</a>
-                      <a class="dropdown-item" href="./src/pages/aboutpage/index.html">About<span class="sr-only">(current)</span></a>
-                      <a class="dropdown-item" href="#footer">Contact</a>
+                    <a class="dropdown-item" href="./src/pages/playlistpage/index.html">My Playlist</a>
+                    <a class="dropdown-item" href="./src/pages/aboutpage/index.html">About<span
+                            class="sr-only">(current)</span></a>
+                    <a class="dropdown-item" href="#footer">Contact</a>
                 </div>
             </div>
         </div>
     </nav>
 
     <main>
-        <section class="song-info mt-4">
+        <section class="song-info mt-4" id="song-list">
             <!-- <div class="row justify-content-center"> -->
-                <div class="card m-2" style="width: 18rem;">
-                    <h1 class="ml-2">Song Title</h1>
-                    <p class="song-author ml-3">by Author</p>
-                </div>
-                <div class="card m-2" style="width: 18rem;">
-                    <h1 class="ml-2">Song Title</h1>
-                    <p class="song-author ml-3">by Author</p>
-                </div>
-                <div class="card m-2" style="width: 18rem;">
-                    <h1 class="ml-2">Song Title</h1>
-                    <p class="song-author ml-3">by Author</p>
-                </div>
-                <div class="card m-2" style="width: 18rem;">
-                    <h1 class="ml-2">Song Title</h1>
-                    <p class="song-author ml-3">by Author</p>
-                </div>
-                <div class="card m-2" style="width: 18rem;">
-                    <h1 class="ml-2">Song Title</h1>
-                    <p class="song-author ml-3">by Author</p>
-                </div>
-                <div class="card m-2" style="width: 18rem;">
-                    <h1 class="ml-2">Song Title</h1>
-                    <p class="song-author ml-3">by Author</p>
-                </div>
+            <!-- <div class="card m-2" style="width: 18rem;">
+                <h1 class="ml-2">Song Title</h1>
+                <p class="song-author ml-3">by Author</p>
+            </div>
+            <div class="card m-2" style="width: 18rem;">
+                <h1 class="ml-2">Song Title</h1>
+                <p class="song-author ml-3">by Author</p>
+            </div>
+            <div class="card m-2" style="width: 18rem;">
+                <h1 class="ml-2">Song Title</h1>
+                <p class="song-author ml-3">by Author</p>
+            </div>
+            <div class="card m-2" style="width: 18rem;">
+                <h1 class="ml-2">Song Title</h1>
+                <p class="song-author ml-3">by Author</p>
+            </div>
+            <div class="card m-2" style="width: 18rem;">
+                <h1 class="ml-2">Song Title</h1>
+                <p class="song-author ml-3">by Author</p>
+            </div>
+            <div class="card m-2" style="width: 18rem;">
+                <h1 class="ml-2">Song Title</h1>
+                <p class="song-author ml-3">by Author</p>
+            </div> -->
             <!-- </div> -->
         </section>
-        <div class="slide-container d-flex justify-content-center">
+        <!-- <div class="slide-container d-flex justify-content-center">
             <span class="m-2">0:00</span>
             <input aria-label="music play time" type="range" min="0" max="100" value="0" class="song-time slider" style="width: 90vh;">
             <span class="m-2">3:00</span>
-        </div>
+        </div> -->
+        <audio id="audio" controls class="my-3"></audio>
         <section class="d-flex viz-container justify-content-center" style="height: 80vh;">
             <div class="bg-image"></div>
-            <div class="visualizer text-center justify-content-center">  
-                <img class="" src="./src/imgs/placeholderviz.jpg" alt="visualizer placeholder">
+            <div class="visualizer text-center justify-content-center">
+                <!-- <img class="" src="./src/imgs/placeholderviz.jpg" alt="visualizer placeholder"> -->
+                <div id="content">
+                    <canvas id="canvas"></canvas>
+                </div>
             </div>
         </section>
         <section>
             <div class="choose-file mr-3">
-                <button class="btn" id="file-btn">Choose File</button>
+                <!-- <button class="btn" id="file-btn">Choose File</button> -->
+                <input type="file" id="thefile" accept="audio/*">
             </div>
             <div class="d-flex flex-wrap">
                 <div class="dropdown">
@@ -114,12 +122,13 @@
                         Color
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Red</a>
-                        <a class="dropdown-item" href="#">Orange</a>
-                        <a class="dropdown-item" href="#">Yellow</a>
-                        <a class="dropdown-item" href="#">Green</a>
-                        <a class="dropdown-item" href="#">Blue</a>
-                        <a class="dropdown-item" href="#">Purple</a>
+                        <p class="dropdown-item colorPick">Default</p>
+                        <p class="dropdown-item colorPick">Red</p>
+                        <p class="dropdown-item colorPick">Orange</p>
+                        <p class="dropdown-item colorPick">Yellow</p>
+                        <p class="dropdown-item colorPick">Green</p>
+                        <p class="dropdown-item colorPick">Blue</p>
+                        <p class="dropdown-item colorPick">Purple</p>
                     </div>
                 </div>
                 <div class="dropdown">
@@ -136,18 +145,18 @@
                 </div>
                 <div class="slide-container d-flex">
                     <span>Width:</span>
-                    <span class="m-2">0</span>
-                    <input aria-label="slider to change width of visual" type="range" min="0" max="100" value="0"
+                    <span class="m-2">1</span>
+                    <input id="widthSlider" aria-label="slider to change width of visual" type="range" min="1" max="20" value="1"
                         class="slider">
                     <span class="m-2">100</span>
                 </div>
-                <div class="slide-container d-flex">
+                <!-- <div class="slide-container d-flex">
                     <span>Volume:</span>
                     <span class="m-2">0</span>
                     <input aria-label="slider to change volume of song" type="range" min="0" max="100" value="0"
                         class="slider">
                     <span class="m-2">100</span>
-                </div>
+                </div> -->
             </div>
         </section>
     </main>
@@ -170,6 +179,9 @@
                 title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"
                 title="Flaticon">www.flaticon.com</a></div>
     </footer>
+    <script src="https://e-cdns-files.dzcdn.net/js/min/dz.js"></script>
+    <script type="text/javascript" src="musicData.json"></script>
+    <script src="js/index.js"></script>
 </body>
 
 </html>

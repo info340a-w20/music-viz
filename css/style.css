@@ -3,6 +3,7 @@ body {
     background-color: #1b262c;
     font-family: 'Noto Sans JP', sans-serif;
 }
+
 a {
     color: #bbe1fa;
 }
@@ -12,13 +13,15 @@ nav {
     height: 7vh;
     display: flex;
 }
+
 img {
     display: inline-block;
     position: relative;
-    width:100%;
+    width: 100%;
     height: 100%;
     overflow: hidden;
 }
+
 i {
     color: white;
 }
@@ -30,9 +33,11 @@ i {
     top: 2;
     margin: 4px;
 }
+
 .blue {
     background-color: #0f4c75;
 }
+
 #viz {
     width: 5vh;
     height: 70%;
@@ -42,6 +47,7 @@ i {
     align-items: center;
     margin: 15px;
 }
+
 .slider {
     -webkit-appearance: none;
     width: 15vh;
@@ -53,6 +59,7 @@ i {
     -webkit-transition: .2s;
     transition: opacity .2s;
 }
+
 .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
@@ -62,6 +69,7 @@ i {
     background: #3282b8;
     cursor: pointer;
 }
+
 .slider::-moz-range-thumb {
     width: 25px;
     height: 25px;
@@ -69,29 +77,52 @@ i {
     background: #3282b8;
     cursor: pointer;
 }
-#file-btn {
+
+.choose-file {
     float: right;
     color: white;
+    /* overflow: hidden;; */
 }
+
 .btn {
     background-color: #0f4c75;
     margin: 1vh;
 }
-#navbarNav a:hover, #navbarNav a:focus {
+
+#navbarNav a:hover,
+#navbarNav a:focus {
     background-color: #3282b8;
     padding-bottom: 4px;
     border-bottom: 4px solid #bbe1fa;
-  }
+}
 
 .card {
-    background-color: rgba(255, 255, 255, .15);   
+    background-color: rgba(255, 255, 255, .15);
     backdrop-filter: blur(5px);
     display: inline-block;
+    width: 13rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: width 1s;
+    color: white;
+    text-decoration: none;
 }
+
+a:link {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.card:hover {
+    background-color: #0f4c75;
+    width: 20rem;
+    color: inherit;
+}
+
 .bg-image {
     position: absolute;
     background-image: url("../src/imgs/placeholderviz.jpg");
-      /* Add the blur effect */
+    /* Add the blur effect */
     filter: blur(8px);
     -webkit-filter: blur(8px);
 
@@ -104,12 +135,13 @@ i {
     background-size: cover;
     z-index: 1;
 }
+
 .song-info {
     position: relative;
     z-index: 2;
     overflow-x: scroll;
     overflow-y: hidden;
-    white-space: nowrap;  
+    white-space: nowrap;
 }
 
 .visualizer {
@@ -119,28 +151,54 @@ i {
     width: 70%;
     align-self: center;
     justify-content: center;
+    vertical-align: middle;
 }
+
 #dropMenu {
-    position: absolute; 
+    position: absolute;
     right: 15px;
     z-index: 3;
 }
-@media (min-width: 768px) {
-   
+
+/* ---------------------------------------------visualizer styling---------------------------------------------*/
+#thefile {
+    position: relative;
+    top: 10px;
+    left: 10px;
+    /* z-index: 100; */
 }
+
+#canvas {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-width: 90%;
+    vertical-align: middle;
+}
+
+audio {
+    position: relative;
+    left: 10px;
+    bottom: 10px;
+    width: calc(100% - 20px);
+}
+
+
+@media (min-width: 768px) {}
+
 @media (min-width: 992px) {
     #hamburger-menu {
         display: none;
     }
+
     .song-info::-webkit-scrollbar {
         display: none;
-      }
-    
+    }
+
 }
-@media (min-width: 1440px)
-{
-    
-}
+
+@media (min-width: 1440px) {}
+
 /* body {
     color: white;
     font-family: 'Noto Sans JP', sans-serif;
