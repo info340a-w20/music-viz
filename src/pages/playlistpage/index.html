@@ -14,6 +14,7 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
     </script>
@@ -61,11 +62,6 @@
     </nav>
 
     <main>
-        <div class="parallax"></div>
-
-        <!-- <div class="header">
-            <h1>My Entire Playlist</h1>
-        </div>  -->
         <div class="top-wrapper">
             <div class="card text-center toplist">
                 <div class="card-header">
@@ -83,111 +79,51 @@
         
         <div class="bg">
             <div class="wrapper">
-                
-                <h1>Your Play List</h1>
-                <div class="cards">
-                    
-                    <div class="card">
-                        <a href="../userpage/index.html">
-                            <div class="overlayer" href="../userpage/index.html">
-                                <i class="fa fa-play-circle"></i>
-                            </div>
-                        </a>
-                        <img src="https://i.pinimg.com/736x/02/b8/94/02b894f7ea6ad9f724648ee511ad018f--edm-music-house-music.jpg" alt="">
-                        <div class="title">
-                            <a href="../userpage/index.html">Hover over</a>
+                <div>
+                    <div id="title-playlist">
+                        <h1 id='mylist'>Your Play List</h1>
+                        <div id="circle">
+                            <i class="fa fa-plus-circle"></i>
                         </div>
-                    </div>	
-                    
-                    
-                    <div class="card">
-                        <a href="../userpage/index.html">
-                            <div class="overlayer">
-                                <i class="fa fa-play-circle"></i>
-                            </div>
-                        </a>
-                        <img src="https://altwall.net/img/albums/adb1c0cbab29b842b28e6aa1e8e57f47_2013.jpg" alt="">
-                        <div class="title">
-                            <a href="../userpage/index.html">Hover over</a>
-                        </div>
-                    </div>	
-                    
-                    <div class="card">
-                        <a href="../userpage/index.html">
-                            <div class="overlayer">
-                                <i class="fa fa-play-circle"></i>
-                            </div>
-                        </a>
-                        <img src="https://is4-ssl.mzstatic.com/image/thumb/Music7/v4/4b/06/29/4b062955-ecce-e362-78f1-025f18eed20a/source/1200x1200bb.jpg" alt="">
-                        <div class="title">
-                            <a href="../userpage/index.html">Hover over</a>
-                        </div>
-                    </div>	
-                    
-                    <div class="card">
-                        <a href="../userpage/index.html">
-                            <div class="overlayer">
-                                <i class="fa fa-play-circle"></i>
-                            </div>
-                        </a>
-                        <img src="https://media1.popsugar-assets.com/files/thumbor/L-VT9k0GKckWWnpo3n2YBq4f9tE/fit-in/1024x1024/filters:format_auto-!!-:strip_icc-!!-/2017/08/03/846/n/37139775/2d0d134e5983773fe90560.65157921_edit_img_image_17921777_1501786115/i/Camila-Cabello-Havana-Song.jpg" alt="">
-                        <div class="title">
-                            <a href="../userpage/index.html">Hover over</a>
-                        </div>
-                    </div>		
-                </div>
-                
-                <div class="wrapper_section_2">
-                    <div class="cards">
-                        
-                        <div class="card">
-                            <div class="overlayer">
-                                <i class="fa fa-play-circle"></i>
-                            </div>
-                            <img src="http://www.naomishow.com/wp-content/uploads/buy-cd-covers-63-best-cd-cover-artwork-templates-images-on-pinterest-2.jpg" alt="">
-                            <div class="title">
-                                <a href="#">Hover over</a>
-                            </div>
-                        </div>	
-                        
-                        <div class="card">
-                            <div class="overlayer">
-                                <i class="fa fa-play-circle"></i>
-                            </div>
-                            <img src="https://i.pinimg.com/736x/cf/74/03/cf74032199d378808402329b3765ac72--music-albums-in-color.jpg" alt="">
-                            <div class="title">
-                                <a href="#">Hover over</a>
-                            </div>
-                        </div>	
-                        
-                        <div class="card">
-                            <div class="overlayer">
-                                <i class="fa fa-play-circle"></i>
-                            </div>
-                            <img src="https://i.pinimg.com/736x/ed/b1/10/edb1100257bb6d0ceee624696d9c9f1f--cover-art-album-covers.jpg" alt="">
-                            <div class="title">
-                                <a href="#">Hover over</a>
-                            </div>
-                        </div>	
-                        
-                        <div class="card">
-                            <div class="overlayer">
-                                <i class="fa fa-play-circle"></i>
-                            </div>
-                            <img src="https://i.pinimg.com/736x/00/a1/3c/00a13cf897548091f4042cba761ef00d--cd-cover-dance-music.jpg" alt="">
-                            <div class="title">
-                                <a href="#">Hover over</a>
-                            </div>
-                        </div>	
                         
                     </div>
                 </div>
+                
+                
+                <div class="cards" id="my-play-list">
+                    
+                    
+                    <div class="card">
+                        <a href="../userpage/index.html">
+                            <div class="overlayer">
+                                <i class="fa fa-play-circle"></i>
+                            </div>
+                        </a>
+                        <img src="https://pbs.twimg.com/profile_images/1222571834488623104/zsWD1O8K_400x400.jpg" alt="">
+                        <div class="title">
+                            <a href="../userpage/index.html">Hover over</a>
+                        </div>
+                    </div>	
+
+                    
+
+                    
+                    
+                    <!-- <form class="name-form">
+                        <p>Name</p>
+                        <input id="name" type="text" placeholder="My Playlist..." name="search">
+                        <div class="submit">
+                            <button type="button">Submit</button>
+                            <button type="button">Cancel</button>
+                        </div>
+                    </form>	 -->
+                
+                    </div>
             </div>
         </div>
 
         <div class="trending">
             <div class="wrapper">
-                
                 <h1>Trending This Week</h1>
                 <div class="cards">
                     
@@ -195,7 +131,7 @@
                         <div class="overlayer">
                             <i class="fa fa-play-circle"></i>
                         </div>
-                        <img src="https://i.pinimg.com/736x/02/b8/94/02b894f7ea6ad9f724648ee511ad018f--edm-music-house-music.jpg" alt="">
+                        <img src="https://pbs.twimg.com/profile_images/1222571834488623104/zsWD1O8K_400x400.jpg" alt="">
                         <div class="title">
                             <a href="#">Hover over</a>
                         </div>
@@ -303,6 +239,6 @@
                 title="Flaticon">www.flaticon.com</a></div>
     </footer>
     
-    
+    <script src="js/index.js"></script>
 </body>
 </html>

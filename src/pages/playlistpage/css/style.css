@@ -73,7 +73,7 @@ a {
 	visibility: hidden;
 }
 
-.overlayer .fa-play-circle {
+.overlayer .fa-play-circle, .fa-plus-circle {
 	color: #fff;
 	font-size: 73px;
 	margin-top: 53px;
@@ -93,6 +93,24 @@ a {
 
 .trending {
     display: none;
+}
+
+.card {
+    background-color: seashell;
+}
+
+.fa-plus-circle {
+    padding-left: 3rem;
+    margin: 0px;
+    font-size: 50px;
+    /* margin-bottom: auto; */
+    /* padding-top: 10px; */
+    /* font-size: 100rem; */
+}
+
+.fa-plus-circle:hover {
+    transform: scale(1.2);
+    cursor: pointer;
 }
 
 
@@ -138,6 +156,50 @@ i {
     right: 15px;
     z-index: 3;
 }
+
+.submit {
+    padding-top: 10px;
+    border-radius: 10px;
+}
+
+.name-form {
+    border: skyblue;
+    padding: 20px;
+    background: rgba(73, 76, 77, 0.3);
+    border-radius: 15px;
+}
+
+#name, #url {
+    padding:7px;
+    font-size: 17px;
+    border: 1px solid grey;
+    /* float: right; */
+    background: #f1f1f1;
+    border-radius: 25px;
+    text-indent: 10px;
+}
+
+button, #name, #url {
+    border-radius: 10px ;
+}
+
+#submit-button {
+    color: white;
+    background-color: rgb(24, 100, 242);
+    margin-right: 10px;
+}
+
+#mylist, #circle {
+    display: inline-block;
+    /* margin-right: auto; */
+    /* margin-left: auto; */
+}
+
+#title-playlist {
+    text-align: center;
+}
+
+
 
 /* Footer Styles */
 

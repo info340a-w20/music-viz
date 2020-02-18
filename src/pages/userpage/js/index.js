@@ -2,10 +2,23 @@
 
 
 let state = {addSongText:'',
-searchSongText:''};
+searchSongText:'',
+songNumber:''};
+
+class AddSong {
+
+}
+
+class searchSong {
+
+}
+
+// update songNumber
+let oRows = document.querySelector('table').getElementsByTagName('tr');
+let iRowCount = oRows.length;
+state.songNumber = iRowCount; // Exclude header
 
 // if addSong is not '' display:nonefor the class=wrapper-tbl
-
 let input = document.querySelector('#search-add-song');
 console.log(input, "hi");
 
@@ -28,7 +41,7 @@ let button = document.querySelector("#btn-add-song");
 
 button.addEventListener('click', () =>  {
     let table = document.querySelector('table');
-    let row = table.insertRow(0);
+    let row = table.insertRow(1);
     let firstCell = row.insertCell(0);
     let secondCell = row.insertCell(1);
     let thirdCell = row.insertCell(2);
@@ -37,8 +50,22 @@ button.addEventListener('click', () =>  {
     firstCell.innerHTML = "1";
     secondCell.innerHTML = state.addSongText;
     thirdCell.innerHTML = "N/A";
-    fourthCell.innerHTML = ""
+    let heart = document.createElement('i');
+    heart.classList.add("fa", "fa-heart");
+    fourthCell.appendChild(heart);
+    state.addSongText = '';
+    input.value = state.addSongText;
+    state.songNumber += 1;
+    updateTableNumber()
+    renderSearchTable();
 })
+
+function updateTableNumber() { // Updating #
+    let table = document.querySelector('table');
+    for (let i = 1, row; row = table.rows[i]; i++) {
+        row.cells[0].innerHTML = i;
+    }
+}
 
 
 
