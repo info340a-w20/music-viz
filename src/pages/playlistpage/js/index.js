@@ -66,12 +66,6 @@ addButton.addEventListener('click', ()=> {
         state.inputUrl = this.value;
     })
     let divCard = document.querySelector('.cards');
-    // if (state.inputName.length == 0 || state.inputUrl.length == 0) {
-    //     submit.disabled = true;
-    // } else {
-    //     submit.disabled = false;
-    // }
-
 
     // Click submit will create new card
     submit.addEventListener('click', ()=> {
