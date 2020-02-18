@@ -256,6 +256,10 @@ form.example::after {
   right: 15px;
 }
 
+#search-table {
+  display: none;
+}
+
 
   /* Style the active link (or home/logo) */
   @media (min-width: 598px) 
