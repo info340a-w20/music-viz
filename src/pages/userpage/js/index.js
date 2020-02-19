@@ -57,7 +57,7 @@ let state = {addSongText:'',
             // songList.push(songInfo);
 
             state.songList.push(songInfo);
-            clearTable();
+            clearSongTable();
             addSongList();
             // createSearchTable();
             // console.log(state.searchList);
@@ -297,7 +297,18 @@ let state = {addSongText:'',
           // or
           // table.deleteRow(i);
         }
-      }
+    }
+
+    function clearSongTable() {
+        let table = document.querySelector('table')
+        let rows = table.rows;
+        let i = rows.length;
+        while (--i) {
+          rows[i].parentNode.removeChild(rows[i]);
+          // or
+          // table.deleteRow(i);
+        }
+    }
 
     // Search own list
     let searchInput = document.querySelector('div.search input')
