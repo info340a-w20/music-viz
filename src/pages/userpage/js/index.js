@@ -57,6 +57,7 @@ let state = {addSongText:'',
             // songList.push(songInfo);
 
             state.songList.push(songInfo);
+            clearTable();
             addSongList();
             // createSearchTable();
             // console.log(state.searchList);
