@@ -14,28 +14,51 @@ let state = {addSongText:'',
 
 
 
+    // function querySong(query) {
+    //     // let baseUrl = 'https://cors-anywhere.herokuapp.com/https://api.deezer.com/search?q='
+    //     console.log('fetch')
+    //     let songSearch = fetch('https://cors-anywhere.herokuapp.com/https://api.deezer.com/search?q=' +query)
+    //     .then((resp) => resp.json())
+    //     .then((data) => {
+    //         let songList = [];
+    //         let length = data.data.length;
+    //         if (length > 10) {
+    //             length = 10;
+    //         }
+
+    //         for (let i = 0; i < length; i++) {
+    //             let songInfo = {};
+    //             songInfo.name = data.data[i].title;
+    //             songInfo.artist = data.data[i].artist.name;
+    //             let audio = new Audio(data.data[i].preview);
+    //             songInfo.preview = audio;
+    //             songList.push(songInfo);
+    //         }
+    //         state.searchList = songList;
+    //         createSearchTable();
+    //         // console.log(state.searchList);
+    //     }).catch(err => console.error(err));
+    // }
+
+
     function querySong(query) {
         // let baseUrl = 'https://cors-anywhere.herokuapp.com/https://api.deezer.com/search?q='
         console.log('fetch')
         let songSearch = fetch('https://cors-anywhere.herokuapp.com/https://api.deezer.com/search?q=' +query)
         .then((resp) => resp.json())
         .then((data) => {
-            let songList = [];
-            let length = data.data.length;
-            if (length > 10) {
-                length = 10;
-            }
+            // let songList = [];
 
-            for (let i = 0; i < length; i++) {
-                let songInfo = {};
-                songInfo.name = data.data[i].title;
-                songInfo.artist = data.data[i].artist.name;
-                let audio = new Audio(data.data[i].preview);
-                songInfo.preview = audio;
-                songList.push(songInfo);
-            }
-            state.searchList = songList;
-            createSearchTable();
+            let songInfo = {};
+            songInfo.name = data.data[0].title;
+            songInfo.artist = data.data[0].artist.name;
+            let audio = new Audio(data.data[0].preview);
+            songInfo.preview = audio;
+            // songList.push(songInfo);
+
+            state.songList.push(songInfo);
+            addSongList();
+            // createSearchTable();
             // console.log(state.searchList);
         }).catch(err => console.error(err));
     }
@@ -45,6 +68,7 @@ let state = {addSongText:'',
 
     // update songNumber
     let button = document.querySelector("#btn-add-song");
+
     let oRows = document.querySelector('table').getElementsByTagName('tr');
     let iRowCount = oRows.length;
     state.songNumber = iRowCount; // Exclude header
@@ -97,81 +121,80 @@ let state = {addSongText:'',
 
     })
 
-    // create table
-    input.addEventListener('keypress', (element) => {
-        if (element.key === 'Enter') {
-            let songTable = document.querySelector(".wrapper-tbl");
-            let searchTable = document.querySelector("#search-table");
-            element.preventDefault();
-            if (state.addSongText.length == 0) {
-                songTable.style.display = "block";
-                searchTable.style.display = "none";
-                return false;
-            }
+    // // create table
+    // input.addEventListener('keypress', (element) => {
+    //     if (element.key === 'Enter') {
+    //         let songTable = document.querySelector(".wrapper-tbl");
+    //         let searchTable = document.querySelector("#search-table");
+    //         element.preventDefault();
+    //         if (state.addSongText.length == 0) {
+    //             songTable.style.display = "block";
+    //             searchTable.style.display = "none";
+    //             return false;
+    //         }
             
-            // console.log(state.addSongText)
-            // Query and list out all the possible songs
-            songTable.style.display = "none";
-            searchTable.style.display = "block";
-            console.log("jooooo");
-            clearTable();
-            querySong(input.value);
-            // console.log(state.searchList.length)
-            // createSearchTable();
-            // state.addSongText = '';
-            // input.value = state.addSongText;
+    //         // console.log(state.addSongText)
+    //         // Query and list out all the possible songs
+    //         songTable.style.display = "none";
+    //         searchTable.style.display = "block";
+    //         clearTable();
+    //         // querySong(input.value);
 
-        }
+
+    //     }
         
-    })
+    // })
+
+
+    input.addEventListener('keypress', (element) => {
+            if (element.key === 'Enter') {
+                
+                element.preventDefault();
+                if (state.addSongText.length == 0) {
+                    return false;
+                }
+                querySong(state.addSongText);
+                state.addSongText = '';
+                input.value = state.addSongText;
+                state.songNumber += 1;
+                updateTableNumber();
+            }
+        })
+
+
 
     // When pressed "add song" button - add a new row to the table
     // let button = document.querySelector("#btn-add-song");
 
-    // button.addEventListener('click', () =>  {
-    //     let table = document.querySelector('table');
-    //     let row = table.insertRow(1);
-    //     let firstCell = row.insertCell(0);
-    //     let secondCell = row.insertCell(1);
-    //     let thirdCell = row.insertCell(2);
-    //     let fourthCell = row.insertCell(3);
-
-    //     firstCell.innerHTML = "1";
-    //     secondCell.innerHTML = state.addSongText;
-    //     thirdCell.innerHTML = "N/A";
-    //     let heart = document.createElement('i');
-    //     heart.classList.add("fa", "fa-heart");
-    //     fourthCell.appendChild(heart);
-    //     state.addSongText = '';
-    //     input.value = state.addSongText;
-    //     state.songNumber += 1;
-    //     updateTableNumber()
-    //     // renderSearchTable();
-    // })
-
-    button.addEventListener('click', ()=>{
-        if (state.addSongText.length == 0) {
-            songTable.style.display = "block";
-            searchTable.style.display = "none";
-            return false;
-        }
-        let songTable = document.querySelector(".wrapper-tbl");
-        let searchTable = document.querySelector("#search-table");
-        // let input = 
-        
-        
-        // console.log(state.addSongText)
-        // Query and list out all the possible songs
-        songTable.style.display = "none";
-        searchTable.style.display = "block";
-        clearTable();
-        querySong(input.value);
-        // let exitSearch = document.querySelector('#search-table button');
-        //     exitSearch.addEventListener('click', ()=>{
-        //         songTable.style.display = "block";
-        //         searchTable.style.display = "none";
-        // })
+    button.addEventListener('click', () =>  {
+        querySong(state.addSongText);
+        state.addSongText = '';
+        input.value = state.addSongText;
+        state.songNumber += 1;
+        updateTableNumber()
+        // renderSearchTable();
     })
+
+
+
+    // button.addEventListener('click', ()=>{
+    //     if (state.addSongText.length == 0) {
+    //         songTable.style.display = "block";
+    //         searchTable.style.display = "none";
+    //         return false;
+    //     }
+    //     let songTable = document.querySelector(".wrapper-tbl");
+    //     let searchTable = document.querySelector("#search-table");
+    //     // let input = 
+        
+        
+    //     // console.log(state.addSongText)
+    //     // Query and list out all the possible songs
+    //     songTable.style.display = "none";
+    //     searchTable.style.display = "block";
+    //     clearTable();
+    //     // querySong(input.value);
+    // })
 
 
 
@@ -186,12 +209,6 @@ let state = {addSongText:'',
     function renderSong(songName, artistName) {
         let table = document.querySelector('table');
         let row = table.insertRow(1);
-        row.addEventListener('click', ()=>{
-            let info = {};
-            info.name = this[1];
-            info.artist = this[2];
-            // info.preview = this[3];
-        })
 
         let firstCell = row.insertCell(0);
         let secondCell = row.insertCell(1);
@@ -210,9 +227,9 @@ let state = {addSongText:'',
     }
 
     function addSongList() {
-    state.songList.forEach(element => {
-        renderSong(element.name, element.artist, element.preview)
-    });
+        state.songList.forEach(element => {
+            renderSong(element.name, element.artist, element.preview)
+        });
     }
 
 
@@ -230,11 +247,11 @@ let state = {addSongText:'',
         fourthCell.innerHTML = preview
 
         row.addEventListener('click', ()=>{
-            console.log(this.row)
+            // console.log(this.row)
             let info = {};
-            info.name = this[1];
-            info.artist = this[2];
-            info.preview = this[3];
+            info.name = this.row[1];
+            info.artist = this.row[2];
+            info.preview = this.row[3];
 
             state.songList.push(info);
             addSongList();
