@@ -190,8 +190,9 @@ let state = {addSongText:'',
             let info = {};
             info.name = this[1];
             info.artist = this[2];
-            info.
+            // info.preview = this[3];
         })
+
         let firstCell = row.insertCell(0);
         let secondCell = row.insertCell(1);
         let thirdCell = row.insertCell(2);
@@ -228,6 +229,17 @@ let state = {addSongText:'',
         thirdCell.innerHTML = artist;
         fourthCell.innerHTML = preview
 
+        row.addEventListener('click', ()=>{
+            console.log(this.row)
+            let info = {};
+            info.name = this[1];
+            info.artist = this[2];
+            info.preview = this[3];
+
+            state.songList.push(info);
+            addSongList();
+            // info.preview = this[3];
+        })
         
         return(table);
     }

@@ -21,6 +21,7 @@ function createForm() {
     inputUrl.setAttribute('id', 'url');
     inputUrl.setAttribute('placeholder', 'Your image URL...');
     inputUrl.style.display = 'block';
+    // inputUrl.defaultValue = 'https://images.unsplash.com/photo-1499678329028-101435549a4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjExMDk0fQ&w=1000&q=80'
 
     let div = document.createElement('div');
     div.classList.add('submit');
@@ -69,6 +70,13 @@ addButton.addEventListener('click', ()=> {
 
     // Click submit will create new card
     submit.addEventListener('click', ()=> {
+        if (state.inputName.length == 0) {
+            state.inputName = 'Your Playlist'
+        }
+
+        if (state.inputUrl.length == 0) {
+            state.inputUrl = 'https://images.unsplash.com/photo-1499678329028-101435549a4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjExMDk0fQ&w=1000&q=80'
+        }
         addCard(state.inputName, state.inputUrl);
         // console.log(divCard.lastChild)
 
@@ -104,7 +112,7 @@ function addCard(name, url) {
     img.setAttribute('src', url);
     let title = document.createElement('div');
     title.classList.add('title');
-    let p = document.createElement('p');
+    let p = document.createElement('a');
     p.innerHTML = name
     title.appendChild(p);
 
