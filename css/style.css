@@ -106,6 +106,7 @@ i {
     transition: width 1s;
     color: white;
     text-decoration: none;
+    cursor: pointer;
 }
 
 a:link {

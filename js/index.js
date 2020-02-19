@@ -4,7 +4,7 @@
 let state = {
   currSong: {},
   color: "",
-  shape: "",
+  shape: "Rectangle",
   width: 1,
   volume: 50,
   songList: [],
@@ -13,18 +13,13 @@ let state = {
 
 
 
-window.onload = function () {
+window.onload = function() {
   function querySong(query) {
     // let baseUrl = 'https://cors-anywhere.herokuapp.com/https://api.deezer.com/search?q='
     let songSearch = fetch('https://cors-anywhere.herokuapp.com/https://api.deezer.com/search?q=' +query)
     .then((resp) => resp.json())
     .then((data) => {console.log(data)
         data.data.forEach(element=> {
-            // let songInfo = {};
-            // songInfo.name = element.title;
-            // songInfo.artist = element.artist.name;
-            // songInfo.preview = element.preview;
-            // state.songList.push(songInfo);
             state.songList = data;
             state.app = new App(document.querySelector("main"), state.songList);
             state.app.render();
@@ -33,20 +28,9 @@ window.onload = function () {
     }).catch(err => console.error(err));
   }
   querySong("get your wish");
-  // let promise = fetch('../musicData.json')
-  // .then(res => res.json())
-  // .then(data => {
-  //   state.songList = data;
-  //   state.app = new App(document.querySelector("main"), state.songList);
-  //   state.app.render();
-  // })
-  // .catch(err => console.error(err));
 
   // *Visualizer render and functionality code
-  // let a = new Audio("url...")
-  // let a = new Audio()
   var file = document.getElementById("thefile");
-
 
   file.onchange = function () {
     var audio = document.getElementById("audio");
@@ -78,12 +62,22 @@ window.onload = function () {
     analyser.fftSize = 256;
 
     var bufferLength = analyser.frequencyBinCount;
+    console.log(bufferLength);
 
     var dataArray = new Uint8Array(bufferLength);
 
     var WIDTH = canvas.width;
     var HEIGHT = canvas.height;
 
+    if (state.shape == "Square") {
+
+    } else if (state.shape == "Circle") {
+
+    } else if (state.shape == "Triangle") {
+      
+    } else {
+      
+    }
     var barWidth = (WIDTH / bufferLength) * 2.5;
     var barHeight;
     var x = 0;
@@ -153,7 +147,6 @@ window.onload = function () {
           var audio = document.getElementById("audio");
           audio.src = item.preview;
           renderCanvas();
-          // renderCanvas(audio);
         })
   
         // let wrapper = document.createElement("div");
