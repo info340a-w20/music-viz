@@ -4,6 +4,10 @@
      
  }
 
+ .navbar .navbar-inverse {
+   display: none;
+ }
+
  .fa-bars {
    color: white;
  }
@@ -20,6 +24,8 @@
 #viz {
   width: 5vh;
   height: auto;
+  position: fixed;
+  top: 10px;
 }
 
  nav {
@@ -34,11 +40,15 @@ table {
   margin-left: auto;
   margin-right: auto;
   border-collapse: collapse;
+  text-align: left;
 }
 
 table, td, th {
-  padding: 5px;
+  font-size: 15px;
+  padding: 15px;
   border-bottom: 1px solid #d3d3d3;
+  border-left: 0rem;
+  border-right: 0rem;
 }
 /* table {
   border-collapse: collapse;
@@ -63,36 +73,89 @@ tr {
 
 tr:hover {
   background-color: #2c393f;
+  text-decoration: underline;
+  cursor: pointer;
   
 }
+
+.padding-song{
+  padding-right: 0.5rem;
+}
+
+.small-col {
+  width: 40px;
+}
+
+form {display: inline;}
 
 #navbarNav a:hover, #navbarNav a:focus {
   background-color: #3282b8;
-  border-bottom: .6rem solid #bbe1fa;
-  padding-bottom: .65rem;
+  padding-bottom: 4px;
+  border-bottom: 4px solid #bbe1fa;
 }
  
- 
-
-  
-  
-
   .fa-play-circle {
     color:#bbe1fa;
     /* size: 20rem; */
     /* size: 100%; */
   }
 
-
   .header {
-    padding: 30px;
-    text-align: left;
-    background: #1b262c;
+    padding: 0.25rem;
+    text-align: center;
+    /* background: #1b262c; */
     color: white;
     font-size: 30px;
   }
-  
 
+  #playlist-cover {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    height: 20vh;
+    /* background-color: #1b262c; */
+  }
+  
+  #playlist-cover img{
+    padding: 1rem;
+    width: auto;
+    height: 100%;
+  }
+
+  #add-song {
+    text-align: center;
+    /* background-color: #1b262c; */
+    border-color: #1b262c;
+    padding-bottom: 0.5rem;
+  }
+
+  #add-song button{
+    color: white;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+    background-color: green;
+    border: 1px solid white;
+    border-radius: 25px;
+    /* border: 0px; */
+  }
+#add-song button:hover {
+  background-color: rgb(137, 182, 69);
+  cursor: pointer;
+}
+  
+#add-song #play {
+  /* padding-right: 2rem; */
+  background-color: #1b262c;
+  border-color: white;
+  /* border: 1px solid white; */
+}
+
+#add-song #play:hover {
+  background-color: #2c393f;
+  cursor: pointer;
+}
 
 .search {
   position: relative;
@@ -122,28 +185,96 @@ tr:hover {
 }
 
 body {
-  background: linear-gradient(90deg, #0a2132, #267bb4);
+  /* background: linear-gradient(90deg, #0a2132, #267bb4); */
+  background: -webkit-linear-gradient(to right, #37d5d6, #1752ab);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #37d5d6, #1752ab);
 }
 
 #footer {
+  position: relative;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
   color: white;
-  position: absolute;
-  bottom: 10px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
+  text-align: center;
 }
+
+.fa-heart:hover {
+  color: palevioletred;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Style the search field */
+form.example input[type=text] {
+  padding:7px;
+  font-size: 17px;
+  border: 1px solid grey;
+  /* float: right; */
+  width: 30%;
+  background: #f1f1f1;
+  border-radius: 25px;
+  text-indent: 10px;
+}
+
+/* Style the submit button */
+
+form.example button:hover {
+  background: #0b7dda;
+}
+
+/* Clear floats */
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+#dropMenu {
+  position: absolute; 
+  right: 15px;
+}
+
+#search-table {
+  display: none;
+}
+
+
   /* Style the active link (or home/logo) */
   @media (min-width: 598px) 
   {
-    table, td {
+    table, td, th {
       padding: 15px;
       border-bottom: 1px solid #d3d3d3;
+      font-size: 16px;
+    }
+    .small-col {
+      width: 100px;
     }
 
-    th {
-      padding-left: 15px;
-    }
+
+    
   }
 
 
@@ -156,9 +287,9 @@ body {
     }
  
     
-    nav li {
+    /* nav li {
       display: inline;
-    }
+    } */
 
 }
 
@@ -168,13 +299,9 @@ body {
   #hamburger-menu {
     display: none;
   }
-
-
-  table, td {
-    padding: 30px;
-    border-bottom: 1px solid #d3d3d3;
+  #viz {
+    position: static;
   }
-
     
 }
 

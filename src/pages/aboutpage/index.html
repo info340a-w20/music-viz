@@ -34,7 +34,7 @@
                 id="viz"></a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="../userpage/index.html">My Playlist<span
+                <a class="nav-item nav-link active" href="../playlistpage/index.html">My Playlist<span
                         class="sr-only">(current)</span></a>
             </div>
             <div class="navbar-nav">
@@ -46,19 +46,34 @@
             </div>
         </div>
         <div id="hamburger-menu">
-            <a href="#" class="">
-                <i class="fa fa-bars mr-4"></i>
-            </a>
+            <div class="pos-f-t">
+                <button class="navbar-toggler navbar-light m1-auto" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="collapse" id="navbarToggleExternalContent">
+                <div class="bg-light p-2" id="dropMenu">
+                      <a class="dropdown-item" href="../playlistpage/index.html">My Playlist</a>
+                      <a class="dropdown-item" href="../aboutpage/index.html">About<span class="sr-only">(current)</span></a>
+                      <a class="dropdown-item" href="#footer">Contact</a>
+                </div>
+            </div>
         </div>
     </nav>
 
     <main>
-        <h1>Project: Anything Is Possible</h1>
+
+        <div id="heading" class="parallax1">
+            <h1>Project: Anything Is Possible</h1>
+        </div>
+        <div class="parallax1">
+
+        
         <section>
             <ol>
-                <li>
+                <li class="h3">
                     <h3>Overview</h3>
-                    <p>For our general topic, we want to do something related to music and how people
+                    <p class="h6">For our general topic, we want to do something related to music and how people
                         learn about music. We are both musicians and like to listen to a lot of music,
                         so we thought that this topic would be interesting and allow us to be somewhat
                         creative with our project. It is important that people continue making music
@@ -69,9 +84,9 @@
                         learning experiences better.
                     </p>
                 </li>
-                <li>
+                <li class="h3">
                     <h3>Justification</h3>
-                    <p>
+                    <p class="h6">
                         Music is a big part of people’s life. It is a form of recreation and remedy to
                         many. Billions of music is being streamed everyday, and because of this, we
                         want to create some applications that will help enhance the overall experience
@@ -83,6 +98,8 @@
                 </li>
             </ol>
         </section>
+    </div>
+    <div class="parallax2">
         <section>
             <h2>Potential Web Applications</h2>
             <ul>
@@ -161,19 +178,20 @@
                 </li>
             </ul>
         </section>
+    </div>
     </main>
 
-    <footer id="footer">
+    <footer id="footer" class="mb-5">
         <div class="text-center">
             <p class="mb-0">Contact us at:</p>
             <div class="d-flex text-center justify-content-center">
-                <div class="mx-5">
+                <div class="m-5">
                     <strong>Alex Wong</strong>
-                    <p>alwong34@uw.edu</p>
+                    <a class="d-block" href="mailto: alwong34@uw.edu">alwong34@uw.edu</a>
                 </div>
-                <div class="mx-5">
+                <div class="m-5">
                     <strong>Gavin Sreesangkom</strong>
-                    <p>sreesg@uw.edu</p>
+                    <a class="d-block" href="mailto: sreesg@uw.edu">sreesg@uw.edu</a>
                 </div>
             </div>
         </div>

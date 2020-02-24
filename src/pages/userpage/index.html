@@ -21,8 +21,8 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
         </script>
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    
-    
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        
         <link rel="stylesheet" href="css/style.css">
         <title>Music Visualizer</title>
         <link rel="icon" type="image/png" href="../../imgs/equalizer.png">
@@ -30,11 +30,12 @@
 <body>
 
 
+
     <nav class="navbar navbar-expand-lg navbar-dark purple d-flex" id="bignav">
         <a href="../../../index.html"><img src="../../imgs/equalizer.png" alt="equalizer icon" class="icon mr-3" id="viz"></a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="../userpage/index.html">My Playlist<span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link active" href="../playlistpage/index.html">My Playlist<span class="sr-only">(current)</span></a>
             </div>
             <div class="navbar-nav">
                 <a class="nav-item nav-link active" href="../aboutpage/index.html">About<span class="sr-only">(current)</span></a>
@@ -43,73 +44,97 @@
                 <a class="nav-item nav-link active" href="#footer">Contact<span class="sr-only">(current)</span></a>
             </div>
         </div>
-        <div id="hamburger-menu">
-            <a href="#" class="">
-                <i class="fa fa-bars mr-4"></i>
-            </a>
-        </div>
-    </nav>
-    <main>
-        <div class="header">
-            <h1>My Playlist</h1>
-        </div>
         
-    
-        <div class="search m-2">
-            <span class="fa fa-search"></span>
-            <input aria-label="search bar" placeholder="Search songs...">
-        </div>
-        <div class="m-2">
-            <table>
-                <tr>
-                    <th>#</th>
-                    <th>Song</th>
-                    <th>Artist</th>
-                    <th>Play</th>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Lost in Paris</td>
-                    <td>Tom Misch</td>
-                    <td><i class="fa fa-play-circle fa-2x"></i></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Skyline</td>
-                    <td>FKJ</td>
-                    <td><i class="fa fa-play-circle fa-2x"></i></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Don't Look Back In Anger</td>
-                    <td>Oasis</td>
-                    <td><i class="fa fa-play-circle fa-2x"></i></td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>In the Midst of it All</td>
-                    <td>Tom Misch</td>
-                    <td><i class="fa fa-play-circle fa-2x"></i></td>
-                </tr>
-            </table>
-        </div>
-    </main>
-    <footer id="footer">
-        <div class="text-center">
-            <p class="mb-0">Contact us at:</p>
-            <div class="d-flex text-center justify-content-center">
-                <div class="mx-5">
-                    <strong>Alex Wong</strong>
-                    <p>alwong34@uw.edu</p>
-                </div>
-                <div class="mx-5">
-                    <strong>Gavin Sreesangkom</strong>
-                    <p>sreesg@uw.edu</p>
+        <div id="hamburger-menu">
+            <div class="pos-f-t">
+                <button class="navbar-toggler navbar-light m1-auto" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="collapse" id="navbarToggleExternalContent">
+                <div class="bg-light p-2" id="dropMenu">
+                      <a class="dropdown-item" href="../playlistpage/index.html">My Playlist</a>
+                      <a class="dropdown-item" href="../aboutpage/index.html">About<span class="sr-only">(current)</span></a>
+                      <a class="dropdown-item" href="#footer">Contact</a>
                 </div>
             </div>
         </div>
+    </nav>
+    <main>
+        <div id="wrapper-head">
+            <div id="playlist-cover" >
+                <img src="../../imgs/gorillaz.jpg">
+            </div>
+            <div class="header">
+                <h1>My Playlist</h1>
+            </div> 
+            
+            <div id="add-song">
+                <!-- <button id="play" type="button">Play</button> -->
+                <form class="example">
+                    <input id="search-add-song" type="text" placeholder="Search songs.." name="search">
+                    <!-- <button type="submit"><i class="fa fa-search"></i></button> -->
+                    <button id="btn-add-song" type="button">Search Songs</button>
+                </form>
+            </div>
+        </div>
+        
+        
+        <div class="wrapper-tbl">
+            <div class="search m-2">
+                <span class="fa fa-search"></span>
+                <input aria-label="search bar" placeholder="Search songs in playlist...">
+            </div>
+            <div class="m-2">
+                <table>
+                    <tr>
+                        <th>#</th>
+                        <th class="padding-song">Song</th>
+                        <th>Artist</th>
+                        <!-- <th>Play</th> -->
+                        <th class="small-col"></th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div id="search-table">
+            <button>Back</button>
+            <table>
+                <tr>
+                    <th></th>
+                    <th class="padding-song">Song</th>
+                    <th>Artist</th>
+                    <th class="small-col"></th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>test1</td>
+                    <td>artist1</td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        
+    </main>
+
+    <footer id="footer" class="mb-5">
+        <div class="text-center">
+            <p class="mb-0">Contact us at:</p>
+            <div class="d-flex text-center justify-content-center m-0">
+                <div class="m-0">
+                    <strong>Alex Wong</strong>
+                    <a class="d-block" href="mailto: alwong34@uw.edu">alwong34@uw.edu</a>
+                </div>
+                <div class="m-0">
+                    <strong>Gavin Sreesangkom</strong>
+                    <a class="d-block" href="mailto: sreesg@uw.edu">sreesg@uw.edu</a>
+                </div>
+            </div>
+        </div>
+        <audio id="player"></audio>
         <div class="text-center">Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
     </footer>
-    
+    <script src="js/index.js"></script>
 </body>
 </html>

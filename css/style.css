@@ -3,6 +3,7 @@ body {
     background-color: #1b262c;
     font-family: 'Noto Sans JP', sans-serif;
 }
+
 a {
     color: #bbe1fa;
 }
@@ -12,10 +13,15 @@ nav {
     height: 7vh;
     display: flex;
 }
+
 img {
-    width:320px;
-    height: auto;
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 }
+
 i {
     color: white;
 }
@@ -27,18 +33,21 @@ i {
     top: 2;
     margin: 4px;
 }
+
 .blue {
     background-color: #0f4c75;
 }
+
 #viz {
     width: 5vh;
-    height: auto;
+    height: 70%;
 }
 
 .slide-container {
     align-items: center;
     margin: 15px;
 }
+
 .slider {
     -webkit-appearance: none;
     width: 15vh;
@@ -50,6 +59,7 @@ i {
     -webkit-transition: .2s;
     transition: opacity .2s;
 }
+
 .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
@@ -59,6 +69,7 @@ i {
     background: #3282b8;
     cursor: pointer;
 }
+
 .slider::-moz-range-thumb {
     width: 25px;
     height: 25px;
@@ -66,40 +77,131 @@ i {
     background: #3282b8;
     cursor: pointer;
 }
-#file-btn {
+
+.choose-file {
     float: right;
     color: white;
+    /* overflow: hidden;; */
 }
+
 .btn {
     background-color: #0f4c75;
     margin: 1vh;
-    box-shadow: 3px 6px #3282b8;
 }
-#navbarNav a:hover, #navbarNav a:focus {
-    background-color: #3282b8;
-    border-bottom: .6rem solid #bbe1fa;
-    padding-bottom: .65rem;
-  }
 
-@media (min-width: 768px) {
-    img {
-        width: 786px;
-    }
+#navbarNav a:hover,
+#navbarNav a:focus {
+    background-color: #3282b8;
+    padding-bottom: 4px;
+    border-bottom: 4px solid #bbe1fa;
 }
+
+.card {
+    background-color: rgba(255, 255, 255, .15);
+    backdrop-filter: blur(5px);
+    display: inline-block;
+    width: 13rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: width 1s;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+a:link {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.card:hover {
+    background-color: #0f4c75;
+    width: 20rem;
+    color: inherit;
+}
+
+.bg-image {
+    position: absolute;
+    background-image: url("../src/imgs/placeholderviz.jpg");
+    /* Add the blur effect */
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+
+    /* Full height */
+    width: 100%;
+    height: 80%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 1;
+}
+
+.song-info {
+    position: relative;
+    z-index: 2;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+.visualizer {
+    position: relative;
+    z-index: 2;
+    height: 70%;
+    width: 70%;
+    align-self: center;
+    justify-content: center;
+    vertical-align: middle;
+}
+
+#dropMenu {
+    position: absolute;
+    right: 15px;
+    z-index: 3;
+}
+
+/* ---------------------------------------------visualizer styling---------------------------------------------*/
+#thefile {
+    position: relative;
+    top: 10px;
+    left: 10px;
+    /* z-index: 100; */
+}
+
+#canvas {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 90%;
+    vertical-align: middle;
+}
+
+audio {
+    position: relative;
+    left: 10px;
+    bottom: 10px;
+    width: calc(100% - 20px);
+}
+
+
+@media (min-width: 768px) {}
+
 @media (min-width: 992px) {
     #hamburger-menu {
         display: none;
     }
-    img {
-        width: 992px;
+
+    .song-info::-webkit-scrollbar {
+        display: none;
     }
+
 }
-@media (min-width: 1440px)
-{
-    img {
-        width: 1440px;
+
+@media (min-width: 1200px) {}
+    #canvas {
+        max-height: 1000px;
     }
-}
 /* body {
     color: white;
     font-family: 'Noto Sans JP', sans-serif;
