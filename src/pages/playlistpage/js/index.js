@@ -21,7 +21,6 @@ function createForm() {
     inputUrl.setAttribute('id', 'url');
     inputUrl.setAttribute('placeholder', 'Your image URL...');
     inputUrl.style.display = 'block';
-    // inputUrl.defaultValue = 'https://images.unsplash.com/photo-1499678329028-101435549a4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjExMDk0fQ&w=1000&q=80'
 
     let div = document.createElement('div');
     div.classList.add('submit');
@@ -45,8 +44,10 @@ function createForm() {
     form.appendChild(inputUrl);
     form.appendChild(div);
 
-    let divCard = document.querySelector('.cards');
-    divCard.appendChild(form)
+    // div.classList.add('col-md-3', 'col-6')
+    form.classList.add('col-md-3', 'col-6');
+    let divCard = document.querySelector('.row');
+    divCard.appendChild(form);
 }
 
 let addButton = document.querySelector(".fa-plus-circle");
@@ -66,8 +67,8 @@ addButton.addEventListener('click', ()=> {
     url.addEventListener('input', function() {
         state.inputUrl = this.value;
     })
-    let divCard = document.querySelector('.cards');
-
+    let divCard = document.querySelector('.row');
+    
     // Click submit will create new card
     submit.addEventListener('click', ()=> {
         if (state.inputName.length == 0) {
@@ -97,8 +98,12 @@ addButton.addEventListener('click', ()=> {
 
 function addCard(name, url) {
     // Parent
-    let cards = document.querySelector('#my-play-list');
+    let cards = document.querySelector('.row');
+    
+    
+    let newWrapper = document.createElement('div');
 
+    newWrapper.classList.add('col-md-3', 'col-6')
     let newCard = document.createElement('div');
     newCard.classList.add('card');
     let overlayer = document.createElement('div');
@@ -114,14 +119,23 @@ function addCard(name, url) {
     title.classList.add('title');
     let p = document.createElement('a');
     p.innerHTML = name
+    p.href ="../userpage/index.html";
+    let a = document.createElement('a');
+    a.href = "../userpage/index.html";
     title.appendChild(p);
-
-
-    newCard.appendChild(overlayer);
+    newCard.appendChild(a);
+    // overlayer.appendChild(img)
+    a.appendChild(overlayer);
     newCard.appendChild(img);
     newCard.appendChild(title);
-
-    cards.insertBefore(newCard, cards.lastChild);
+    
+    
+    newWrapper.appendChild(newCard);
+    console.log(newWrapper)
+    
+    // cards.appendChild(newWrapper);
+    console.log(cards)
+    cards.insertBefore(newWrapper, cards.lastChild);
 }
 
 
