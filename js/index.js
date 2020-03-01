@@ -28,7 +28,7 @@ window.onload = function() {
   }
   querySong("get your wish");
 
-  // *Visualizer render and functionality code
+  // * Visualizer render and functionality code
   var file = document.getElementById("thefile");
 
   file.onchange = function () {
@@ -141,8 +141,11 @@ window.onload = function() {
     function drawBar(x1, y1, x2, y2, width,frequency){
     
       var lineColor = "rgb(" + frequency + ", " + frequency + ", " + 205 + ")";
-      
-      ctx.strokeStyle = lineColor;
+      if (state.color == "") {
+        ctx.strokeStyle = lineColor;
+      } else {
+        ctx.strokeStyle = state.color;
+      }
       ctx.lineWidth = width;
       ctx.beginPath();
       ctx.moveTo(x1,y1);
