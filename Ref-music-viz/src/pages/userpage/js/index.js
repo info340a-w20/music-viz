@@ -8,9 +8,9 @@ let state = {addSongText:'',
     data: []};
 
 function querySong(query) {
-    // let baseUrl = 'https://cors-anywhere.herokuapp.com/https://api.deezer.com/search?q='
+    // let baseUrl = 'https://polar-falls-56753.herokuapp.com'
     console.log('fetch')
-    let songSearch = fetch('http://localhost:3000/?search=' + query)
+    let songSearch = fetch('https://polar-falls-56753.herokuapp.com/?search=' + query)
     .then((resp) => resp.json())
     .then((data) => {
         let songList = [];

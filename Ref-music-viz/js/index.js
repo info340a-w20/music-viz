@@ -16,7 +16,7 @@ let state = {
 window.onload = function() {
   function querySong(query) {
     // let baseUrl = 'https://cors-anywhere.herokuapp.com/https://api.deezer.com/search?q='
-    let songSearch = fetch('https://cors-anywhere.herokuapp.com/https://api.deezer.com/search?q=' +query)
+    let songSearch = fetch('https://polar-falls-56753.herokuapp.com/?search=' +query)
     .then((resp) => resp.json())
     .then((data) => {console.log(data)
         data.data.forEach(element=> {
