@@ -195,9 +195,11 @@ button, #name, #url {
     /* margin-left: auto; */
 }
 
-#title-playlist {
+#title-playlist, #trending {
     text-align: center;
+    margin: 1rem;
 }
+
 
 
 

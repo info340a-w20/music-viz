@@ -1,21 +1,16 @@
 'use strict';
 
-
-
-
 let state = {addSongText:'',
     searchSongText:'',
     songNumber:2, 
-    songList: [{name:'Good things', artist:'Gavin Koman'}, {name:'In the Midst', artist:'Tom Misch'}],
+    songList: [{name:'Good things', artist:'Gavin Koman', preview:'https://cdns-preview-8.dzcdn.net/stream/c-81af51bb89fd01fa5c65470b6b38597e-4.mp3'}, {name:'In the Midst', artist:'Tom Misch', preview: 'https://cdns-preview-3.dzcdn.net/stream/c-3b6d163c64ce90ddf249f755a7608f1b-2.mp3'}],
     searchList: [],
     data: []};
 
-
-
 function querySong(query) {
-    // let baseUrl = 'https://cors-anywhere.herokuapp.com/https://api.deezer.com/search?q='
+    // let baseUrl = 'https://polar-falls-56753.herokuapp.com'
     console.log('fetch')
-    let songSearch = fetch('http://localhost:3000/?search=' + query)
+    let songSearch = fetch('https://polar-falls-56753.herokuapp.com/?search=' + query)
     .then((resp) => resp.json())
     .then((data) => {
         let songList = [];
@@ -33,7 +28,6 @@ function querySong(query) {
         }
         state.searchList = songList;
         createSearchTable();
-        // console.log(state.searchList);
     }).catch(err => console.error(err));
 }
 
@@ -54,8 +48,6 @@ function querySong(query) {
         button.disabled = false;
     }
 
-    // if addSong is not '' display:nonefor the class=wrapper-tbl
-
 
 function renderSearchTable() {
     let songTable = document.querySelector(".wrapper-tbl");
@@ -70,9 +62,7 @@ function renderSearchTable() {
 }
 
 
-
 let input = document.querySelector('#search-add-song');
-    // console.log(createSearchTable())
     input.addEventListener('keyup', function() {
         state.addSongText = this.value;
 
@@ -95,16 +85,11 @@ input.addEventListener('keypress', (element) => {
             return false;
         }
         
-        // console.log(state.addSongText)
-        // Query and list out all the possible songs
         songTable.style.display = "none";
         searchTable.style.display = "block";
         clearSearchTable();
         querySong(input.value);
-        renderSearchTable();
-        createSearchTable();
     }
-    
 })
 
 button.addEventListener('click', ()=>{
@@ -131,8 +116,7 @@ button.addEventListener('click', ()=>{
         }
     }
 
-
-    function renderSong(songName, artistName) {
+    function renderSong(songName, artistName, preview) {
         let table = document.querySelector('table');
         let row = table.insertRow(1);
 
@@ -140,7 +124,27 @@ button.addEventListener('click', ()=>{
         let secondCell = row.insertCell(1);
         let thirdCell = row.insertCell(2);
         let fourthCell = row.insertCell(3);
+        let playCell = row.insertCell(4);
 
+        let icon = document.createElement('i');
+        icon.classList.add('fa', 'fa-play-circle', 'fa-3x');
+        let playButton = document.createElement("button");
+        playButton.textContent = "play"
+        icon.addEventListener("click", function() {
+            let player = document.querySelector("#player");
+            if (!player.paused && this.classList.contains("fa-pause-circle")) {
+                player.pause();
+                // this.textContent = "play"
+                this.classList.remove('fa-pause-circle')
+                this.classList.add('fa-play-circle')
+            } else {
+                player.src = preview;   
+                player.play();
+                this.classList.remove('fa-play-circle')
+                this.classList.add('fa-pause-circle')
+            }
+        })
+        playCell.append(icon)
         firstCell.innerHTML = "1";
         secondCell.innerHTML = songName;
         thirdCell.innerHTML = artistName;
@@ -149,7 +153,6 @@ button.addEventListener('click', ()=>{
         fourthCell.appendChild(heart);
         state.addSongText = '';
         updateTableNumber();
-        // renderSearchTable();
     }
 
     function addSongList() {
@@ -159,7 +162,7 @@ button.addEventListener('click', ()=>{
     }
 
 
-    function addSearchTable(name, artist, preview, songObj) {
+    function addSearchTable(name, artist, preview, song) {
         let table = document.querySelector('#search-table table');
         let row = table.insertRow(1);
         let firstCell = row.insertCell(0);
@@ -167,30 +170,34 @@ button.addEventListener('click', ()=>{
         let thirdCell = row.insertCell(2);
         let fourthCell = row.insertCell(3);
         let addSongToPlaylist = row.insertCell(4);
-        let addButton = document.createElement("button");
-        addButton.textContent = "Add"
+        let addButton = document.createElement("i");
+        addButton.classList.add('fa', 'fa-plus-circle', 'fa-3x')
         addButton.addEventListener("click", function() {
-            state.songList.push(songObj);
+            state.songList.push(song);
+            this.classList.add('add-btn-color');
         });
         addSongToPlaylist.appendChild(addButton);
-        // firstCell.innerHTML = "1";
         secondCell.innerHTML = name;
         thirdCell.innerHTML = artist;
-        // fourthCell.innerHTML = 
         let playButton = document.createElement("button");
-        playButton.textContent = "play"
-        playButton.addEventListener("click", function() {
+        let icon = document.createElement('i');
+        icon.classList.add('fa', 'fa-play-circle', 'fa-3x');
+        playButton.textContent = "play";
+        icon.addEventListener("click", function() {
             let player = document.querySelector("#player");
-            if (!player.paused && this.textContent == "pause") {
+            if (!player.paused && this.classList.contains("fa-pause-circle")) {
                 player.pause();
-                this.textContent = "play"
+                // this.textContent = "play"
+                this.classList.remove('fa-pause-circle')
+                this.classList.add('fa-play-circle')
             } else {
-                player.src = preview;
+                player.src = preview;   
                 player.play();
-                this.textContent = "pause"
+                this.classList.remove('fa-play-circle')
+                this.classList.add('fa-pause-circle')
             }
         })
-        fourthCell.append(playButton)
+        fourthCell.append(icon)
         
         return(table);
     }
@@ -238,8 +245,6 @@ button.addEventListener('click', ()=>{
         let i = rows.length;
         while (--i) {
           rows[i].parentNode.removeChild(rows[i]);
-          // or
-          // table.deleteRow(i);
         }
     }
 
@@ -249,12 +254,9 @@ button.addEventListener('click', ()=>{
         let i = rows.length;
         while (--i) {
           rows[i].parentNode.removeChild(rows[i]);
-          // or
-          // table.deleteRow(i);
         }
     }
 
-    // Search own list
     let searchInput = document.querySelector('div.search input')
     searchInput.addEventListener('input', filterSongTable)
 
