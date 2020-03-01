@@ -4,7 +4,7 @@
 let state = {
   currSong: {},
   color: "",
-  shape: "Rectangle",
+  shape: "Circle",
   width: 1,
   volume: 50,
   songList: [],
@@ -24,7 +24,6 @@ window.onload = function() {
             state.app = new App(document.querySelector("main"), state.songList);
             state.app.render();
         })
-        console.log(state.searchList);
     }).catch(err => console.error(err));
   }
   querySong("get your wish");
@@ -47,7 +46,9 @@ window.onload = function() {
 
     audio.load();
     audio.play();
+
     var context = new AudioContext();
+    console.log(context);
     var src = context.createMediaElementSource(audio);
     var analyser = context.createAnalyser();
 
@@ -62,28 +63,14 @@ window.onload = function() {
     analyser.fftSize = 256;
 
     var bufferLength = analyser.frequencyBinCount;
-    console.log(bufferLength);
 
     var dataArray = new Uint8Array(bufferLength);
 
     var WIDTH = canvas.width;
     var HEIGHT = canvas.height;
 
-    if (state.shape == "Square") {
-
-    } else if (state.shape == "Circle") {
-
-    } else if (state.shape == "Triangle") {
-      
-    } else {
-      
-    }
-    var barWidth = (WIDTH / bufferLength) * 2.5;
-    var barHeight;
-    var x = 0;
-
-    function renderFrame() {
-      requestAnimationFrame(renderFrame);
+    function renderRect() {
+      requestAnimationFrame(renderRect);
       x = 0;
 
       analyser.getByteFrequencyData(dataArray);
@@ -109,8 +96,75 @@ window.onload = function() {
       }
     }
 
+    function renderCircle() {
+      // find the center of the window
+      let center_x = canvas.width / 2;
+      let center_y = canvas.height / 2;
+      let radius = 150;
+
+      // style the background
+      // var gradient = ctx.createLinearGradient(0,0,0,canvas.height);
+      // gradient.addColorStop(0,"rgba(0, 0, 0)");
+      // gradient.addColorStop(1,"rgba(204, 83, 51, 1)");
+      ctx.fillStyle = "rgba(0,0,0)";
+      ctx.fillRect(0,0,canvas.width,canvas.height);
+
+      //draw a circle
+      ctx.beginPath();
+      ctx.arc(center_x,center_y,radius,0,2*Math.PI);
+      ctx.stroke();
+      let bars = 95;
+    
+      analyser.getByteFrequencyData(dataArray);
+      for(var i = 0; i < bars; i++){
+        
+        //divide a circle into equal parts
+        let rads = Math.PI * 2 / bars;
+        
+        let bar_height = dataArray[i]*0.7;
+        let bar_width = state.width * 5;
+        
+        // set coordinates
+        let x = center_x + Math.cos(rads * i) * (radius);
+	      let y = center_y + Math.sin(rads * i) * (radius);
+        let x_end = center_x + Math.cos(rads * i)*(radius + bar_height);
+        let y_end = center_y + Math.sin(rads * i)*(radius + bar_height);
+        
+        //draw a bar
+        drawBar(x, y, x_end, y_end, bar_width,dataArray[i]);
+    
+      }
+    window.requestAnimationFrame(renderCircle);
+    }
+
+    // for drawing a bar
+    function drawBar(x1, y1, x2, y2, width,frequency){
+    
+      var lineColor = "rgb(" + frequency + ", " + frequency + ", " + 205 + ")";
+      
+      ctx.strokeStyle = lineColor;
+      ctx.lineWidth = width;
+      ctx.beginPath();
+      ctx.moveTo(x1,y1);
+      ctx.lineTo(x2,y2);
+      ctx.stroke();
+    }
+
     audio.play();
-    renderFrame();
+    if (state.shape == "Square") {
+
+    } else if (state.shape == "Circle") {
+      console.log("state = circle");
+      renderCircle();
+    } else if (state.shape == "Triangle") {
+      
+    } else if (state.shape == "Rectangle") {
+      console.log("state = Rectangle");
+      var barWidth = (WIDTH / bufferLength) * 2.5;
+      var barHeight;
+      var x = 0;
+      renderRect();
+    } 
   };
 
   // * add event listeners to the color input
@@ -121,12 +175,20 @@ window.onload = function() {
     })
   });
 
-  // * add event listenter to the width slider
+  // * add event listener to the width slider
   let widthSlider = document.querySelector("#widthSlider");
   widthSlider.addEventListener("input", function () {
     state.width = this.value / 10;
   });
 
+  // * add event listener to the shape input
+  let shapeBtns = document.querySelectorAll(".shapePick");
+  shapeBtns.forEach(function (btn) {
+    btn.addEventListener("click", function() {
+      state.shape = this.innerHTML;
+      renderCanvas();
+    })
+  })
   class App {
     constructor(parent, songList) {
       this.parent = parent;
