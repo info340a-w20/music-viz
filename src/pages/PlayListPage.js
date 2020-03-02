@@ -38,11 +38,17 @@ export default class PlayListPage extends Component {
         });
       return (
           <div>
-              <div>
-                {renderedPlaylist}
+              <div className="container">
+                    <div className="row">
+                        {renderedPlaylist}
+                    </div>
+                
               </div>
-              <div className="cards">
-              {renderedCovers}
+              <div className="container">
+                  <div className="row">
+                    {renderedCovers}
+                  </div>
+              
               </div>
           </div>
       );
