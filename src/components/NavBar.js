@@ -16,13 +16,13 @@ export class Navigation extends React.Component {
         return (
             <div style={{width: '100%'}}>
                 <Navbar collapsOnSelect expand="lg" bg="dark" variant="dark">
-                    <Navbar.Brand href="#home">Visualizer</Navbar.Brand>
+                    <Navbar.Brand href="/home">Visualizer</Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="mr-auto">
-                        <Nav.Link href="#home">Home</Nav.Link>
-                        <Nav.Link href="#features">Playlists</Nav.Link>
-                        <Nav.Link href="#pricing">About</Nav.Link>
+                        <Nav.Link href="/home">Home</Nav.Link>
+                        <Nav.Link href="/playlist">Playlists</Nav.Link>
+                        <Nav.Link href="/about">About</Nav.Link>
                         </Nav>
                         <Form inline>
                         <FormControl type="text" placeholder="Search" className="mr-sm-2" />

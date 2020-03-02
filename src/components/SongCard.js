@@ -12,18 +12,20 @@ export class SongCard extends React.Component {
     }
 
     render() {
-        <Card>
-            <div>
-                <CardContent>
-                    <Typography>
-                        {this.props.title}
-                    </Typography>
-                    <Typography>
-                        {this.props.author}
-                    </Typography>
-                </CardContent>
-                <CardMedia image={this.props.image} title={this.props.title} />
-            </div>
-        </Card>
+       return (
+            <Card>
+                <div>
+                    <CardContent>
+                        <Typography>
+                            {this.props.title}
+                        </Typography>
+                        <Typography>
+                            {this.props.author}
+                        </Typography>
+                    </CardContent>
+                    <CardMedia image={this.props.image} title={this.props.title} />
+                </div>
+            </Card>
+       )
     }
 }
