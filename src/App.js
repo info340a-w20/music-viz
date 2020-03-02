@@ -15,7 +15,7 @@ export class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
+        <header>
           <Navigation />
           {/* <Router>
             <Switch>
@@ -28,7 +28,6 @@ export class App extends React.Component {
         </header>
         <main>
           <PlayListPage />
-
         </main>
       </div>
     );
