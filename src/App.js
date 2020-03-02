@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import { Switch } from 'react-router-dom';
 import PlayListPage from './pages/PlayListPage';
 import { HomePage } from './pages/HomePage/HomePage';
+import { Footer } from './Footer';
 
 
 export class App extends React.Component {
@@ -19,6 +20,8 @@ export class App extends React.Component {
       <div className="App">
         <header>
           <Navigation />
+        </header>
+        <main className={'mb-5'}>
           <Router>
             <Switch>
               <Route path='/home' component={HomePage} />
@@ -27,10 +30,10 @@ export class App extends React.Component {
               <Route path='/about' component={} /> */}
             </Switch>
         </Router>
-        </header>
-        <main>
-          {/* <PlayListPage /> */}
         </main>
+        <footer>
+          <Footer />
+        </footer>
       </div>
     );
   }

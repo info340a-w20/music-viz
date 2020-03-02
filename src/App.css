@@ -28,6 +28,18 @@
   color: #61dafb;
 }
 
+body {
+  color: white;
+}
+
+a {
+  color: white;
+}
+
+a:hover {
+  color: #17A2B8;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -40,8 +52,53 @@
 /* <-------------------------------------------------- NavBar -------------------------------------------------------> */
 .navbar-dark .navbar-nav .nav-link {
   text-align: left;
+  padding-left: 2.5rem;
 }
 
-.form-inline {
-  flex-flow: nowrap;
+/* <---------------------------------------------------- Footer ---------------------------------------------------------> */
+#footer {
+  width: 100%;
+  background-color: rgb(52,58,64);
+  height: 15vh;
+  position: absolute;
+  bottom: 0;
 }
+
+/* <---------------------------------------------------- SongCard ---------------------------------------------------------> */
+.card {
+  background-color: rgba(255, 255, 255, .15);
+  /* backdrop-filter: blur(5px); */
+  display: inline-block;
+  width: 20rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: 1s;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.card:hover {
+  background-color: #0f4c75;
+  /* width: 20rem; */
+  color: inherit;
+}
+
+/* <---------------------------------------------------- HomePage ---------------------------------------------------------> */
+#songCardSection {
+  display: flex;
+  flex-direction: column;
+}
+
+#songCardList {
+  position: relative;
+  /* z-index: 2; */
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+#songCardList::-webkit-scrollbar {
+  display: none;
+}
+

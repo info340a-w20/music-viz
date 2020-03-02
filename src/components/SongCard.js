@@ -13,17 +13,17 @@ export class SongCard extends React.Component {
 
     render() {
        return (
-            <Card>
-                <div>
+            <Card className={'m-2 card'} style={{transition: '1s', height: '8rem'}}>
+                <div className={'d-flex flex-row'}>
                     <CardContent>
                         <Typography>
                             {this.props.title}
                         </Typography>
                         <Typography>
-                            {this.props.author}
+                            {this.props.artist}
                         </Typography>
                     </CardContent>
-                    <CardMedia image={this.props.image} title={this.props.title} />
+                    <CardMedia image={this.props.image} title={this.props.title} style={{height: '150px', width: '150px'}} />
                 </div>
             </Card>
        )
