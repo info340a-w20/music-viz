@@ -36,8 +36,22 @@ export default class PlayListPage extends Component {
         let renderedPlaylist = this.state.playlists.map((cover) => {
             return <Cover src={cover.cover} />;
         });
+
+        let addPlayList = () => {
+            
+        }
+
       return (
           <div>
+              <div id="title-playlist">
+                <h1 id="mylist">Your Play List</h1>
+                <div id="circle" style={{display: 'inline'}} >
+                    <i className="fa fa-plus-circle" onClick=""></i>
+                </div>
+            <div>
+
+                </div>
+              </div>
               <div className="container">
                     <div className="row">
                         {renderedPlaylist}
@@ -75,4 +89,26 @@ class Cover extends Component {
         )
     }
 
+}
+
+class PlayListForm extends Component {
+    constructor(props) {
+        super(props)
+    }
+
+    render() {
+        return(
+            <div className="name-form col-md-3 col-6">
+                <div className="card">
+                    <p>Name</p>
+                    <input type="text" id="name" placeholder="My Playlist..."></input>
+                    <input type="text" id="url" placeholder="Your image URL..." style="display: block;"></input>
+                </div>
+                <div class="submit">
+                    <button type="button" id="submit-button">Submit</button>
+                    <button type="button" id="cancel-button">Cancel</button>
+                </div>
+            </div>
+        )
+    }
 }
