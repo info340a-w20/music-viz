@@ -14,13 +14,13 @@ export class Navigation extends React.Component {
 
     render() {
         return (
-            <div>
+            <div style={{width: '100%'}}>
                 <Navbar bg="dark" variant="dark">
-                    <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+                    <Navbar.Brand href="#home">Visualizer</Navbar.Brand>
                     <Nav className="mr-auto">
                     <Nav.Link href="#home">Home</Nav.Link>
-                    <Nav.Link href="#features">Features</Nav.Link>
-                    <Nav.Link href="#pricing">Pricing</Nav.Link>
+                    <Nav.Link href="#features">Playlists</Nav.Link>
+                    <Nav.Link href="#pricing">About</Nav.Link>
                     </Nav>
                     <Form inline>
                     <FormControl type="text" placeholder="Search" className="mr-sm-2" />
