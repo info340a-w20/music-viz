@@ -4,6 +4,7 @@ import logo from './logo.svg';
 import './App.css';
 import { Navigation } from './components/NavBar';
 import { BrowserRouter as Router, Route, Link} from 'react-router-dom'
+import PlayListPage from './pages/PlayListPage';
 
 
 export class App extends React.Component {
@@ -25,6 +26,10 @@ export class App extends React.Component {
             </Switch>
         </Router> */}
         </header>
+        <main>
+          <PlayListPage />
+
+        </main>
       </div>
     );
   }
