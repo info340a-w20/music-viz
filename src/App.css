@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+/* <-------------------------------------------------- NavBar -------------------------------------------------------> */
+.navbar-dark .navbar-nav .nav-link {
+  text-align: left;
+}
+
+.form-inline {
+  flex-flow: nowrap;
+}

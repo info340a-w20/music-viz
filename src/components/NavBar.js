@@ -15,17 +15,20 @@ export class Navigation extends React.Component {
     render() {
         return (
             <div style={{width: '100%'}}>
-                <Navbar bg="dark" variant="dark">
+                <Navbar collapsOnSelect expand="lg" bg="dark" variant="dark">
                     <Navbar.Brand href="#home">Visualizer</Navbar.Brand>
-                    <Nav className="mr-auto">
-                    <Nav.Link href="#home">Home</Nav.Link>
-                    <Nav.Link href="#features">Playlists</Nav.Link>
-                    <Nav.Link href="#pricing">About</Nav.Link>
-                    </Nav>
-                    <Form inline>
-                    <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                    <Button variant="outline-info">Search</Button>
-                    </Form>
+                    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                    <Navbar.Collapse id="responsive-navbar-nav">
+                        <Nav className="mr-auto">
+                        <Nav.Link href="#home">Home</Nav.Link>
+                        <Nav.Link href="#features">Playlists</Nav.Link>
+                        <Nav.Link href="#pricing">About</Nav.Link>
+                        </Nav>
+                        <Form inline>
+                        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+                        <Button variant="outline-info">Search</Button>
+                        </Form>
+                    </Navbar.Collapse>
                 </Navbar>
             </div>
         )
