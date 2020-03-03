@@ -55,6 +55,8 @@ export class App extends React.Component {
         }
     ]
     }
+
+    this.playlistElement = React.createRef();
   }
 
   addPlaylist = (playlist) => {
@@ -63,13 +65,18 @@ export class App extends React.Component {
       id: 1,
       cover: "https://pbs.twimg.com/profile_images/1222571834488623104/zsWD1O8K_400x400.jpg",
       songs: [
-          
       ]
-  });
-  this.setState({
-    playlists: playlists
-  })
+      
+          
+      });
+      this.setState({
+        playlists: playlists
+      })
+      // this.showForm()
   }
+
+  
+
 
   render() {
     return (
@@ -81,7 +88,8 @@ export class App extends React.Component {
           <Router>
             <Switch>
               <Route path='/home' component={HomePage} />
-              <Route exact path='/playlist' render={() => <PlayListPage playlists={this.state.playlists} addPlaylist={this.addPlaylist} trending={this.state.trending} />} />
+              <Route exact path='/playlist' render={() => <PlayListPage ref={this.playlistElement} playlists={this.state.playlists} addPlaylist={this.addPlaylist} 
+              trending={this.state.trending} />} />
               <Route path='/playlist/:playlistId' render={(renderProps) => <MyPlayList playlists={this.state.playlists} {...renderProps} />}/>
             </Switch>
         </Router>
