@@ -84,10 +84,12 @@ a:hover {
   color: inherit;
 }
 
+
 /* <---------------------------------------------------- HomePage ---------------------------------------------------------> */
 #songCardSection {
   display: flex;
   flex-direction: column;
+  background: linear-gradient(0deg, rgba(35,255,116,1) 0%, rgba(44,147,87,1) 9%, #04080b 20%);
 }
 
 #songCardList {
