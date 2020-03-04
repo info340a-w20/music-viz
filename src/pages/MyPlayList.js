@@ -1,36 +1,110 @@
 import React, {Component} from 'react';
-import { Link } from 'react-router';
 
-const state = {addSongText:'',
-            name: 'My Playlist',
-            searchSongText:'',
-            songNumber:2,
-            url: 'https://images-na.ssl-images-amazon.com/images/I/A1JmHktySJL._SL1500_.jpg',
-            songList: [{name:'Good things', artist:'Gavin Koman', preview:'https://cdns-preview-8.dzcdn.net/stream/c-81af51bb89fd01fa5c65470b6b38597e-4.mp3', cover: ''}, 
-            {name:'In the Midst', artist:'Tom Misch', preview: 'https://cdns-preview-3.dzcdn.net/stream/c-3b6d163c64ce90ddf249f755a7608f1b-2.mp3', cover: ''}],
-            searchList: [],
-            data: []};
 
 export default class MyPlayList extends Component {
     constructor(props) {
-        super(props)
-        
+        super(props);
+        this.state = {
+            selectedTrack: null,
+            searchSong: '',
+            querySong: '',
+            querySongList: []
+        };
     }
     
+    playSong = (preview) => {
+        this.setState({src: preview});
+    }
 
+    querySong = (query) => {
+        // let baseUrl = 'https://cors-anywhere.herokuapp.com/https://api.deezer.com/search?q='
+        let songSearch = fetch('https://polar-falls-56753.herokuapp.com/?search=' + query)
+    .then((resp) => resp.json())
+    .then((data) => {
+        let songList = [];
+        let length = data.data.length;
+        if (length > 10) {
+            length = 10;
+        }
+        for (let i = 0; i < length; i++) {
+            let songInfo = {};
+            songInfo.name = data.data[i].title;
+            songInfo.artist = data.data[i].artist.name;
+            songInfo.preview = data.data[i].preview;
+            songInfo.cover = data.data[i].cover;
+            songList.push(songInfo);
+        }
+        this.setState({querySongList: songList});
+    }).catch(err => console.error(err));
+    }
+
+    onUpdate = (val) => {
+        this.setState({
+          querySong: val
+        })
+      };
+
+    
+    
     render() {
-        
         let id = this.props.match.params.playlistId;
         let playlist = this.props.playlists.filter((playlist) => playlist.id == id)[0];
-        console.log(playlist)
+        if (id.includes('trending')) {
+            playlist = this.props.trending.filter((playlist) => playlist.id == id)[0];
+        }
+        console.log(this.state.searchSong.length)
         return(
             <div>
-                <SongTable songList={state.songList}/>
+                <div>
+                    <Cover playlist={playlist}/>
+                    <SearchForm value={this.state.querySong}  query={this.querySong} querySong={this.state.querySong} onUpdate={this.onUpdate}/>
+                    <SearchForm value={this.state.searchSong}  searchSong={this.state.searchSong} onUpdate={(val) => {this.setState({searchSong:val})} }/>
+                    <SongTable playlist={playlist} playSong={this.playSong} searchSong={this.state.searchSong}/>
+                    <QuerySongTable playlist={this.state.querySongList} playSong={this.playSong}/>
+                </div>
             </div>
+            
         )
             
     }
 }
+
+export class Cover extends Component {
+
+    render() {
+        return(
+            <div>
+                <div className="playlist-cover">
+                    <img src={this.props.playlist.cover}></img>
+                    <div>
+                        <h2>{this.props.playlist.name}</h2>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+}
+
+export class SearchForm extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+    
+
+    render() {
+        return(
+            <div>
+                <div className="search-song">
+                    <form className="m-3 form-inline">
+                        <input placeholder="Search" type="text" value={this.props.querySong} onChange={e => this.props.onUpdate(e.target.value)} className="mr-sm-2 form-control"></input>
+                        <button type="button" onClick={() => this.props.query(this.props.querySong)} className="btn btn-outline-info" value='Update'>Search</button>
+                    </form>
+                </div>
+            </div>
+        )
+    }
+} 
 
 export class SongTable extends Component {
     constructor(props) {
@@ -39,20 +113,25 @@ export class SongTable extends Component {
     
 
     render() {
-        let row = this.props.songList.map((d,i) => {
+        let filtered = this.props.playlist.songs.filter((e) => {
+            if(this.props.searchSong.length == 0) {
+                return true
+            }
+            let upperName = e.name.toUpperCase();
+            let upperArtist = e.artist.toUpperCase();
+            // console.log(upper, this.props.searchSong)
+
+            return (upperName.includes(this.props.searchSong.toUpperCase()) || upperArtist.includes(this.props.searchSong.toUpperCase()))
+        })
+
+        let row = filtered.map((d,i) => {
             return (
-                <SongList song={d} />
+                <SongList key={i} song={d} playSong={this.props.playSong}/>
             )
           });
 
         return(
             <div>
-                <div className="playlist-cover">
-                    <img src={state.url}></img>
-                    <div>
-                        <h2>{state.name}</h2>
-                    </div>
-                </div>
                 <div className="wrapper-tbl">
                     <div className="m2">
                         <table className="song-table">
@@ -97,8 +176,86 @@ export class TableHeader extends Component {
             <td>{this.props.song.name}</td>
             <td>{this.props.song.artist}</td>
             <td><i className="fa fa-heart"></i></td>
-            <td><i className="fa fa-play-circle fa-3x"></i></td>
+            <td><Music url={this.props.song.preview}/></td>
         </tr>
       )
     }
   }
+
+  export class Music extends React.Component {
+    state = {
+      play: false
+    }
+    audio = new Audio(this.props.url)
+  
+    componentDidMount() {
+      this.audio.addEventListener('ended', () => this.setState({ play: false }));
+    }
+  
+    componentWillUnmount() {
+      this.audio.removeEventListener('ended', () => this.setState({ play: false }));  
+    }
+  
+    togglePlay = () => {
+      this.setState({ play: !this.state.play }, () => {
+        this.state.play ? this.audio.play() : this.audio.pause();
+      });
+    }
+  
+    render() {
+      return (
+        <div>
+          <i className={this.state.play ? "fa fa-pause-circle fa-3x" : "fa fa-play-circle fa-3x"} onClick={this.togglePlay}></i>
+        </div>
+      );
+    }
+  }
+
+
+  export class QuerySongList extends Component {
+    render() {
+      return (
+        <tr className='song-table'>
+            <td>Cover</td>
+            <td>{this.props.song.name}</td>
+            <td>{this.props.song.artist}</td>
+            <td><Music url={this.props.song.preview}/></td>
+            <td><i className="fa fa-plus-circle fa-3x"></i></td>
+        </tr>
+      )
+    }
+  }
+
+
+  export class QuerySongTable extends Component {
+    constructor(props) {
+        super(props)
+    }
+    
+
+    render() {
+        let row = this.props.playlist.map((d,i) => {
+            return (
+                <QuerySongList key={i} song={d} playSong={this.props.playSong}/>
+            )
+          });
+
+        return(
+            <div>
+                <div className="wrapper-tbl">
+                    <div className="m2">
+                        <table className="song-table">
+                            <TableHeader/>
+                            <tbody>
+                                {row}
+                            </tbody>
+                            
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+        )
+    }
+}
+  

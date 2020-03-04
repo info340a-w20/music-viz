@@ -117,12 +117,7 @@ color: #fff;
 text-align: center;
 font-weight: bold;
 }
-.cards {
-display: flex;
-flex-wrap: wrap;
-flex-direction: row;
-justify-content: center;
-}
+
 .card {
 width: 190px;
 height: 180px;
@@ -134,26 +129,12 @@ background: #000;
 .card:hover .overlayer {
 visibility: visible;
 }
-.card img {
+img {
 width: 100%;
 height: 100%;
 }
-.card .title  {
-width: 100%;
-height: 30px;
-text-align: center;
-margin-top: 180px;
-}
 
-.card .title a {
-top: -175px;
-color: #fff;
-position: relative;
-font-size: 13px;
-text-decoration: none;
-}
-
-.card .overlayer {
+.overlayer {
 top: 0;
 right: 0;
 width: 100%;
@@ -182,9 +163,7 @@ transform: scale(1.1);
   background-image: url(https://i.ytimg.com/vi/Iu9MVgMYrEY/maxresdefault.jpg);
 }
 
-.trending {
-  display: none;
-}
+
 
 .card {
   background-color: seashell;
@@ -296,7 +275,7 @@ button, #name, #url {
 /* ------------------------------------------ SongTable ------------------------------------------- */
 
 .song-table {
-  margin-left: auto;
+  margin-left: 9vw;
   margin-right: auto;
   border-bottom: 1px solid #ddd;
   width: 80%;
@@ -318,6 +297,15 @@ tr:hover {
   margin-bottom: 1rem;
   width: 25vw;
   height: auto;
+}
+
+.search-song {
+  margin-left: 9vw;
+}
+
+.search-song button {
+  background-color: rgb(18, 87, 87);
+  color: white;
 }
 
 
