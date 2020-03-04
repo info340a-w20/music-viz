@@ -13,6 +13,19 @@ import { Footer } from './Footer';
 export class App extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      currSong: {
+        song: {
+          title: "",
+          artist: {name: ""},
+          album: {cover: ""}
+        }
+      },
+    }
+  }
+
+  selectSong(song) {
+    this.setState({currSong: {song}})
   }
 
   render() {
@@ -24,7 +37,12 @@ export class App extends React.Component {
         <main className={'mb-5'}>
           <Router>
             <Switch>
-              <Route path='/home' component={HomePage} />
+              <Route path='/'>
+                <HomePage currSong={this.state.currSong} setSong={this.selectSong.bind(this)}/>
+              </Route>
+              <Route path='/home'>
+                <HomePage currSong={this.state.currSong} setSong={this.selectSong.bind(this)}/>
+              </Route>
               <Route path='/playlist' component={PlayListPage} />
               {/* <Route path='/user' component={} />
               <Route path='/about' component={} /> */}
