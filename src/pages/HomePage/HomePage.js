@@ -1,14 +1,17 @@
 import React from 'react';
-import { SongCard } from '../../components/SongCard';
-import { Form } from 'react-bootstrap';
-import { FormControl } from 'react-bootstrap';
-import { Button } from 'react-bootstrap';
+import { CardSection } from './CardSection';
+import { CurrSongSection } from './CurrSongSection';
+import { RectVis } from './vis/RectVis'
 
 export class HomePage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            currSong: {},
+            // currSong: {
+            //         artist: {},
+            //         title: "",
+            //         album: {}
+            //     },
             color: "",
             shape: "Rectangle",
             width: 1,
@@ -31,49 +34,24 @@ export class HomePage extends React.Component {
             //     // this.state.app = new App(document.querySelector("main"), state.songList);
             //     // state.app.render();
             // })
-            this.setState({songList: data.data})
+            this.setState({songList: data.data,
+                        //    currSong: data.data[0] 
+                            });
+            this.props.setSong(data.data[0])
         }).catch(err => console.error(err));
     }
 
     render() {
         return (
             <div>
-                <CardSection songList={this.state.songList} />
+                <CardSection songList={this.state.songList} setSong={this.props.setSong} />
                 <div id={'currSong'}>
-
+                    <CurrSongSection currSong={this.props.currSong} setSong={this.props.setSong}/>
                 </div>
                 <div id={'canvasContainer'}>
-
+                    <RectVis width={this.state.width} color={this.state.color} song={this.props.currSong} />
                 </div>
                 {/* put controls here */}
-            </div>
-        )
-    }
-}
-
-export class CardSection extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        let cardList = [];
-        console.log(this.props.songList.data)
-        for (let i = 0; i < this.props.songList.length; i++) {
-            let song = this.props.songList[i];
-            cardList.push(<SongCard key={i} title={song.title} artist={song.artist.name} image={song.album.cover} />)
-        }
-        return (
-            <div id={'songCardSection'}>
-                <div className={'d-inline'}>
-                    <Form inline className={'float-right m-3'}>
-                        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                        <Button variant="outline-info">Search</Button>
-                    </Form>
-                </div>
-                <div id={'songCardList'}>
-                    {cardList}
-                </div>
             </div>
         )
     }

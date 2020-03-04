@@ -15,6 +15,13 @@ export class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      currSong: {
+        song: {
+          title: "",
+          artist: {name: ""},
+          album: {cover: ""}
+        }
+      },
       trending: [
         {
             id: 'trending'+ 0,
@@ -83,6 +90,9 @@ export class App extends React.Component {
       })
       // this.showForm()
   }
+  selectSong(song) {
+    this.setState({currSong: {song}})
+  }
 
   
 
@@ -96,7 +106,13 @@ export class App extends React.Component {
         <main className={'mb-5'}>
           <Router>
             <Switch>
-              <Route path='/home' component={HomePage} />
+
+              <Route exact path='/'>
+                <HomePage currSong={this.state.currSong} setSong={this.selectSong.bind(this)}/>
+              </Route>
+              <Route exact path='/home'>
+                <HomePage currSong={this.state.currSong} setSong={this.selectSong.bind(this)}/>
+              </Route>
               <Route exact path='/playlist' render={() => <PlayListPage ref={this.playlistElement} playlists={this.state.playlists} addPlaylist={this.addPlaylist} 
               trending={this.state.trending} />} />
               <Route path='/playlist/:playlistId' render={(renderProps) => <MyPlayList playlists={this.state.playlists} {...renderProps} trending={this.state.trending} />}/>
