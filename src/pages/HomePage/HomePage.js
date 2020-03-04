@@ -3,6 +3,7 @@ import { CardSection } from './CardSection';
 import { CurrSongSection } from './CurrSongSection';
 import { RectVis } from './vis/RectVis'
 import { VisSection } from './vis/VisSection';
+import { Controls } from './Controls';
 
 export class HomePage extends React.Component {
     constructor(props) {
@@ -18,6 +19,13 @@ export class HomePage extends React.Component {
 
     componentWillMount() {
         this.querySong("get your wish");
+    }
+
+    changeControls(key, val) {
+        let newState = {};
+        newState[key] = val;
+        console.log(newState)
+        this.setState(newState);
     }
 
     getRenderFunc(func) {
@@ -46,7 +54,9 @@ export class HomePage extends React.Component {
                     {/* <RectVis width={this.state.width} color={this.state.color} song={this.props.currSong} /> */}
                     <VisSection width={this.state.width} color={this.state.color} currSong={this.props.currSong} getRenderFunc ={this.getRenderFunc.bind(this)} />
                 </div>
-                {/* put controls here */}
+                <div>
+                    <Controls changeControls={this.changeControls.bind(this)}/>
+                </div>
             </div>
         )
     }

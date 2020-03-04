@@ -42,8 +42,8 @@ export class RectVis extends React.Component {
         let stateWidth = this.props.width;
 
         function renderRect() {
-            console.log(color)
-            console.log(stateWidth)
+          console.log(color)
+          console.log(stateWidth)
           requestAnimationFrame(renderRect);
           x = 0;
           analyser.getByteFrequencyData(dataArray);
@@ -87,7 +87,7 @@ export class RectVis extends React.Component {
 
     render() {
         return (
-            <div className={'d-flex flex-column justify-content-center'}>
+            <div className={'d-flex flex-column justify-content-center align-items-center'}>
                 <canvas id="canvas"></canvas>
                 <audio id="audio" controls style={{width: '100%'}} className="my-3"></audio>
             </div>
