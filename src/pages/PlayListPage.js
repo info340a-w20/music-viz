@@ -13,10 +13,10 @@ export default class PlayListPage extends Component {
 
     render() {
         let renderedCovers = this.props.trending.map((cover, i) => {
-            return <Cover key={'playlist-'+i} src={cover.src} id={cover.id} />;
+            return <Cover key={'trending-'+i} src={cover.cover} id={cover.id} />;
         });
         let renderedPlaylist = this.props.playlists.map((cover, i) => {
-            return <Cover key={'trending-' + i}  src={cover.cover} id={cover.id} />;
+            return <Cover key={'playlist-' + i}  src={cover.cover} id={cover.id} />;
         });
 
       return (
@@ -39,15 +39,15 @@ export default class PlayListPage extends Component {
                 <div id="circle" style={{display: 'inline'}} >
                     <i className="fa fa-plus-circle" onClick={() => this.setState({showForm: true})}></i>
                 </div>
-            <div>
-
-                </div>
               </div>
               <div className="container">
                     <div className="row">
                         {renderedPlaylist}
                         {this.state.showForm && <PlayListForm addPlaylist={this.props.addPlaylist} handleForm={this.handleForm}/>}
                     </div>
+              </div>
+              <div id="title-playlist">
+                <h1 id="mylist">Trending</h1>
               </div>
               <div className="container">
                   <div className="row">

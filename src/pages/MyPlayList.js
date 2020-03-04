@@ -1,32 +1,34 @@
 import React, {Component} from 'react';
-import { Link } from 'react-router';
 
-const state = {addSongText:'',
-            name: 'My Playlist',
-            searchSongText:'',
-            songNumber:2,
-            url: 'https://images-na.ssl-images-amazon.com/images/I/A1JmHktySJL._SL1500_.jpg',
-            songList: [{name:'Good things', artist:'Gavin Koman', preview:'https://cdns-preview-8.dzcdn.net/stream/c-81af51bb89fd01fa5c65470b6b38597e-4.mp3', cover: ''}, 
-            {name:'In the Midst', artist:'Tom Misch', preview: 'https://cdns-preview-3.dzcdn.net/stream/c-3b6d163c64ce90ddf249f755a7608f1b-2.mp3', cover: ''}],
-            searchList: [],
-            data: []};
 
 export default class MyPlayList extends Component {
     constructor(props) {
-        super(props)
-        
+        super(props);
+        this.state = {
+            selectedTrack: null
+        };
     }
     
-
+    playSong = (preview) => {
+        this.setState({src: preview});
+        console.log(this.state.src)
+    }
+    
     render() {
-        
         let id = this.props.match.params.playlistId;
         let playlist = this.props.playlists.filter((playlist) => playlist.id == id)[0];
-        console.log(playlist)
+        if (id.includes('trending')) {
+            playlist = this.props.trending.filter((playlist) => playlist.id == id)[0];
+        }
+
         return(
             <div>
-                <SongTable songList={state.songList}/>
+                <div>
+                <SongTable playlist={playlist} playSong={this.playSong}/>
+                </div>
+                <audio ref={ref => this.player = ref} />
             </div>
+            
         )
             
     }
@@ -39,19 +41,25 @@ export class SongTable extends Component {
     
 
     render() {
-        let row = this.props.songList.map((d,i) => {
+        let row = this.props.playlist.songs.map((d,i) => {
             return (
-                <SongList song={d} />
+                <SongList key={i} song={d} playSong={this.props.playSong}/>
             )
           });
 
         return(
             <div>
                 <div className="playlist-cover">
-                    <img src={state.url}></img>
+                    <img src={this.props.playlist.cover}></img>
                     <div>
-                        <h2>{state.name}</h2>
+                        <h2>{this.props.playlist.name}</h2>
                     </div>
+                </div>
+                <div className="search-song">
+                    <form className="m-3 form-inline">
+                        <input placeholder="Search" type="text" className="mr-sm-2 form-control"></input>
+                        <button type="button" className="btn btn-outline-info">Search</button>
+                    </form>
                 </div>
                 <div className="wrapper-tbl">
                     <div className="m2">
@@ -97,8 +105,37 @@ export class TableHeader extends Component {
             <td>{this.props.song.name}</td>
             <td>{this.props.song.artist}</td>
             <td><i className="fa fa-heart"></i></td>
-            <td><i className="fa fa-play-circle fa-3x"></i></td>
+            <td><Music url={this.props.song.preview}/></td>
         </tr>
       )
+    }
+  }
+
+  export class Music extends React.Component {
+    state = {
+      play: false
+    }
+    audio = new Audio(this.props.url)
+  
+    componentDidMount() {
+      this.audio.addEventListener('ended', () => this.setState({ play: false }));
+    }
+  
+    componentWillUnmount() {
+      this.audio.removeEventListener('ended', () => this.setState({ play: false }));  
+    }
+  
+    togglePlay = () => {
+      this.setState({ play: !this.state.play }, () => {
+        this.state.play ? this.audio.play() : this.audio.pause();
+      });
+    }
+  
+    render() {
+      return (
+        <div>
+          <i className={this.state.play ? "fa fa-pause-circle fa-3x" : "fa fa-play-circle fa-3x"} onClick={this.togglePlay}></i>
+        </div>
+      );
     }
   }
