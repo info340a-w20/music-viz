@@ -33,6 +33,10 @@ export class Controls extends React.Component {
                         <MenuItem value={'Pink'}>Pink</MenuItem>
                     </Select>
                 </FormControl>
+                <div>
+                    <Typography>Width</Typography>
+                    <Slider />
+                </div>
             </div>
         )
     }

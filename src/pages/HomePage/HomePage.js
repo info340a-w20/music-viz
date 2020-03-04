@@ -9,9 +9,9 @@ export class HomePage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            color: "blue",
+            color: "",
             shape: "Rectangle",
-            width: 10,
+            width: 1,
             songList: [],
             renderCanvas: ""
         }
