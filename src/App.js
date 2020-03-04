@@ -8,6 +8,7 @@ import { Switch } from 'react-router-dom';
 import PlayListPage from './pages/PlayListPage';
 import { HomePage } from './pages/HomePage/HomePage';
 import { Footer } from './Footer';
+import MyPlayList from './pages/MyPlayList';
 
 
 export class App extends React.Component {
@@ -21,12 +22,71 @@ export class App extends React.Component {
           album: {cover: ""}
         }
       },
+      trending: [
+        {
+            id: 0,
+            src: "https://pbs.twimg.com/profile_images/1222571834488623104/zsWD1O8K_400x400.jpg",
+            songs: [
+                
+            ]
+        },
+        {
+            id: 1,
+            src: "https://pbs.twimg.com/profile_images/1222571834488623104/zsWD1O8K_400x400.jpg",
+            songs: [
+                
+            ]
+        },
+        {
+            id: 2,
+            src: "https://pbs.twimg.com/profile_images/1222571834488623104/zsWD1O8K_400x400.jpg",
+            songs: [
+                
+            ]
+        },
+        {
+            id: 3,
+            src: "https://pbs.twimg.com/profile_images/1222571834488623104/zsWD1O8K_400x400.jpg",
+            songs: [
+                
+            ]
+        }
+    ],
+    playlists: [
+        {
+            id: 0,
+            cover: "https://pbs.twimg.com/profile_images/1222571834488623104/zsWD1O8K_400x400.jpg",
+            songs: [
+                
+            ]
+        }
+    ]
     }
+
+    this.playlistElement = React.createRef();
   }
 
+  addPlaylist = (playlist) => {
+    let playlists = this.state.playlists;
+    playlists.push({
+      id: 1,
+      cover: "https://pbs.twimg.com/profile_images/1222571834488623104/zsWD1O8K_400x400.jpg",
+      songs: [
+      ]
+      
+          
+      });
+      this.setState({
+        playlists: playlists
+      })
+      // this.showForm()
+  }
   selectSong(song) {
     this.setState({currSong: {song}})
   }
+
+  
+
 
   render() {
     return (
