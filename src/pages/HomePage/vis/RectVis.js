@@ -5,15 +5,19 @@ export class RectVis extends React.Component {
         super(props);
     }
 
+    componentWillMount() {
+        this.props.getRenderFunc(this.renderCanvas.bind(this));
+    }
+
     renderCanvas() {
         var audio = document.getElementById("audio");
         audio.crossOrigin = "anonymous";
+        audio.src = this.props.currSong.song.preview;
     
         audio.load();
         audio.play();
     
         var context = new AudioContext();
-        console.log(context);
         var src = context.createMediaElementSource(audio);
         var analyser = context.createAnalyser();
     
@@ -33,16 +37,19 @@ export class RectVis extends React.Component {
     
         var WIDTH = canvas.width;
         var HEIGHT = canvas.height;
-    
+        
+        let color = this.props.color;
+        let stateWidth = this.props.width;
+
         function renderRect() {
+            console.log(color)
+            console.log(stateWidth)
           requestAnimationFrame(renderRect);
           x = 0;
-    
           analyser.getByteFrequencyData(dataArray);
     
           ctx.fillStyle = "#000";
           ctx.fillRect(0, 0, WIDTH, HEIGHT);
-    
           for (var i = 0; i < bufferLength; i++) {
             barHeight = dataArray[i] * 2;
     
@@ -50,14 +57,14 @@ export class RectVis extends React.Component {
             var g = 250 * (i / bufferLength);
             var b = 50;
     
-            if (this.props.color == "Default" || this.props.color == "") {
+            if (color == "Default" || color == "") {
               ctx.fillStyle = "rgb(" + r + "," + g + "," + b + ")";
             } else { // if (state.color != "") {
-              ctx.fillStyle = this.props.color;
+              ctx.fillStyle = color;
             }
-            ctx.fillRect(x, HEIGHT - barHeight, barWidth * this.props.width, barHeight);
+            ctx.fillRect(x, HEIGHT - barHeight, barWidth * stateWidth, barHeight);
     
-            x += barWidth * this.props.width + 1;
+            x += barWidth * stateWidth + 1;
           }
         }
     
@@ -73,10 +80,10 @@ export class RectVis extends React.Component {
           console.log("state = Rectangle");
           var barWidth = (WIDTH / bufferLength) * 2.5;
           var barHeight;
-          var x = 0;
+          var x = 0;     
           renderRect();
         // } 
-      };
+    };
 
     render() {
         return (

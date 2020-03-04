@@ -11,16 +11,14 @@ export class SongCard extends React.Component {
         super(props);
     }
 
-    // selectSong() {
-    //     // var audio = document.getElementById("audio");
-    //     // audio.src = this.props.preview;
-    //     // renderCanvas();
-        
-    // }
+   clickCard() {
+       this.props.setSong(this.props.song);
+       this.props.renderCanvas.func();
+   }
 
     render() {
        return (
-            <Card className={'m-2 card'} onClick={(event) => this.props.setSong(this.props.song)} style={{transition: '1s', height: '6rem', width: '20rem', backgroundColor: 'rgba(255, 255, 255, .15)', color: 'white'}}>
+            <Card className={'m-2 card'} onClick={this.clickCard.bind(this)} style={{transition: '1s', height: '6rem', width: '20rem', backgroundColor: 'rgba(255, 255, 255, .15)', color: 'white'}}>
                 <div className={'d-flex flex-row'}>
                     <CardContent className={'d-flex flex-column'} style={{width: '15rem', height: '100%'}}>
                         <Typography style={{wordBreak: 'normal', textOverflow: 'ellipsis'}}>

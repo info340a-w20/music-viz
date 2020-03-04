@@ -13,7 +13,8 @@ export class CardSection extends React.Component {
         let cardList = [];
         for (let i = 0; i < this.props.songList.length; i++) {
             let song = this.props.songList[i];
-            cardList.push(<SongCard key={i} song={song} title={song.title} artist={song.artist.name} image={song.album.cover} preview={song.preview} setSong={this.props.setSong} />)
+            cardList.push(<SongCard key={i} song={song} renderCanvas={this.props.renderCanvas} title={song.title} artist={song.artist.name} 
+                                    image={song.album.cover} preview={song.preview} setSong={this.props.setSong} color={this.props.color} width={this.props.width} />)
         }
         return (
             <div id={'songCardSection'}>

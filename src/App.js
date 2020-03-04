@@ -19,7 +19,8 @@ export class App extends React.Component {
         song: {
           title: "",
           artist: {name: ""},
-          album: {cover: ""}
+          album: {cover: ""},
+          preview: ""
         }
       },
       trending: [
@@ -85,9 +86,6 @@ export class App extends React.Component {
     this.setState({currSong: {song}})
   }
 
-  
-
-
   render() {
     return (
       <div className="App">
@@ -97,15 +95,15 @@ export class App extends React.Component {
         <main className={'mb-5'}>
           <Router>
             <Switch>
-              <Route path='/'>
+              <Route exact path='/'>
                 <HomePage currSong={this.state.currSong} setSong={this.selectSong.bind(this)}/>
               </Route>
-              <Route path='/home'>
+              <Route exact path='/home' component={HomePage}>
                 <HomePage currSong={this.state.currSong} setSong={this.selectSong.bind(this)}/>
               </Route>
-              <Route path='/playlist' component={PlayListPage} />
-              {/* <Route path='/user' component={} />
-              <Route path='/about' component={} /> */}
+              <Route path='/playlist'>
+                {/* <PlayListPage /> */}
+              </Route>
             </Switch>
         </Router>
         </main>
