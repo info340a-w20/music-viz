@@ -48,6 +48,13 @@ a:hover {
     transform: rotate(360deg);
   }
 }
+/* <-------------------------------------------------- RectVis-------------------------------------------------------> */
+#canvas {
+  position: relative;
+  height: auto;
+  max-height: 80vh;
+  vertical-align: middle;
+}
 
 /* <-------------------------------------------------- NavBar -------------------------------------------------------> */
 .navbar-dark .navbar-nav .nav-link {
@@ -60,7 +67,7 @@ a:hover {
   width: 100%;
   background-color: rgb(52,58,64);
   height: 15vh;
-  position: absolute;
+  position: relative;
   bottom: 0;
 }
 
