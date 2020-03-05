@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/music-viz/static/css/main.9d5046ee.chunk.css",
-    "main.js": "/music-viz/static/js/main.b1e93b0f.chunk.js",
-    "main.js.map": "/music-viz/static/js/main.b1e93b0f.chunk.js.map",
-    "runtime-main.js": "/music-viz/static/js/runtime-main.c750f52b.js",
-    "runtime-main.js.map": "/music-viz/static/js/runtime-main.c750f52b.js.map",
-    "static/css/2.47e06e2e.chunk.css": "/music-viz/static/css/2.47e06e2e.chunk.css",
-    "static/js/2.f2cb3e0f.chunk.js": "/music-viz/static/js/2.f2cb3e0f.chunk.js",
-    "static/js/2.f2cb3e0f.chunk.js.map": "/music-viz/static/js/2.f2cb3e0f.chunk.js.map",
-    "index.html": "/music-viz/index.html",
-    "precache-manifest.27584723cdccde4a43bf6289c970b8bc.js": "/music-viz/precache-manifest.27584723cdccde4a43bf6289c970b8bc.js",
-    "service-worker.js": "/music-viz/service-worker.js",
-    "static/css/2.47e06e2e.chunk.css.map": "/music-viz/static/css/2.47e06e2e.chunk.css.map",
-    "static/css/main.9d5046ee.chunk.css.map": "/music-viz/static/css/main.9d5046ee.chunk.css.map",
-    "static/js/2.f2cb3e0f.chunk.js.LICENSE.txt": "/music-viz/static/js/2.f2cb3e0f.chunk.js.LICENSE.txt",
-    "static/media/logo.svg": "/music-viz/static/media/logo.ee7cd8ed.svg"
+    "main.css": "/alwong34/static/css/main.4107d41b.chunk.css",
+    "main.js": "/alwong34/static/js/main.3a26e4c6.chunk.js",
+    "main.js.map": "/alwong34/static/js/main.3a26e4c6.chunk.js.map",
+    "runtime-main.js": "/alwong34/static/js/runtime-main.dd81641f.js",
+    "runtime-main.js.map": "/alwong34/static/js/runtime-main.dd81641f.js.map",
+    "static/css/2.47e06e2e.chunk.css": "/alwong34/static/css/2.47e06e2e.chunk.css",
+    "static/js/2.4e6e8b29.chunk.js": "/alwong34/static/js/2.4e6e8b29.chunk.js",
+    "static/js/2.4e6e8b29.chunk.js.map": "/alwong34/static/js/2.4e6e8b29.chunk.js.map",
+    "index.html": "/alwong34/index.html",
+    "precache-manifest.a5457def370450f41d0342e97ba42367.js": "/alwong34/precache-manifest.a5457def370450f41d0342e97ba42367.js",
+    "service-worker.js": "/alwong34/service-worker.js",
+    "static/css/2.47e06e2e.chunk.css.map": "/alwong34/static/css/2.47e06e2e.chunk.css.map",
+    "static/css/main.4107d41b.chunk.css.map": "/alwong34/static/css/main.4107d41b.chunk.css.map",
+    "static/js/2.4e6e8b29.chunk.js.LICENSE.txt": "/alwong34/static/js/2.4e6e8b29.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/alwong34/static/media/logo.ee7cd8ed.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.c750f52b.js",
+    "static/js/runtime-main.dd81641f.js",
     "static/css/2.47e06e2e.chunk.css",
-    "static/js/2.f2cb3e0f.chunk.js",
-    "static/css/main.9d5046ee.chunk.css",
-    "static/js/main.b1e93b0f.chunk.js"
+    "static/js/2.4e6e8b29.chunk.js",
+    "static/css/main.4107d41b.chunk.css",
+    "static/js/main.3a26e4c6.chunk.js"
   ]
 }
