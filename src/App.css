@@ -334,6 +334,10 @@ tr:hover {
   height: auto;
 }
 
+.my-list {
+  display: block;
+}
+
 
 
 

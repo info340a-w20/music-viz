@@ -92,8 +92,12 @@ export class App extends React.Component {
     console.log(playlists)
   }
 
-  addSong = (song, playlist) => {
+  addSong = (song, id) => {
     // console.log(playlist)
+    let playlists = this.state.playlists;
+    console.log(id)
+    let playlist = playlists[id]
+    console.log('hellll',playlist)
     playlist.songs.push(song)
   }
 

@@ -8,7 +8,8 @@ export default class MyPlayList extends Component {
             selectedTrack: null,
             searchSong: '',
             querySong: '',
-            querySongList: []
+            querySongList: [],
+            showQueryTable: false
         };
     }
     
@@ -19,24 +20,24 @@ export default class MyPlayList extends Component {
     querySong = (query) => {
         // let baseUrl = 'https://cors-anywhere.herokuapp.com/https://api.deezer.com/search?q='
         let songSearch = fetch('https://polar-falls-56753.herokuapp.com/?search=' + query)
-    .then((resp) => resp.json())
-    .then((data) => {
-        let songList = [];
-        let length = data.data.length;
-        if (length > 10) {
-            length = 10;
-        }
-        for (let i = 0; i < length; i++) {
-            let songInfo = {};
-            songInfo.name = data.data[i].title;
-            songInfo.artist = data.data[i].artist.name;
-            songInfo.preview = data.data[i].preview;
-            songInfo.cover = data.data[i].album.cover_medium;
-            console.log(data.data[i])
-            songList.push(songInfo);
-        }
-        this.setState({querySongList: songList});
-    }).catch(err => console.error(err));
+        .then((resp) => resp.json())
+        .then((data) => {
+            let songList = [];
+            let length = data.data.length;
+            if (length > 10) {
+                length = 10;
+            }
+            for (let i = 0; i < length; i++) {
+                let songInfo = {};
+                songInfo.name = data.data[i].title;
+                songInfo.artist = data.data[i].artist.name;
+                songInfo.preview = data.data[i].preview;
+                songInfo.cover = data.data[i].album.cover_medium;
+                console.log(data.data[i])
+                songList.push(songInfo);
+            }
+            this.setState({querySongList: songList});
+        }).catch(err => console.error(err));
     }
 
     onUpdate = (val) => {
@@ -44,6 +45,12 @@ export default class MyPlayList extends Component {
           querySong: val
         })
       };
+
+    showQTable = () => {
+        this.setState({
+            showQueryTable: !this.state.showQueryTable
+        })
+    };
 
     
     
@@ -55,16 +62,20 @@ export default class MyPlayList extends Component {
             playlist = this.props.trending.filter((playlist) => playlist.id == id)[0];
         }
 
-        console.log('using thisssss:', playlist)
+        // console.log('using thisssss:', playlist)
+
+
         return(
             <div>
                 <div>
                     <Cover playlist={playlist}/>
-                    <button id="btn-add-song" type="button">Add Songs</button>
-                    <SearchForm value={this.state.querySong}  query={this.querySong} querySong={this.state.querySong} onUpdate={this.onUpdate} formType={'add-song'}/>
-                    <SearchForm value={this.state.searchSong}  searchSong={this.state.searchSong} onUpdate={(val) => {this.setState({searchSong:val})} }/>
-                    <SongTable playlist={playlist} playSong={this.playSong} searchSong={this.state.searchSong}/>
-                    <QuerySongTable playlist={playlist} querySong={this.state.querySongList} playSong={this.playSong} addSong={this.props.addSong}/>
+                    {/* <button id="btn-add-song" type="button">Add Songs</button> */}
+                    <SearchForm value={this.state.querySong} showQTable={this.showQTable} query={this.querySong} querySong={this.state.querySong} onUpdate={this.onUpdate} formType={'add-song'}/>
+                    {!this.state.showQueryTable && <SearchForm value={this.state.searchSong}  searchSong={this.state.searchSong} onUpdate={(val) => {this.setState({searchSong:val})} }/>}
+                    {!this.state.showQueryTable && <SongTable playlist={playlist} playSong={this.playSong} searchSong={this.state.searchSong}/>}
+                    {/* {this.state.showQueryTable &&} */}
+                    {this.state.showQueryTable && <QuerySongTable showQTable={this.showQTable} id={id} querySong={this.state.querySongList} playSong={this.playSong} addSong={this.props.addSong}/>}
+                    
                 </div>
             </div>
             
@@ -98,15 +109,17 @@ export class SearchForm extends Component {
 
     render() {
         let button;
+        let placeholder = 'Search songs...'
         if(this.props.formType == 'add-song') {
-            button = <button type="button" onClick={() => this.props.query(this.props.querySong)} className="btn btn-outline-info" value='Update'>Search</button>
+            button = <button type="button" onClick={() => {this.props.query(this.props.querySong); this.props.showQTable( )}}  className="btn btn-outline-info" value='Update'>Search</button>
+            placeholder = 'Songs to add...'
         }
 
         return(
             <div>
                 <div className={this.props.formType == 'add-song' ? "add-song" : "search-song"}>
-                    <form className="m-3 form-inline">
-                        <input placeholder="Search" type="text" value={this.props.querySong} onChange={e => this.props.onUpdate(e.target.value)} className="mr-sm-2 form-control"></input>
+                    <form className={this.props.formType == 'add-song' ? "my-list m-3 form-inline": "m-3 form-inline"}>
+                        <input placeholder={placeholder} type="text" value={this.props.querySong} onChange={e => this.props.onUpdate(e.target.value)} className="mr-sm-2 form-control"></input>
                         {button}
                     </form>
                 </div>
@@ -231,7 +244,7 @@ export class TableHeader extends Component {
             <td>{this.props.song.name}</td>
             <td>{this.props.song.artist}</td>
             <td><Music url={this.props.song.preview}/></td>
-            <td><i onClick={()=> this.props.addSong(this.props.song, this.props.playlist)} className="fa fa-plus-circle fa-3x"></i></td>
+            <td><i onClick={()=> this.props.addSong(this.props.song, this.props.id)} className="fa fa-plus-circle fa-3x"></i></td>
         </tr>
       )
     }
@@ -247,7 +260,7 @@ export class TableHeader extends Component {
     render() {
         let row = this.props.querySong.map((d,i) => {
             return (
-                <QuerySongList playlist={this.props.playlist} addSong={this.props.addSong} key={i} song={d} playSong={this.props.playSong}/>
+                <QuerySongList id={this.props.id} playlist={this.props.playlist} addSong={this.props.addSong} key={i} song={d} playSong={this.props.playSong}/>
             )
           });
 
@@ -255,6 +268,7 @@ export class TableHeader extends Component {
             <div>
                 <div className="wrapper-tbl">
                     <div className="m2">
+                    <button type="button" onClick={() => {this.props.showQTable()}}  className="btn btn-outline-info" value='Update'>Back to Playlist</button>
                         <table className="song-table">
                             <TableHeader/>
                             <tbody>
