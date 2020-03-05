@@ -9,6 +9,8 @@ import PlayListPage from './pages/PlayListPage';
 import { HomePage } from './pages/HomePage/HomePage';
 import { Footer } from './Footer';
 import MyPlayList from './pages/MyPlayList';
+import AboutPage from './pages/AboutPage';
+
 
 
 export class App extends React.Component {
@@ -78,18 +80,26 @@ export class App extends React.Component {
 
   addPlaylist = (playlist) => {
     let playlists = this.state.playlists;
-    playlists.push({
-      id: 1,
-      cover: "https://pbs.twimg.com/profile_images/1222571834488623104/zsWD1O8K_400x400.jpg",
-      songs: [],
-      name: ''
-      
-          
-      });
-      this.setState({
-        playlists: playlists
-      })
-      // this.showForm()
+    let playlistId = this.state.playlistId
+    // console.log(playlists)
+
+    playlists.push(playlist);
+    // console.log(playlist)
+    this.setState({
+      playlists: playlists,
+      playlistId: playlistId + 1
+    })
+    
+    console.log(playlists)
+  }
+
+  addSong = (song, id) => {
+    // console.log(playlist)
+    let playlists = this.state.playlists;
+    console.log(id)
+    let playlist = playlists[id]
+    console.log('hellll',playlist)
+    playlist.songs.push(song)
   }
 
 
@@ -99,12 +109,12 @@ export class App extends React.Component {
 
   render() {
     return (
+      <Router>
       <div className="App">
         <header>
           <Navigation />
         </header>
         <main className={'mb-5'}>
-          <Router>
             <Switch>
               <Route exact path='/'>
                 <HomePage currSong={this.state.currSong} setSong={this.selectSong.bind(this)}/>
@@ -112,16 +122,19 @@ export class App extends React.Component {
               <Route exact path='/home'>
                 <HomePage currSong={this.state.currSong} setSong={this.selectSong.bind(this)}/>
               </Route>
-              <Route exact path='/playlist' render={() => <PlayListPage ref={this.playlistElement} playlists={this.state.playlists} addPlaylist={this.addPlaylist} 
+              <Route exact path='/playlist' render={() => <PlayListPage playlistId={this.state.playlistId} ref={this.playlistElement} playlists={this.state.playlists} addPlaylist={this.addPlaylist} 
               trending={this.state.trending} />} />
-              <Route path='/playlist/:playlistId' render={(renderProps) => <MyPlayList playlists={this.state.playlists} {...renderProps} trending={this.state.trending} />}/>
+              <Route path='/playlist/:playlistId' render={(renderProps) => <MyPlayList addSong={this.addSong} playlists={this.state.playlists} {...renderProps} trending={this.state.trending} />}/>
+              <Route exact path='/about'>
+                <AboutPage/>
+              </Route>
             </Switch>
-        </Router>
         </main>
         <footer>
           <Footer />
         </footer>
       </div>
+      </Router>
     );
   }
 }

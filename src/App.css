@@ -297,7 +297,7 @@ button, #name, #url {
   width: 80%;
 }
 
-.fa-heart:hover {
+.fa-heart .fa-2x:hover {
   color: palevioletred;
 }
 
@@ -334,6 +334,73 @@ tr:hover {
   height: auto;
 }
 
+.my-list {
+  display: block;
+}
+
+.btn-playlist {
+  color: white;
+  background-color: teal;
+}
+
+/* ------------------------------------------ AboutPage ------------------------------------------- */
+
+
+.parallax1 {
+  /* The image used */
+  background-image: url(https://wallpapercave.com/wp/wp3031960.jpg);
+
+  /* Full height */
+  height: 100%;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.parallax2 {
+  /* The image used */
+  background-image: url(https://images.8tracks.com/cover/i/002/163/717/worlds-4234.png?rect=99,0,1531,1531&q=98&fm=jpg&fit=max&w=1024&h=1024);
+
+  /* Full height */
+  height: 100%;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+section {
+    width: 70%;
+    margin-right: auto;
+    margin-left: auto;
+    background:rgba(73, 77, 74, 0.6);
+}
+
+#heading h1{
+    padding: 1rem;
+    margin-bottom: 0px;
+}
+
+ol {
+    margin-bottom: 0px;
+}
+
+.h6 {
+    margin-bottom: 0px;
+}
+
+.about-page {
+  text-align: left;
+}
+
+main #heading {
+  text-align: center;
+}
 
 
 
