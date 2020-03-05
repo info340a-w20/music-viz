@@ -13,7 +13,7 @@ export class SongCard extends React.Component {
 
    clickCard() {
        this.props.setSong(this.props.song);
-       this.props.renderCanvas.func();
+    //    this.props.renderCanvas.func();
    }
 
     render() {

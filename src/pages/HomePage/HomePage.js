@@ -9,7 +9,7 @@ export class HomePage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            color: "",
+            color: "red",
             shape: "Rectangle",
             width: 1,
             songList: [],
@@ -38,7 +38,7 @@ export class HomePage extends React.Component {
         .then((resp) => resp.json())
         .then((data) => {
             this.setState({songList: data.data});
-            this.props.setSong(data.data[0])
+            // this.props.setSong(data.data[0])
         }).catch(err => console.error(err));
     }
 
@@ -52,7 +52,7 @@ export class HomePage extends React.Component {
                 </div>
                 <div id={'canvasContainer'}>
                     {/* <RectVis width={this.state.width} color={this.state.color} song={this.props.currSong} /> */}
-                    <VisSection width={this.state.width} color={this.state.color} currSong={this.props.currSong} getRenderFunc ={this.getRenderFunc.bind(this)} />
+                    <VisSection width={this.state.width} color={this.state.color} currSong={this.props.currSong} />
                 </div>
                 <div>
                     <Controls changeControls={this.changeControls.bind(this)}/>
