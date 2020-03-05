@@ -26,10 +26,10 @@ export default class PlayListPage extends Component {
 
     render() {
         let renderedCovers = this.props.trending.map((cover, i) => {
-            return <Cover key={'trending-'+i} src={cover.cover} id={cover.id} />;
+            return <Cover key={'trending-'+i} src={cover.cover} id={cover.id} name={cover.name}/>;
         });
         let renderedPlaylist = this.props.playlists.map((cover, i) => {
-            return <Cover key={'playlist-' + i}  src={cover.cover} id={cover.id} />;
+            return <Cover key={'playlist-' + i}  src={cover.cover} id={cover.i} name={cover.name} />;
         });
 
         console.log(this.state.playListName)
@@ -82,6 +82,7 @@ class Cover extends Component {
     render() {
         let src = this.props.src;
         let id = this.props.id;
+        let name = this.props.name;
 
         return (
             <div className="col-md-3 col-sm-6 col-6">
@@ -96,7 +97,7 @@ class Cover extends Component {
                 </div>
                 <Link to={"/playlist/" + id}>
                     <div className="title">
-                        <p>Hover over</p>
+                        <p>{name}</p>
                     </div>
                 </Link>
                 
@@ -109,6 +110,7 @@ class Cover extends Component {
 class PlayListForm extends Component {
     constructor(props) {
         super(props)
+        // this
     }
 
     render() {
