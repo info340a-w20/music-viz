@@ -14,8 +14,8 @@ export class Controls extends React.Component {
 
     render() {
         return (
-            <div>
-                <FormControl variant="filled">
+            <div className={'d-flex'}>
+                <FormControl variant="filled" style={{width: '5rem', margin: '1.5rem'}}>
                     <InputLabel id="demo-simple-select-filled-label">Color</InputLabel>
                     <Select
                     labelId="demo-simple-select-filled-label"
@@ -33,9 +33,9 @@ export class Controls extends React.Component {
                         <MenuItem value={'Pink'}>Pink</MenuItem>
                     </Select>
                 </FormControl>
-                <div>
+                <div className={'d-flex flex-column align-content-center'}>
                     <Typography>Width</Typography>
-                    <Slider />
+                    <Slider style={{width: '15rem'}} onChange={(event, newValue) => {this.props.changeControls('width', newValue)}} />
                 </div>
             </div>
         )
