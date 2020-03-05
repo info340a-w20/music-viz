@@ -297,7 +297,7 @@ button, #name, #url {
   width: 80%;
 }
 
-.fa-heart:hover {
+.fa-heart .fa-2x:hover {
   color: palevioletred;
 }
 
@@ -336,6 +336,11 @@ tr:hover {
 
 .my-list {
   display: block;
+}
+
+.btn-playlist {
+  color: white;
+  background-color: teal;
 }
 
 /* ------------------------------------------ AboutPage ------------------------------------------- */

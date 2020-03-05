@@ -34,19 +34,21 @@ export default class PlayListPage extends Component {
 
       return (
           <div>
-              <div className="top-wrapper">
-                  <div className='card text-center toplist'>
-                    <div className="card-header">
-                        Your Top Play List
+              <Link to={"/playlist/" + 0}>
+                    <div className="top-wrapper">
+                        <div className='card text-center toplist'>
+                        <div className="card-header">
+                            Your Top Play List
+                        </div>
+                        <div className="card-body">
+                            <h5 className="card-title">Time to Chill</h5>
+                        </div>
+                        <div className="card-footer text-muted">
+                            2 days ago
+                        </div>
+                        </div>
                     </div>
-                    <div className="card-body">
-                        <h5 className="card-title">Chillin' with Friends</h5>
-                    </div>
-                    <div className="card-footer text-muted">
-                        2 days ago
-                    </div>
-                  </div>
-              </div>
+              </Link>
               <div id="title-playlist">
                 <h1 id="mylist">Your Play List</h1>
                 <div id="circle" style={{display: 'inline'}} >
