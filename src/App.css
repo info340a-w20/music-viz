@@ -234,9 +234,14 @@ i {
 
 .name-form {
   border: skyblue;
-  padding: 20px;
+  margin-top: 0.8rem;
+  padding: 1rem;
   background: rgba(73, 76, 77, 0.3);
   border-radius: 15px;
+}
+
+.form-card {
+  width: fit-content;
 }
 
 #name, #url {
@@ -308,6 +313,17 @@ tr:hover {
   color: white;
 }
 
+.add-song {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.album {
+  width: 10vw;
+  height: auto;
+}
+
+
 
 
 @media (min-width: 768px) 
@@ -320,7 +336,10 @@ tr:hover {
 @media (min-width:992px)
 {
 
-
+  .album {
+    width: 8vw;
+    height: auto;
+  }
 
 
   

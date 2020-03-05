@@ -31,7 +31,8 @@ export default class MyPlayList extends Component {
             songInfo.name = data.data[i].title;
             songInfo.artist = data.data[i].artist.name;
             songInfo.preview = data.data[i].preview;
-            songInfo.cover = data.data[i].cover;
+            songInfo.cover = data.data[i].album.cover_medium;
+            console.log(data.data[i])
             songList.push(songInfo);
         }
         this.setState({querySongList: songList});
@@ -57,7 +58,8 @@ export default class MyPlayList extends Component {
             <div>
                 <div>
                     <Cover playlist={playlist}/>
-                    <SearchForm value={this.state.querySong}  query={this.querySong} querySong={this.state.querySong} onUpdate={this.onUpdate}/>
+                    <button id="btn-add-song" type="button">Add Songs</button>
+                    <SearchForm value={this.state.querySong}  query={this.querySong} querySong={this.state.querySong} onUpdate={this.onUpdate} formType={'add-song'}/>
                     <SearchForm value={this.state.searchSong}  searchSong={this.state.searchSong} onUpdate={(val) => {this.setState({searchSong:val})} }/>
                     <SongTable playlist={playlist} playSong={this.playSong} searchSong={this.state.searchSong}/>
                     <QuerySongTable playlist={this.state.querySongList} playSong={this.playSong}/>
@@ -93,12 +95,17 @@ export class SearchForm extends Component {
     
 
     render() {
+        let button;
+        if(this.props.formType == 'add-song') {
+            button = <button type="button" onClick={() => this.props.query(this.props.querySong)} className="btn btn-outline-info" value='Update'>Search</button>
+        }
+
         return(
             <div>
-                <div className="search-song">
+                <div className={this.props.formType == 'add-song' ? "add-song" : "search-song"}>
                     <form className="m-3 form-inline">
                         <input placeholder="Search" type="text" value={this.props.querySong} onChange={e => this.props.onUpdate(e.target.value)} className="mr-sm-2 form-control"></input>
-                        <button type="button" onClick={() => this.props.query(this.props.querySong)} className="btn btn-outline-info" value='Update'>Search</button>
+                        {button}
                     </form>
                 </div>
             </div>
@@ -170,9 +177,10 @@ export class TableHeader extends Component {
 
   export class SongList extends Component {
     render() {
+        console.log(this.props.song.cover)
       return (
         <tr className='song-table'>
-            <td>Cover</td>
+            <td><img className="album" src={this.props.song.cover}/></td>
             <td>{this.props.song.name}</td>
             <td>{this.props.song.artist}</td>
             <td><i className="fa fa-heart"></i></td>
@@ -216,7 +224,7 @@ export class TableHeader extends Component {
     render() {
       return (
         <tr className='song-table'>
-            <td>Cover</td>
+            <td><img className="album" src={this.props.song.cover}/></td>
             <td>{this.props.song.name}</td>
             <td>{this.props.song.artist}</td>
             <td><Music url={this.props.song.preview}/></td>
