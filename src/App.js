@@ -9,6 +9,8 @@ import PlayListPage from './pages/PlayListPage';
 import { HomePage } from './pages/HomePage/HomePage';
 import { Footer } from './Footer';
 import MyPlayList from './pages/MyPlayList';
+import AboutPage from './pages/AboutPage';
+
 
 
 export class App extends React.Component {
@@ -124,6 +126,9 @@ export class App extends React.Component {
               <Route exact path='/playlist' render={() => <PlayListPage playlistId={this.state.playlistId} ref={this.playlistElement} playlists={this.state.playlists} addPlaylist={this.addPlaylist} 
               trending={this.state.trending} />} />
               <Route path='/playlist/:playlistId' render={(renderProps) => <MyPlayList addSong={this.addSong} playlists={this.state.playlists} {...renderProps} trending={this.state.trending} />}/>
+              <Route exact path='/about'>
+                <AboutPage/>
+              </Route>
             </Switch>
         </main>
         <footer>
