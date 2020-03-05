@@ -54,6 +54,8 @@ export default class MyPlayList extends Component {
         if (id.includes('trending')) {
             playlist = this.props.trending.filter((playlist) => playlist.id == id)[0];
         }
+
+        console.log('using thisssss:', playlist)
         return(
             <div>
                 <div>
@@ -62,7 +64,7 @@ export default class MyPlayList extends Component {
                     <SearchForm value={this.state.querySong}  query={this.querySong} querySong={this.state.querySong} onUpdate={this.onUpdate} formType={'add-song'}/>
                     <SearchForm value={this.state.searchSong}  searchSong={this.state.searchSong} onUpdate={(val) => {this.setState({searchSong:val})} }/>
                     <SongTable playlist={playlist} playSong={this.playSong} searchSong={this.state.searchSong}/>
-                    <QuerySongTable playlist={this.state.querySongList} playSong={this.playSong}/>
+                    <QuerySongTable playlist={playlist} querySong={this.state.querySongList} playSong={this.playSong} addSong={this.props.addSong}/>
                 </div>
             </div>
             
@@ -222,13 +224,14 @@ export class TableHeader extends Component {
 
   export class QuerySongList extends Component {
     render() {
+        // Push the 'song' prop up when click plus circle
       return (
         <tr className='song-table'>
             <td><img className="album" src={this.props.song.cover}/></td>
             <td>{this.props.song.name}</td>
             <td>{this.props.song.artist}</td>
             <td><Music url={this.props.song.preview}/></td>
-            <td><i className="fa fa-plus-circle fa-3x"></i></td>
+            <td><i onClick={()=> this.props.addSong(this.props.song, this.props.playlist)} className="fa fa-plus-circle fa-3x"></i></td>
         </tr>
       )
     }
@@ -242,9 +245,9 @@ export class TableHeader extends Component {
     
 
     render() {
-        let row = this.props.playlist.map((d,i) => {
+        let row = this.props.querySong.map((d,i) => {
             return (
-                <QuerySongList key={i} song={d} playSong={this.props.playSong}/>
+                <QuerySongList playlist={this.props.playlist} addSong={this.props.addSong} key={i} song={d} playSong={this.props.playSong}/>
             )
           });
 

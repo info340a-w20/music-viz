@@ -32,8 +32,6 @@ export default class PlayListPage extends Component {
             return <Cover key={'playlist-' + i}  src={cover.cover} id={cover.id} name={cover.name} />;
         });
 
-        console.log(this.state.playListName)
-
       return (
           <div>
               <div className="top-wrapper">
@@ -58,7 +56,7 @@ export default class PlayListPage extends Component {
               <div className="container">
                     <div className="row">
                         {renderedPlaylist}
-                        {this.state.showForm && <PlayListForm addPlaylist={this.props.addPlaylist} handleForm={this.handleForm} 
+                        {this.state.showForm && <PlayListForm playlistId={this.props.playlistId} addPlaylist={this.props.addPlaylist} handleForm={this.handleForm} 
                         onUpDateName={this.onUpDateName} onUpdateUrl={this.onUpdateUrl} playListName={this.state.playListName} imgUrl={this.state.imgUrl}/>}
                     </div>
               </div>
@@ -110,10 +108,27 @@ class Cover extends Component {
 class PlayListForm extends Component {
     constructor(props) {
         super(props)
-        // this
     }
+    
 
     render() {
+        let url = this.props.imgUrl
+        let name = this.props.playListName
+        let playlist = {
+            id: this.props.playlistId,
+            cover: "https://images-na.ssl-images-amazon.com/images/I/919WO8q-nnL._SL1500_.jpg",
+            songs: [],
+            name: 'My Playlist'
+        }
+
+        if(url.length != 0) {
+            playlist.cover = url
+        }
+
+        if(name.length != 0) {
+            playlist.name = name
+        }
+
         return(
             <div className="col-md-3 col-6">
                 <div className="name-form form-card">
@@ -123,7 +138,7 @@ class PlayListForm extends Component {
                         <input type="text" id="url" placeholder="Your image URL..." value={this.props.imgUrl} onChange={(e) => this.props.onUpdateUrl(e.target.value)}></input>
                     </div>
                     <div className="submit">
-                        <button type="button" id="submit-button" onClick={() => {this.props.addPlaylist(""); this.props.handleForm()}}>Submit</button>
+                        <button type="button" id="submit-button" onClick={() => {this.props.addPlaylist(playlist); this.props.handleForm()}}>Submit</button>
                         <button type="button" id="cancel-button" onClick={() => this.props.handleForm()}>Cancel</button>
                     </div>
                 </div>

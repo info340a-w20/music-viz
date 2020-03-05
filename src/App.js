@@ -80,23 +80,21 @@ export class App extends React.Component {
   addPlaylist = (playlist) => {
     let playlists = this.state.playlists;
     let playlistId = this.state.playlistId
-    playlists.push({
-      id: playlistId,
-      cover: "https://scontent-yyz1-1.cdninstagram.com/v/t51.2885-15/e35/76887268_171396757567282_6574615474514919914_n.jpg?_nc_ht=scontent-yyz1-1.cdninstagram.com&_nc_cat=110&_nc_ohc=Rj9mqlsJ7D0AX-3fxwM&oh=eb1b7369e40fad4b76d705d33c1fc85f&oe=5ECFA752",
-      songs: [],
-      name: ''
-      
-          
-      });
-      this.setState({
-        playlists: playlists,
-        playlistId: playlistId + 1
-      })
-      // this.showForm()
+    // console.log(playlists)
+
+    playlists.push(playlist);
+    // console.log(playlist)
+    this.setState({
+      playlists: playlists,
+      playlistId: playlistId + 1
+    })
+    
+    console.log(playlists)
   }
 
-  addSong = (song) => {
-    // ley song = this.
+  addSong = (song, playlist) => {
+    // console.log(playlist)
+    playlist.songs.push(song)
   }
 
 
@@ -106,12 +104,12 @@ export class App extends React.Component {
 
   render() {
     return (
+      <Router>
       <div className="App">
         <header>
           <Navigation />
         </header>
         <main className={'mb-5'}>
-          <Router>
             <Switch>
               <Route exact path='/'>
                 <HomePage currSong={this.state.currSong} setSong={this.selectSong.bind(this)}/>
@@ -119,16 +117,16 @@ export class App extends React.Component {
               <Route exact path='/home'>
                 <HomePage currSong={this.state.currSong} setSong={this.selectSong.bind(this)}/>
               </Route>
-              <Route exact path='/playlist' render={() => <PlayListPage ref={this.playlistElement} playlists={this.state.playlists} addPlaylist={this.addPlaylist} 
+              <Route exact path='/playlist' render={() => <PlayListPage playlistId={this.state.playlistId} ref={this.playlistElement} playlists={this.state.playlists} addPlaylist={this.addPlaylist} 
               trending={this.state.trending} />} />
-              <Route path='/playlist/:playlistId' render={(renderProps) => <MyPlayList playlists={this.state.playlists} {...renderProps} trending={this.state.trending} />}/>
+              <Route path='/playlist/:playlistId' render={(renderProps) => <MyPlayList addSong={this.addSong} playlists={this.state.playlists} {...renderProps} trending={this.state.trending} />}/>
             </Switch>
-        </Router>
         </main>
         <footer>
           <Footer />
         </footer>
       </div>
+      </Router>
     );
   }
 }
