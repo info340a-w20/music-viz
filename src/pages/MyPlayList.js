@@ -50,10 +50,10 @@ export default class MyPlayList extends Component {
     render() {
         let id = this.props.match.params.playlistId;
         let playlist = this.props.playlists.filter((playlist) => playlist.id == id)[0];
+        
         if (id.includes('trending')) {
             playlist = this.props.trending.filter((playlist) => playlist.id == id)[0];
         }
-        console.log(this.state.searchSong.length)
         return(
             <div>
                 <div>

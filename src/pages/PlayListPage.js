@@ -29,7 +29,7 @@ export default class PlayListPage extends Component {
             return <Cover key={'trending-'+i} src={cover.cover} id={cover.id} name={cover.name}/>;
         });
         let renderedPlaylist = this.props.playlists.map((cover, i) => {
-            return <Cover key={'playlist-' + i}  src={cover.cover} id={cover.i} name={cover.name} />;
+            return <Cover key={'playlist-' + i}  src={cover.cover} id={cover.id} name={cover.name} />;
         });
 
         console.log(this.state.playListName)
