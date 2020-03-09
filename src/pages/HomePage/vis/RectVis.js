@@ -3,7 +3,9 @@ import React from 'react';
 export class RectVis extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {context:new AudioContext()}
+        this.state = {context:new AudioContext(),
+                      // audio: this.audioArea,
+                      src: undefined}
     }
 
     componentWillMount() {
@@ -18,14 +20,35 @@ export class RectVis extends React.Component {
     }
     renderCanvas() {
         console.log("render canvas")
+        // console.log(audio);
+        // console.log("this is the audio area:")
+        // console.log(this.audioArea);
+        if (this.state.src == undefined) {
+          this.state.src = this.state.context.createMediaElementSource(this.audioArea);
+          // this.setState({src: this.state.context.createMediaElementSource(this.audioArea)});
+          // return
+        }
         // var audio = document.getElementById("audio");
         // this.state.context.close();
         var audio = this.audioArea;
         audio.crossOrigin = "anonymous";
         audio.src = this.props.currSong.song.preview;
-    
-        audio.load();
-        audio.play();
+        // audio.pause();
+        let playPromise = audio.play();
+        if (playPromise == undefined) {
+          playPromise.then(() => {
+            audio.pause();
+            // audio.play()
+            // Automatic playback started!
+            // Show playing UI.
+            // We can now safely pause video...
+            // audio.pause();
+          })
+          .catch(error => {
+            // Auto-play was prevented
+            // Show paused UI.
+          });
+        }
         // var context = new AudioContext();
         // context.close()
         // context.src ? context.src : context.createMediaElementSource(audio);
@@ -37,7 +60,8 @@ export class RectVis extends React.Component {
         this.canvas.height = window.innerHeight;
         var ctx = this.canvas.getContext("2d");
     
-        // this.state.src.connect(analyser);
+        console.log("this is the source" + this.state.src)
+        this.state.src.connect(analyser);
         analyser.connect(this.state.context.destination);
     
         analyser.fftSize = 256;
@@ -51,16 +75,22 @@ export class RectVis extends React.Component {
         
         let color = this.props.color;
         let stateWidth = this.props.width;
+        // let animation;
         function renderRect() {
           // console.log(color)
           // console.log(stateWidth)
+          // if (animation) {
+          //   // console.log(animation)
+          //   cancelAnimationFrame(animation);
+          // }
+
           requestAnimationFrame(renderRect);
           x = 0;
         
-          analyser.getByteTimeDomainData(dataArray);
-          // analyser.getByteFrequencyData(dataArray);
+          // analyser.getByteTimeDomainData(dataArray);
+          analyser.getByteFrequencyData(dataArray);
 
-          console.log(dataArray);
+          // console.log(dataArray);
           ctx.fillStyle = "#000";
           ctx.fillRect(0, 0, WIDTH, HEIGHT);
           for (var i = 0; i < bufferLength; i++) {
@@ -84,9 +114,15 @@ export class RectVis extends React.Component {
             x += barWidth * stateWidth + 1;
           }
         }
-    
-        // audio.play();
-        // if (this.props.shape == "Square") {
+        // if (this.playPromise === undefined) {
+        //   audio.play();
+        //   // this.playPromise = 1;
+        //   // console.log(audio);
+        //   // this.playPromise = audio.play();
+        //   // this.playPromise;
+        //   // console.log("playpromise")
+        // } 
+           // if (this.props.shape == "Square") {
     
         // } else if (state.shape == "Circle") {
         //   console.log("state = circle");

@@ -35,7 +35,7 @@ export class Controls extends React.Component {
                 </FormControl>
                 <div className={'d-flex flex-column align-content-center'}>
                     <Typography>Width</Typography>
-                    <Slider style={{width: '15rem'}} onChange={(event, newValue) => {this.props.changeControls('width', newValue)}} />
+                    <Slider style={{width: '15rem'}} min={1} max={10} step={.1} onChange={(event, newValue) => {this.props.changeControls('width', newValue)}} />
                 </div>
             </div>
         )
