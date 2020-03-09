@@ -21,6 +21,11 @@ export class Navigation extends React.Component {
                         <Nav.Link as={Link} to="/home">Home</Nav.Link>
                         <Nav.Link as={Link} to="/playlist">Playlists</Nav.Link>
                         <Nav.Link as={Link} to="/about">About</Nav.Link>
+                        <Nav.Link>
+                            <button onClick={()=>this.props.logout()}>
+                                logout
+                            </button>
+                        </Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
