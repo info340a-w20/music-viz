@@ -10,13 +10,42 @@ import { HomePage } from './pages/HomePage/HomePage';
 import { Footer } from './Footer';
 import MyPlayList from './pages/MyPlayList';
 import AboutPage from './pages/AboutPage';
+import firebase from "firebase";
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+import Login from './Login'
 
 
+const firebaseConfig = {
+  apiKey: "AIzaSyD_QK46dNRRZMEEJbB1v8gsR-BH4di8cPQ",
+  authDomain: "music-viz-340.firebaseapp.com",
+  databaseURL: "https://music-viz-340.firebaseio.com",
+  projectId: "music-viz-340",
+  storageBucket: "music-viz-340.appspot.com",
+  messagingSenderId: "499158324053",
+  appId: "1:499158324053:web:5d83eab1d6e222957855dc",
+  measurementId: "G-MLZ5GG8V0S"
+};
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
+const uiConfig = {
+  // Popup signin flow rather than redirect flow.
+  signInFlow: 'popup',
+  // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
+  signInSuccessUrl: '/signedIn',
+  // We will display Google and Facebook as auth providers.
+  signInOptions: [
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    firebase.auth.FacebookAuthProvider.PROVIDER_ID
+  ]
+};
 
 export class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      isSignedIn: false,
+      user:{},
       currSong: {
         song: {
           title: "",
@@ -79,6 +108,10 @@ export class App extends React.Component {
     this.playlistElement = React.createRef();
   }
 
+  componentDidMount() {
+    this.authListener();
+  }
+
   addPlaylist = (playlist) => {
     let playlists = this.state.playlists;
     let playlistId = this.state.playlistId
@@ -108,33 +141,62 @@ export class App extends React.Component {
     this.setState({currSong: {song}})
   }
 
+  authListener() {
+      firebase.auth().onAuthStateChanged(
+        (user) => {
+          console.log(user);
+          if(user) {
+            this.setState({user});
+            // localStorage.setItem('user', user.uid);
+          } else {
+            this.setState({user:null});
+            // localStorage.removeItem('user')
+          }
+        }
+      )
+  }
+
+  logout = () => {
+    firebase.auth().signOut();
+  }
+
   render() {
+
+    if (!this.state.user) {
+      return (
+        <div>
+          <Login />
+          {/* <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()}/> */}
+        </div>
+      );
+    }    
+
     return (
       <Router>
-      <div className="App">
-        <header>
-          <Navigation />
-        </header>
-        <main className={'mb-5'}>
-            <Switch>
-              <Route exact path='/'>
-                <HomePage currSong={this.state.currSong} setSong={this.selectSong.bind(this)}/>
-              </Route>
-              <Route exact path='/home'>
-                <HomePage currSong={this.state.currSong} setSong={this.selectSong.bind(this)}/>
-              </Route>
-              <Route exact path='/playlist' render={() => <PlayListPage playlistId={this.state.playlistId} ref={this.playlistElement} playlists={this.state.playlists} addPlaylist={this.addPlaylist} 
-              trending={this.state.trending} />} />
-              <Route path='/playlist/:playlistId' render={(renderProps) => <MyPlayList addSong={this.addSong} playlists={this.state.playlists} {...renderProps} trending={this.state.trending} />}/>
-              <Route exact path='/about'>
-                <AboutPage/>
-              </Route>
-            </Switch>
-        </main>
-        <footer>
-          <Footer />
-        </footer>
-      </div>
+        <div className="App">
+          <header>
+            <Navigation logout={this.logout}/>
+          </header>
+          <main className={'mb-5'}>
+              <Switch>
+                <Route exact path='/'>
+                  <HomePage currSong={this.state.currSong} setSong={this.selectSong.bind(this)}/>
+                </Route>
+                <Route exact path='/home'>
+                  <HomePage currSong={this.state.currSong} setSong={this.selectSong.bind(this)}/>
+                </Route>
+                <Route exact path='/playlist' render={() => <PlayListPage playlistId={this.state.playlistId} ref={this.playlistElement} playlists={this.state.playlists} addPlaylist={this.addPlaylist} 
+                trending={this.state.trending} />} />
+                <Route path='/playlist/:playlistId' render={(renderProps) => <MyPlayList addSong={this.addSong} playlists={this.state.playlists} {...renderProps} trending={this.state.trending} />}/>
+                <Route exact path='/about'>
+                  <AboutPage/>
+                </Route>
+              </Switch>
+          </main>
+          <footer>
+            <Footer />
+          </footer>
+        </div>
       </Router>
     );
   }
