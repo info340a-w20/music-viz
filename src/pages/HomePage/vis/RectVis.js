@@ -141,8 +141,8 @@ export class RectVis extends React.Component {
     render() {
         return (
             <div className={'d-flex flex-column justify-content-center align-items-center'}>
-                <canvas ref={(node) => { this.canvas = node; }} id="canvas"></canvas>
                 <audio onClick = {this.play} id="audio" ref={(node) => { this.audioArea = node; }} controls style={{width: '100%'}} className="my-3"></audio>
+                <canvas ref={(node) => { this.canvas = node; }} id="canvas"></canvas>
             </div>
         )
     }

@@ -6,6 +6,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 // import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import { SketchPicker } from 'react-color';
 
 export class Controls extends React.Component {
     constructor(props) {
@@ -14,8 +15,8 @@ export class Controls extends React.Component {
 
     render() {
         return (
-            <div className={'d-flex'}>
-                <FormControl variant="filled" style={{width: '5rem', margin: '1.5rem'}}>
+            <div className={'d-flex flex-column'}>
+                {/* <FormControl variant="filled" style={{width: '5rem', margin: '1.5rem'}}>
                     <InputLabel id="demo-simple-select-filled-label">Color</InputLabel>
                     <Select
                     labelId="demo-simple-select-filled-label"
@@ -32,8 +33,9 @@ export class Controls extends React.Component {
                         <MenuItem value={'Purple'}>Purple</MenuItem>
                         <MenuItem value={'Pink'}>Pink</MenuItem>
                     </Select>
-                </FormControl>
-                <div className={'d-flex flex-column align-content-center'}>
+                </FormControl> */}
+                <SketchPicker className={'m-4'}/>
+                <div className={'d-flex flex-column align-content-center m-4'}>
                     <Typography>Width</Typography>
                     <Slider style={{width: '15rem'}} min={1} max={10} step={.1} onChange={(event, newValue) => {this.props.changeControls('width', newValue)}} />
                 </div>
