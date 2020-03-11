@@ -97,8 +97,8 @@ export class App extends React.Component {
             id: 0,
             cover: "https://images-na.ssl-images-amazon.com/images/I/919WO8q-nnL._SL1500_.jpg",
             songs: [
-              {name:'Good things', artist:'Gavin Koman', preview:'https://cdns-preview-8.dzcdn.net/stream/c-81af51bb89fd01fa5c65470b6b38597e-4.mp3', cover: 'https://scontent-yyz1-1.cdninstagram.com/v/t51.2885-15/e35/76887268_171396757567282_6574615474514919914_n.jpg?_nc_ht=scontent-yyz1-1.cdninstagram.com&_nc_cat=110&_nc_ohc=Rj9mqlsJ7D0AX-3fxwM&oh=eb1b7369e40fad4b76d705d33c1fc85f&oe=5ECFA752'}, 
-              {name:'In the Midst', artist:'Tom Misch', preview: 'https://cdns-preview-3.dzcdn.net/stream/c-3b6d163c64ce90ddf249f755a7608f1b-2.mp3', cover: 'https://images-na.ssl-images-amazon.com/images/I/81UCBBsAXkL._SL1200_.jpg'}],
+              {id:0,name:'Good things', artist:'Gavin Koman', preview:'https://cdns-preview-8.dzcdn.net/stream/c-81af51bb89fd01fa5c65470b6b38597e-4.mp3', cover: 'https://scontent-yyz1-1.cdninstagram.com/v/t51.2885-15/e35/76887268_171396757567282_6574615474514919914_n.jpg?_nc_ht=scontent-yyz1-1.cdninstagram.com&_nc_cat=110&_nc_ohc=Rj9mqlsJ7D0AX-3fxwM&oh=eb1b7369e40fad4b76d705d33c1fc85f&oe=5ECFA752'}, 
+              {id:1, name:'In the Midst', artist:'Tom Misch', preview: 'https://cdns-preview-3.dzcdn.net/stream/c-3b6d163c64ce90ddf249f755a7608f1b-2.mp3', cover: 'https://images-na.ssl-images-amazon.com/images/I/81UCBBsAXkL._SL1200_.jpg'}],
             name: "Time to Chill"
         }
     ],
