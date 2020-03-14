@@ -18,12 +18,12 @@ export class CardSection extends React.Component {
         }
         return (
             <div id={'songCardSection'}>
-                <div className={'d-inline'}>
+                {/* <div className={'d-inline'}>
                     <Form inline className={'float-right m-3'}>
                         <FormControl type="text" placeholder="Search" className="mr-sm-2" />
                         <Button variant="outline-info">Search</Button>
                     </Form>
-                </div>
+                </div> */}
                 <div id={'songCardList'}>
                     {cardList}
                 </div>
