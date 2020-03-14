@@ -179,12 +179,12 @@ export class App extends React.Component {
           </header>
           <main className={'mb-5'}>
               <Switch>
-                {/* <Route exact path='/'>
-                  <HomePage currSong={this.state.currSong} setSong={this.selectSong.bind(this)}/>
-                </Route> */}
-                <Route exact path='/home'>
+                <Route exact path='/'>
                   <HomePage currSong={this.state.currSong} setSong={this.selectSong.bind(this)}/>
                 </Route>
+                {/* <Route exact path='/home'>
+                  <HomePage currSong={this.state.currSong} setSong={this.selectSong.bind(this)}/>
+                </Route> */}
                 <Route exact path='/playlist' render={() => <PlayListPage playlistId={this.state.playlistId} ref={this.playlistElement} playlists={this.state.playlists} addPlaylist={this.addPlaylist} 
                 trending={this.state.trending} />} />
                 <Route path='/playlist/:playlistId' render={(renderProps) => <MyPlayList addSong={this.addSong} playlists={this.state.playlists} {...renderProps} trending={this.state.trending} />}/>
