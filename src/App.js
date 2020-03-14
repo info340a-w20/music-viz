@@ -157,26 +157,31 @@ export class App extends React.Component {
           console.log(user);
           if(user) {
             this.setState({user});
-            // localStorage.setItem('user', user.uid);
+            localStorage.setItem('user', user.uid);
+            const userRef = localStorage.user
+            userRef.on("value", (snapshot) => {
+              this.setState({playlist})
+            })
           } else {
             this.setState({user:null});
-            // localStorage.removeItem('user')
+            localStorage.removeItem('user')
           }
         }
       )
   }
+
+  
 
   logout = () => {
     firebase.auth().signOut();
   }
 
   writeUserData = () => {
-    firebase.database().ref('/').set(this.state);
+    let user = firebase.database().ref(localStorage.user).set(this.state)
     console.log('DATA SAVED');
   }
-
   getUserData = () => {
-    let ref = firebase.database().ref('/');
+    let ref = firebase.database().ref(localStorage.user);
     ref.on('value', snapshot => {
       const state = snapshot.val();
       this.setState(state);
@@ -185,7 +190,6 @@ export class App extends React.Component {
   }
 
   render() {
-
     if (!this.state.user) {
       return (
         <div>
@@ -195,7 +199,7 @@ export class App extends React.Component {
       );
     }
     // firebase.database().ref('/').set(this.state);
-    
+    console.log('this',localStorage.user);
 
     return (
       <Router>
