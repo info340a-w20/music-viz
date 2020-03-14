@@ -50,12 +50,12 @@ export class HomePage extends React.Component {
                 <div id={'currSong'}>
                     <CurrSongSection currSong={this.props.currSong} setSong={this.props.setSong}/>
                 </div>
-                <div id={'canvasContainer'}>
+                <div id={'canvasContainer'} className={'d-flex'}>
                     {/* <RectVis width={this.state.width} color={this.state.color} song={this.props.currSong} /> */}
-                    <VisSection width={this.state.width} color={this.state.color} currSong={this.props.currSong} getRenderFunc ={this.getRenderFunc.bind(this)} />
+                    <Controls changeControls={this.changeControls.bind(this)}/>
+                    <VisSection width={this.state.width} color={this.state.color} currSong={this.props.currSong} />
                 </div>
                 <div>
-                    <Controls changeControls={this.changeControls.bind(this)}/>
                 </div>
             </div>
         )
