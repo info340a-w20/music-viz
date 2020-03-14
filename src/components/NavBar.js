@@ -18,7 +18,7 @@ export class Navigation extends React.Component {
                     <Navbar.Toggle className="mr-2" aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav" style={{backgroundColor: '#343A40'}}>
                         <Nav className="mr-auto">
-                        <Nav.Link as={Link} to="/home">Home</Nav.Link>
+                        {/* <Nav.Link as={Link} to="/home">Home</Nav.Link> */}
                         <Nav.Link as={Link} to="/playlist">Playlists</Nav.Link>
                         <Nav.Link as={Link} to="/about">About</Nav.Link>
                         <Nav.Link>

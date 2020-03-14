@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from './logo.svg';
 import './App.css';
 import { Navigation } from './components/NavBar';
-import { BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import { HashRouter as Router, Route, Link} from 'react-router-dom';
 import { Switch } from 'react-router-dom';
 import PlayListPage from './pages/PlayListPage';
 import { HomePage } from './pages/HomePage/HomePage';
@@ -179,9 +179,9 @@ export class App extends React.Component {
           </header>
           <main className={'mb-5'}>
               <Switch>
-                <Route exact path='/'>
+                {/* <Route exact path='/'>
                   <HomePage currSong={this.state.currSong} setSong={this.selectSong.bind(this)}/>
-                </Route>
+                </Route> */}
                 <Route exact path='/home'>
                   <HomePage currSong={this.state.currSong} setSong={this.selectSong.bind(this)}/>
                 </Route>
