@@ -25,13 +25,13 @@ export default class PlayListPage extends Component {
     }
 
     render() {
-        let renderedCovers = this.props.trending.map((cover, i) => {
-            return <Cover key={'trending-'+i} src={cover.cover} id={cover.id} name={cover.name}/>;
-        });
+        // let renderedCovers = this.props.trending.map((cover, i) => {
+        //     return <Cover key={'trending-'+i} src={cover.cover} id={cover.id} name={cover.name}/>;
+        // });
         let renderedPlaylist = this.props.playlists.map((cover, i) => {
             return <Cover key={'playlist-' + i}  src={cover.cover} id={cover.id} name={cover.name} />;
         });
-
+        this.props.save()
       return (
           <div>
               <Link to={"/playlist/" + 0}>
@@ -62,15 +62,15 @@ export default class PlayListPage extends Component {
                         onUpDateName={this.onUpDateName} onUpdateUrl={this.onUpdateUrl} playListName={this.state.playListName} imgUrl={this.state.imgUrl}/>}
                     </div>
               </div>
-              <div id="title-playlist">
+              {/* <div id="title-playlist">
                 <h1 id="mylist">Trending</h1>
-              </div>
-              <div className="container">
+              </div> */}
+              {/* <div className="container">
                   <div className="row">
                     {renderedCovers}
                   </div>
               
-              </div>
+              </div> */}
           </div>
       );
     }
