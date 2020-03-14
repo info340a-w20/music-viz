@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding|Orbitron&display=swap');
 .App {
   text-align: center;
 }
@@ -34,6 +35,11 @@ main {
 
 body {
   color: white;
+  font-family: 'Nanum Gothic Coding', monospace;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: 'Orbitron', sans-serif;
 }
 
 a {
