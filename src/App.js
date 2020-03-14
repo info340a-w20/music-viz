@@ -25,6 +25,7 @@ const firebaseConfig = {
   appId: "1:499158324053:web:5d83eab1d6e222957855dc",
   measurementId: "G-MLZ5GG8V0S"
 };
+
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
@@ -110,6 +111,15 @@ export class App extends React.Component {
 
   componentDidMount() {
     this.authListener();
+    this.getUserData();
+  }
+  
+  componentDidUpdate(prevProps, prevState) {
+    // check on previous state
+    // only write when it's different with the new state
+    if (prevState !== this.state) {
+      this.writeUserData();
+    }
   }
 
   addPlaylist = (playlist) => {
@@ -160,6 +170,20 @@ export class App extends React.Component {
     firebase.auth().signOut();
   }
 
+  writeUserData = () => {
+    firebase.database().ref('/').set(this.state);
+    console.log('DATA SAVED');
+  }
+
+  getUserData = () => {
+    let ref = firebase.database().ref('/');
+    ref.on('value', snapshot => {
+      const state = snapshot.val();
+      this.setState(state);
+    });
+    console.log('DATA RETRIEVED');
+  }
+
   render() {
 
     if (!this.state.user) {
@@ -169,7 +193,9 @@ export class App extends React.Component {
           {/* <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()}/> */}
         </div>
       );
-    }    
+    }
+    // firebase.database().ref('/').set(this.state);
+    
 
     return (
       <Router>
