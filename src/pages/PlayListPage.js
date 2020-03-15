@@ -29,30 +29,27 @@ export default class PlayListPage extends Component {
         //     return <Cover key={'trending-'+i} src={cover.cover} id={cover.id} name={cover.name}/>;
         // });
         let renderedPlaylist = this.props.playlists.map((cover, i) => {
-            return <Cover key={'playlist-' + i}  src={cover.cover} id={cover.id} name={cover.name} />;
+            return <Cover key={'playlist-' + i}  src={cover.cover} id={cover.id} name={cover.name} removePlaylist={this.props.removePlaylist}/>;
         });
         this.props.save()
       return (
           <div>
-              <Link to={"/playlist/" + 0}>
-                    <div className="top-wrapper">
-                        <div className='card text-center toplist'>
+              {/* <Link to={"/playlist/"}> */}
+                    <div className="top-wrapper mt-2">
+                        <div className='text-center toplist'>
                         <div className="card-header">
-                            Your Top Play List
+                            This Week's Top Playlist
                         </div>
                         <div className="card-body">
-                            <h5 className="card-title">Time to Chill</h5>
-                        </div>
-                        <div className="card-footer text-muted">
-                            2 days ago
+                            <h2 className="card-title">Time to Chill</h2>
                         </div>
                         </div>
                     </div>
-              </Link>
+              {/* </Link> */}
               <div id="title-playlist">
                 <h1 id="mylist">Your Play List</h1>
                 <div id="circle" style={{display: 'inline'}} >
-                    <i className="fa fa-plus-circle" onClick={() => this.setState({showForm: true})}></i>
+                    <i className="fa fa-plus-circle add-playlist" onClick={() => this.setState({showForm: true})}></i>
                 </div>
               </div>
               <div className="container">
@@ -62,15 +59,6 @@ export default class PlayListPage extends Component {
                         onUpDateName={this.onUpDateName} onUpdateUrl={this.onUpdateUrl} playListName={this.state.playListName} imgUrl={this.state.imgUrl}/>}
                     </div>
               </div>
-              {/* <div id="title-playlist">
-                <h1 id="mylist">Trending</h1>
-              </div> */}
-              {/* <div className="container">
-                  <div className="row">
-                    {renderedCovers}
-                  </div>
-              
-              </div> */}
           </div>
       );
     }
@@ -85,15 +73,20 @@ class Cover extends Component {
         let name = this.props.name;
 
         return (
-            <div className="col-md-3 col-sm-6 col-6">
+            <div className="col-xs-12 col-sm-6 col-md-3 m-3">
+                
+                
                 <div className="card">
                     <Link to={"/playlist/" + id}>
+                        <i class="fa fa-window-close close" onClick={() => this.props.removePlaylist(id)}></i>
                         <div className="overlayer">
+                            {/* <i class="fa fa-window-close close" onClick={() => this.props.removePlaylist(id)}></i> */}
                             <i className="fa fa-play-circle"></i>
                         </div>
                         <img src={src} alt=""></img>
                         
                     </Link>
+                    
                 </div>
                 <Link to={"/playlist/" + id}>
                     <div className="title">
@@ -132,7 +125,7 @@ class PlayListForm extends Component {
         }
 
         return(
-            <div className="col-md-3 col-6">
+            <div className="col-xs-12 col-sm-6 col-md-3 m-3">
                 <div className="name-form form-card">
                     <div className="form-card">
                         <h5>Create New Playlist</h5>

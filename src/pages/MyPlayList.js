@@ -92,7 +92,7 @@ export class Cover extends Component {
                 <div className="playlist-cover">
                     <img src={this.props.playlist.cover}></img>
                     <div>
-                        <h2>{this.props.playlist.name}</h2>
+                        <h2 className="cover-header">{this.props.playlist.name}</h2>
                     </div>
                 </div>
             </div>
@@ -111,7 +111,7 @@ export class SearchForm extends Component {
         let button;
         let placeholder = 'Search songs...'
         if(this.props.formType == 'add-song') {
-            button = <button type="button" onClick={() => {this.props.query(this.props.querySong); this.props.showQTable( )}}  className="btn-playlist btn btn-outline-info" value='Update'>Search</button>
+            button = <button type="button" onClick={() => {this.props.query(this.props.querySong); this.props.showQTable( )}}  className="btn-playlist btn btn-outline-info m-2" value='Update'>Search</button>
             placeholder = 'Songs to add...'
         }
 
@@ -119,7 +119,7 @@ export class SearchForm extends Component {
             <div>
                 <div className={this.props.formType == 'add-song' ? "add-song" : "search-song"}>
                     <form className={this.props.formType == 'add-song' ? "my-list m-3 form-inline": "m-3 form-inline"}>
-                        <input placeholder={placeholder} type="text" value={this.props.querySong} onChange={e => this.props.onUpdate(e.target.value)} className="mr-sm-2 form-control"></input>
+                        <input placeholder={placeholder} type="text" value={this.props.querySong} onChange={e => this.props.onUpdate(e.target.value)} className="mr-xs-2 mr-sm-2 form-control"></input>
                         {button}
                     </form>
                 </div>
@@ -202,7 +202,7 @@ export class TableHeader extends Component {
             <td><img className="album" src={this.props.song.cover}/></td>
             <td>{this.props.song.name}</td>
             <td>{this.props.song.artist}</td>
-            <td><i onClick={()=> this.heartClick()} className="fa fa-heart fa-2x" style={this.state.heart ? {color:'palevioletred'}:{color:'white'}}></i></td>
+            <td><i onClick={()=> this.heartClick()} className="fa fa-heart" style={this.state.heart ? {color:'palevioletred'}:{color:'white'}}></i></td>
             <td><Music url={this.props.song.preview}/></td>
         </tr>
       )
@@ -232,7 +232,7 @@ export class TableHeader extends Component {
     render() {
       return (
         <div>
-          <i className={this.state.play ? "fa fa-pause-circle fa-3x" : "fa fa-play-circle fa-3x"} onClick={this.togglePlay}></i>
+          <i className={this.state.play ? "fa fa-pause-circle" : "fa fa-play-circle"} onClick={this.togglePlay}></i>
         </div>
       );
     }
@@ -256,7 +256,7 @@ export class TableHeader extends Component {
             <td>{this.props.song.name}</td>
             <td>{this.props.song.artist}</td>
             <td><Music url={this.props.song.preview}/></td>
-            <td><i onClick={()=> {this.props.addSong(this.props.song, this.props.id); this.plusClick()}} style={this.state.heart ? {color:'palevioletred'}:{color:'white'}} className="fa fa-plus-circle fa-3x"></i></td>
+            <td><i onClick={()=> {this.props.addSong(this.props.song, this.props.id); this.plusClick()}} style={this.state.heart ? {color:'palevioletred'}:{color:'white'}} className="fa fa-plus-circle"></i></td>
         </tr>
       )
     }

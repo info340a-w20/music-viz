@@ -97,8 +97,22 @@ export class App extends React.Component {
       playlists: playlists,
       playlistId: playlistId + 1
     })
-    
-    console.log(playlists)
+  }
+
+  removePlaylist = (playlistId) => {
+    let tempList = this.state.playlists
+    for (let i = 0; i < tempList.length; i++) {
+      let id = tempList[i].id
+      if (id == playlistId) {
+        tempList.splice(i, 1)
+        break
+      }
+    }
+    let newId = this.state.playlistId
+    this.setState({
+      playlists: tempList,
+      playlistId: newId - 1
+    })
   }
 
   addSong = (song, id) => {
@@ -190,7 +204,7 @@ export class App extends React.Component {
                   <HomePage currSong={this.state.currSong} setSong={this.selectSong.bind(this)}/>
                 </Route> */}
                 <Route exact path='/playlist' render={() => <PlayListPage playlistId={this.state.playlistId} ref={this.playlistElement} playlists={this.state.playlists} addPlaylist={this.addPlaylist} 
-                trending={this.state.trending} save={this.save}/>} />
+                trending={this.state.trending} save={this.save} removePlaylist={this.removePlaylist}/>} />
                 <Route path='/playlist/:playlistId' render={(renderProps) => <MyPlayList addSong={this.addSong} playlists={this.state.playlists} {...renderProps} trending={this.state.trending} />}/>
                 <Route exact path='/about'>
                   <AboutPage/>
