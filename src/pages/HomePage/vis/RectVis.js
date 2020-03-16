@@ -16,10 +16,10 @@ export class RectVis extends React.Component {
     }
     play() {
       this.audio.play()
-      console.log("play")
+      // console.log("play")
     }
     renderCanvas() {
-        console.log("render canvas")
+        // console.log("render canvas")
         // console.log(audio);
         // console.log("this is the audio area:")
         // console.log(this.audioArea);
@@ -32,12 +32,17 @@ export class RectVis extends React.Component {
         // this.state.context.close();
         var audio = this.audioArea;
         audio.crossOrigin = "anonymous";
-        audio.src = this.props.currSong.song.preview;
+        // console.log("this should be the preview")
+        // console.log(this.props.currSong);
+        if (this.props.currSong.song != undefined) {
+          audio.src = this.props.currSong.song.preview;
+        }
         // audio.pause();
-        let playPromise = audio.play();
+        let playPromise = audio.load();
         if (playPromise !== undefined) {
           playPromise.then(() => {
-            audio.pause();
+            audio.play()
+            // audio.pause();
             // audio.play()
             // Automatic playback started!
             // Show playing UI.
