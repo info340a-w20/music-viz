@@ -56,42 +56,19 @@ export class App extends React.Component {
           preview: ""
         }
       },
-  
-      playlists: [
-          {
-              id: 0,
-              cover: "https://images-na.ssl-images-amazon.com/images/I/919WO8q-nnL._SL1500_.jpg",
-              songs: [],
-              name: "Welcome: It's Time to Chill"
-          }
-      ],
-      playlistId: 1,
-      isSignedIn: false
+      
+    playlists: [],
+    playlistId: 1
     }
     // this.playlistRef = firebase.database().ref("playlists");
     this.userRef = firebase.database().ref('users');
     // this.playlistElement = React.createRef();
     // Create playlistRef to store the user and its playlist
-    // this.playlistRef = firebase.database().ref("playlist")
+    this.userRef = firebase.database().ref("users")
   }
 
   componentDidMount() {
     this.authListener();
-    // this.getUserData();
-    this.unregisterAuthObserver = firebase.auth().onAuthStateChanged((user) => {                        
-      if(user) {
-          this.state.uid = user.uid;
-          const userRef = this.userRef.child(user.uid);
-          userRef.set({playlists: this.state.playlists});
-          // const playlistRef = this.userRef.child(user.uid)
-          // playlistRef.on("value", (snapshot) => {
-          //     console.log("the value of favorites/userid changed, so i reset the state")
-          //     this.setState({ playlists: snapshot.val() })
-          //     // playlistRef.set(this.state.playlists);
-          // })  
-      }        
-      this.setState({ isSignedIn: !!user })          
-    })
   }
   
   componentDidUpdate() {
@@ -102,20 +79,7 @@ export class App extends React.Component {
     // }
   }
 
-  addPlaylist = (playlist) => {
-    let playlists = this.state.playlists;
-    let playlistId = this.state.playlistId
-    // console.log(playlists)
 
-    playlists.push(playlist);
-    // console.log(playlist)
-    this.setState({
-      playlists: playlists,
-      playlistId: playlistId + 1
-    })
-    
-    console.log(playlists)
-  }
 
   addSong = (song, id) => {
     // console.log(playlist)
@@ -135,32 +99,24 @@ export class App extends React.Component {
           
           if(user) {
             this.setState({user});
-            // console.log("here");
-            localStorage.setItem('user', user.uid);
-            const userRef = this.playlistRef.child(user.uid);
-            userRef.on("value", (snapshot) => {
-              this.setState({playlist: snapshot.val()})
+            const userRef = this.userRef.child(user.uid);
+            userRef.child("playlists").on("value", (snapshot) => {
+              let playlists = snapshot.val() || {};
+              let playlistArray = Object.keys(playlists).map((key) => {
+                let playlistObj = playlists[key];
+                playlistObj.id = key;
+                return playlistObj;
+              });
+              this.setState({ playlists: playlistArray });
             })
 
-            // userRef.on("value", (snapshot) => {
-            //   this.setState({playlist})
-            // })
           } else {
             this.setState({user:null});
-            // console.log("here");
-            localStorage.removeItem('user')
           }
         }
       )
   }
 
-  save = () => {
-    console.log( "hello",firebase.auth().currentUser)
-    // const playlistRef = this.playlistRef.child(firebase.auth().currentUser.uid);
-    // playlistRef.set({playlist: this.playlist})
-  }
-
-  
 
   logout = () => {
     firebase.auth().signOut();
@@ -170,29 +126,15 @@ export class App extends React.Component {
     let user = firebase.database().ref(localStorage.user)
     console.log('DATA SAVED');
   }
-  // getUserData = () => {
-  //   let ref = firebase.database().ref(localStorage.user);
-  //   ref.on('value', snapshot => {
-  //     const state = snapshot.val();
-  //     this.setState(state);
-  //   });
-  //   console.log('DATA RETRIEVED');
-  // }
 
   render() {
     if (!this.state.user) {
       return (
         <div>
           <Login />
-          {/* <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()}/> */}
         </div>
       );
     }
-
-    let userRef = this.userRef.child(this.state.uid);
-    userRef.set({playlists: this.state.playlists});
-    // firebase.database().ref('/').set(this.state);
-    // console.log('this',localStorage.user);
 
     return (
       <Router>
@@ -205,12 +147,9 @@ export class App extends React.Component {
                 <Route exact path='/'>
                   <HomePage currSong={this.state.currSong} setSong={this.selectSong.bind(this)}/>
                 </Route>
-                {/* <Route exact path='/home'>
-                  <HomePage currSong={this.state.currSong} setSong={this.selectSong.bind(this)}/>
-                </Route> */}
-                <Route exact path='/playlist' render={() => <PlayListPage playlistId={this.state.playlistId} ref={this.playlistElement} playlists={this.state.playlists} addPlaylist={this.addPlaylist} 
-                trending={this.state.trending} save={this.save}/>} />
-                <Route path='/playlist/:playlistId' render={(renderProps) => <MyPlayList addSong={this.addSong} playlists={this.state.playlists} {...renderProps} trending={this.state.trending} />}/>
+                <Route exact path='/playlist' render={() => <PlayListPage playlistId={this.state.playlistId} ref={this.playlistElement} playlists={this.state.playlists} user={this.state.user} addPlaylist={this.addPlaylist} 
+                trending={this.state.trending} save={this.save} removePlaylist={this.removePlaylist}/>} />
+                <Route path='/playlist/:playlistId' render={(renderProps) => <MyPlayList addSong={this.addSong} playlists={this.state.playlists} {...renderProps} trending={this.state.trending} user={this.state.user}/>}/>
                 <Route exact path='/about'>
                   <AboutPage/>
                 </Route>
