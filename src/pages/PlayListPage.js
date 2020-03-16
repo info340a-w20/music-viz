@@ -77,13 +77,14 @@ class Cover extends Component {
         return (
             <div className="col-xs-12 col-sm-6 col-md-3 m-3">
                 
-                <i class="fa fa-window-close close" onClick={() => this.removePlaylist(id)}></i>
+                
                 <div className="card">
                     <Link to={"/playlist/" + id}>
-                    {/* <i class="fa fa-window-close close" onClick={() => this.props.removePlaylist(id)}></i> */}
                         <div className="overlayer">
-                            {/* <i class="fa fa-window-close close" onClick={() => this.props.removePlaylist(id)}></i> */}
-                            {/* <i class="fa fa-window-close close" onClick={() => this.props.removePlaylist(id)}></i> */}
+                            <i class="fa fa-window-close close" onClick={(e) => {
+                                e.preventDefault()
+                                this.removePlaylist(id);
+                            }}></i>
                             <i className="fa fa-play-circle"></i>
                         </div>
                         <img src={src} alt=""></img>

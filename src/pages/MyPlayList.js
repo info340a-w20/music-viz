@@ -10,12 +10,21 @@ export default class MyPlayList extends Component {
             querySong: '',
             querySongList: [],
             showQueryTable: false,
-            loading: true
+            loading: true,
+            edit: false
         };
+    }
+
+    clickEdit = () => {
+        this.setState({edit: !this.state.edit})
     }
     
     playSong = (preview) => {
         this.setState({src: preview});
+    }
+
+    back = () => {
+        this.props.history.push("/playlist")
     }
 
     querySong = (query) => {
@@ -75,11 +84,12 @@ export default class MyPlayList extends Component {
 
         return(
             <div>
+                <button onClick={this.back}>Back</button>
                 <div>
                     <Cover playlist={playlist}/>
                     <SearchForm value={this.state.querySong} showQTable={this.showQTable} query={this.querySong} querySong={this.state.querySong} onUpdate={this.onUpdate} formType={'add-song'}/>
-                    {!this.state.showQueryTable && <SearchForm value={this.state.searchSong}  searchSong={this.state.searchSong} onUpdate={(val) => {this.setState({searchSong:val})} }/>}
-                    {!this.state.showQueryTable && <SongTable heart={this.state.heart} playlist={playlist} playSong={this.playSong} searchSong={this.state.searchSong}/>}
+                    {!this.state.showQueryTable && <SearchForm value={this.state.searchSong}  searchSong={this.state.searchSong} onUpdate={(val) => {this.setState({searchSong:val})} } clickEdit={this.clickEdit}/>}
+                    {!this.state.showQueryTable && <SongTable user={this.props.user} heart={this.state.heart} playlist={playlist} playSong={this.playSong} searchSong={this.state.searchSong} edit={this.state.edit}/>}
                     {this.state.showQueryTable && <QuerySongTable user={this.props.user} id={id} showQTable={this.showQTable} querySong={this.state.querySongList} playSong={this.playSong} addSong={this.props.addSong}/>}
                     
                 </div>
@@ -109,24 +119,38 @@ export class Cover extends Component {
 export class SearchForm extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            edit: 'Edit'
+        }
     }
 
-    
+    changeEdit = () => {
+        if (this.state.edit == 'Edit') {
+            this.setState({edit: 'Back'})
+        } else {
+            this.setState({edit: 'Edit'})
+        }
+        
+    }
 
     render() {
         let button;
+        let editBtn;
         let placeholder = 'Search songs...'
         if(this.props.formType == 'add-song') {
-            button = <button type="button" onClick={() => {this.props.query(this.props.querySong); this.props.showQTable( )}}  className="btn-playlist btn btn-outline-info m-2" value='Update'>Search</button>
+            button = <button type="button" onClick={() => {this.props.query(this.props.querySong); this.props.showQTable()}}  className="btn-playlist btn btn-outline-info m-2" value='Update'>Search</button>
             placeholder = 'Songs to add...'
+        } else {
+            editBtn = <button onClick={()=> {this.props.clickEdit(); this.changeEdit()}} className="edit-btn" type="button"> {this.state.edit} </button>
         }
-
+        
         return(
             <div>
                 <div className={this.props.formType == 'add-song' ? "add-song" : "search-song"}>
-                    <form className={this.props.formType == 'add-song' ? "my-list m-3 form-inline": "m-3 form-inline"}>
+                    <form className={this.props.formType == 'add-song' ? "my-list m-3 form-inline": "m-3 form-inline search-edit"}>
                         <input placeholder={placeholder} type="text" value={this.props.querySong} onChange={e => this.props.onUpdate(e.target.value)} className="mr-xs-2 mr-sm-2 form-control"></input>
                         {button}
+                        {editBtn}
                     </form>
                 </div>
             </div>
@@ -137,7 +161,10 @@ export class SearchForm extends Component {
 export class SongTable extends Component {
     constructor(props) {
         super(props)
+
+        
     }
+
     
 
     render() {
@@ -159,7 +186,7 @@ export class SongTable extends Component {
 
         let row = filtered.map((d,i) => {
             return (
-                <SongList heart={this.props.heart} key={i} song={d} playSong={this.props.playSong}/>
+                <SongList user={this.props.user} heart={this.props.heart} id={this.props.playlist.id} key={i} song={d} playSong={this.props.playSong} edit={this.props.edit}/>
             )
           });
 
@@ -208,14 +235,19 @@ export class TableHeader extends Component {
     heartClick = () => {
         this.setState({ heart: !this.state.heart })
     }
+
+    removeSong = () => {
+        firebase.database().ref("users").child(this.props.user.uid).child("playlists").child(this.props.id).child("songs").child(this.props.song.id).remove();
+    }
     render() {
       return (
         <tr className='song-table'>
             <td><img className="album" src={this.props.song.cover}/></td>
             <td>{this.props.song.name}</td>
             <td>{this.props.song.artist}</td>
-            <td><i onClick={()=> this.heartClick()} className="fa fa-heart" style={this.state.heart ? {color:'palevioletred'}:{color:'white'}}></i></td>
             <td><Music url={this.props.song.preview}/></td>
+            {this.props.edit && <td><i onClick={() => this.removeSong()} className = "fa fa-minus-circle"></i></td>}
+            
         </tr>
       )
     }
@@ -271,6 +303,8 @@ export class TableHeader extends Component {
         }
         firebase.database().ref("users").child(this.props.user.uid).child("playlists").child(this.props.id).child("songs").push(song);
     }
+
+    
 
     render() {
         // Push the 'song' prop up when click plus circle

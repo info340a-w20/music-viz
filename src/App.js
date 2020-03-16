@@ -55,7 +55,7 @@ export class App extends React.Component {
           preview: ""
         }
       },
-  
+      
     playlists: [],
     playlistId: 1
     }
@@ -68,7 +68,6 @@ export class App extends React.Component {
 
   componentDidMount() {
     this.authListener();
-    // this.getUserData();
   }
   
   componentDidUpdate(prevProps, prevState) {
@@ -99,7 +98,6 @@ export class App extends React.Component {
           
           if(user) {
             this.setState({user});
-            // console.log("here");
             const userRef = this.userRef.child(user.uid);
             userRef.child("playlists").on("value", (snapshot) => {
               let playlists = snapshot.val() || {};
@@ -111,18 +109,13 @@ export class App extends React.Component {
               this.setState({ playlists: playlistArray });
             })
 
-            // userRef.on("value", (snapshot) => {
-            //   this.setState({playlist})
-            // })
           } else {
             this.setState({user:null});
-            // console.log("here");
           }
         }
       )
   }
 
-  
 
   logout = () => {
     firebase.auth().signOut();
@@ -132,26 +125,15 @@ export class App extends React.Component {
     let user = firebase.database().ref(localStorage.user)
     console.log('DATA SAVED');
   }
-  // getUserData = () => {
-  //   let ref = firebase.database().ref(localStorage.user);
-  //   ref.on('value', snapshot => {
-  //     const state = snapshot.val();
-  //     this.setState(state);
-  //   });
-  //   console.log('DATA RETRIEVED');
-  // }
 
   render() {
     if (!this.state.user) {
       return (
         <div>
           <Login />
-          {/* <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()}/> */}
         </div>
       );
     }
-    // firebase.database().ref('/').set(this.state);
-    // console.log('this',localStorage.user);
 
     return (
       <Router>

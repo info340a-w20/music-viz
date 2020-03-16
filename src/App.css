@@ -126,9 +126,11 @@ a:hover {
 .wrapper {
 margin-top: 50px;
 }
+
 .wrapper_section_2 {
 margin-top: 10px;
 }
+
 .wrapper h1 {
 color: #fff;
 text-align: center;
@@ -165,7 +167,8 @@ visibility: hidden;
 .overlayer .fa-play-circle, .fa-plus-circle {
 color: #fff;
 font-size: 73px;
-margin-top: 53px;
+margin-top: 45px;
+margin-left: 25px;
 transition: 100ms ease-in-out;
 }
 .fa-play-circle:hover {
@@ -303,6 +306,13 @@ button, #name, #url {
   color: white;
 }
 
+.edit-btn {
+  display: inline-block;
+  /* margin-left: 9vw; */
+}
+
+
+
 /* ------------------------------------------ SongTable ------------------------------------------- */
 
 .song-table {
@@ -332,6 +342,7 @@ tr:hover {
 
 .search-song {
   margin-left: 9vw;
+  margin-right: 10vw;
 }
 
 .search-song button {
@@ -459,6 +470,17 @@ ol {
 main #heading {
   text-align: center;
 }
+
+.search-edit {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 9vw;
+  margin-right: auto;
+}
+
+.fa-minus-circle:hover {
+  transform: scale(1.1);
+}   
 
 
 
