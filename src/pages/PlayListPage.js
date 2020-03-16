@@ -75,7 +75,7 @@ class Cover extends Component {
         
 
         return (
-            <div className="col-xs-12 col-sm-6 col-md-3 m-3">
+            <div className="col-xs-12 col-sm-6 col-md-6 col-lg-3">
                 
                 
                 <div className="card">
