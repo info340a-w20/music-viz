@@ -311,7 +311,9 @@ button, #name, #url {
   /* margin-left: 9vw; */
 }
 
-
+.edit-btn:hover {
+  background-color: rgb(17, 148, 148);
+}
 
 /* ------------------------------------------ SongTable ------------------------------------------- */
 
