@@ -57,11 +57,10 @@ if (!firebase.apps.length) {
                 <div className="col-md-6">
                     <form>
                         <div className="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
+                            <label for="exampleInputEmail1"> Email address: </label>
                             <input value={this.state.email} onChange={this.handleChange} type="email" name="email"
                             className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                             placeholder="Enter email" />
-                            <small id="emailHelp" className="form-text text-muted">We won't share your email</small>
                             
                         </div>
                         <div className="form-group">

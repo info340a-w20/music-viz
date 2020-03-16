@@ -56,21 +56,14 @@ export class App extends React.Component {
         }
       },
   
-    playlists: [
-        {
-            id: 0,
-            cover: "https://images-na.ssl-images-amazon.com/images/I/919WO8q-nnL._SL1500_.jpg",
-            songs: [],
-            name: "Welcome: It's Time to Chill"
-        }
-    ],
+    playlists: [],
     playlistId: 1
     }
 
     this.playlistElement = React.createRef();
 
     // Create playlistRef to store the user and its playlist
-    this.playlistRef = firebase.database().ref("playlist")
+    this.userRef = firebase.database().ref("users")
   }
 
   componentDidMount() {
@@ -86,34 +79,7 @@ export class App extends React.Component {
     // }
   }
 
-  addPlaylist = (playlist) => {
-    let playlists = this.state.playlists;
-    let playlistId = this.state.playlistId
-    // console.log(playlists)
 
-    playlists.push(playlist);
-    // console.log(playlist)
-    this.setState({
-      playlists: playlists,
-      playlistId: playlistId + 1
-    })
-  }
-
-  removePlaylist = (playlistId) => {
-    let tempList = this.state.playlists
-    for (let i = 0; i < tempList.length; i++) {
-      let id = tempList[i].id
-      if (id == playlistId) {
-        tempList.splice(i, 1)
-        break
-      }
-    }
-    let newId = this.state.playlistId
-    this.setState({
-      playlists: tempList,
-      playlistId: newId - 1
-    })
-  }
 
   addSong = (song, id) => {
     // console.log(playlist)
@@ -134,10 +100,15 @@ export class App extends React.Component {
           if(user) {
             this.setState({user});
             // console.log("here");
-            localStorage.setItem('user', user.uid);
-            const userRef = this.playlistRef.child(user.uid);
-            userRef.on("value", (snapshot) => {
-              this.setState({playlist: snapshot.val()})
+            const userRef = this.userRef.child(user.uid);
+            userRef.child("playlists").on("value", (snapshot) => {
+              let playlists = snapshot.val() || {};
+              let playlistArray = Object.keys(playlists).map((key) => {
+                let playlistObj = playlists[key];
+                playlistObj.id = key;
+                return playlistObj;
+              });
+              this.setState({ playlists: playlistArray });
             })
 
             // userRef.on("value", (snapshot) => {
@@ -146,16 +117,9 @@ export class App extends React.Component {
           } else {
             this.setState({user:null});
             // console.log("here");
-            localStorage.removeItem('user')
           }
         }
       )
-  }
-
-  save = () => {
-    console.log( "hello",firebase.auth().currentUser)
-    // const playlistRef = this.playlistRef.child(firebase.auth().currentUser.uid);
-    // playlistRef.set({playlist: this.playlist})
   }
 
   
@@ -200,12 +164,9 @@ export class App extends React.Component {
                 <Route exact path='/'>
                   <HomePage currSong={this.state.currSong} setSong={this.selectSong.bind(this)}/>
                 </Route>
-                {/* <Route exact path='/home'>
-                  <HomePage currSong={this.state.currSong} setSong={this.selectSong.bind(this)}/>
-                </Route> */}
-                <Route exact path='/playlist' render={() => <PlayListPage playlistId={this.state.playlistId} ref={this.playlistElement} playlists={this.state.playlists} addPlaylist={this.addPlaylist} 
+                <Route exact path='/playlist' render={() => <PlayListPage playlistId={this.state.playlistId} ref={this.playlistElement} playlists={this.state.playlists} user={this.state.user} addPlaylist={this.addPlaylist} 
                 trending={this.state.trending} save={this.save} removePlaylist={this.removePlaylist}/>} />
-                <Route path='/playlist/:playlistId' render={(renderProps) => <MyPlayList addSong={this.addSong} playlists={this.state.playlists} {...renderProps} trending={this.state.trending} />}/>
+                <Route path='/playlist/:playlistId' render={(renderProps) => <MyPlayList addSong={this.addSong} playlists={this.state.playlists} {...renderProps} trending={this.state.trending} user={this.state.user}/>}/>
                 <Route exact path='/about'>
                   <AboutPage/>
                 </Route>

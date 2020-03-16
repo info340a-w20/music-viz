@@ -39,7 +39,7 @@ body {
 }
 
 h1,h2,h3,h4,h5,h6 {
-  font-family: 'Orbitron', sans-serif;
+  /* font-family: 'Orbitron', sans-serif; */
 }
 
 a {
@@ -136,8 +136,8 @@ font-weight: bold;
 }
 
 .card {
-width: auto;
-height: auto;
+width: 180px;
+height: 170px;
 max-width: 180px;
 margin: 15px;
 position: relative;
@@ -295,7 +295,9 @@ button, #name, #url {
 .close {
   color: rgb(252, 0, 0);
   z-index: 0;
+  font-size: 10x;
 }
+
 
 .close:hover {
   color: white;
@@ -497,6 +499,16 @@ main #heading {
 
   .fa-plus-circle.add-playlist {
     font-size: 40px;
+  }
+
+  .close {
+    color: rgb(252, 0, 0);
+    z-index: 0;
+    font-size: 20x;
+  }
+
+  .fa-window-close {
+    font-size: 20px;
   }
   
 }

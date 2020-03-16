@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import firebase from "firebase/app";
 
 export default class MyPlayList extends Component {
     constructor(props) {
@@ -9,7 +9,8 @@ export default class MyPlayList extends Component {
             searchSong: '',
             querySong: '',
             querySongList: [],
-            showQueryTable: false
+            showQueryTable: false,
+            loading: true
         };
     }
     
@@ -18,7 +19,6 @@ export default class MyPlayList extends Component {
     }
 
     querySong = (query) => {
-        // let baseUrl = 'https://cors-anywhere.herokuapp.com/https://api.deezer.com/search?q='
         let songSearch = fetch('https://polar-falls-56753.herokuapp.com/?search=' + query)
         .then((resp) => resp.json())
         .then((data) => {
@@ -51,18 +51,24 @@ export default class MyPlayList extends Component {
             showQueryTable: !this.state.showQueryTable
         })
     };
-
-    
-
-    
     
     render() {
-        let id = this.props.match.params.playlistId;
-        let playlist = this.props.playlists.filter((playlist) => playlist.id == id)[0];
-        
-        if (id.includes('trending')) {
-            playlist = this.props.trending.filter((playlist) => playlist.id == id)[0];
+
+        // if (this.state.loading) {
+        //     return null
+        // }
+
+        if (this.props.playlists.length === 0) {
+            return null;
         }
+        
+        let playlists = this.props.playlists;
+        let id = this.props.match.params.playlistId;
+        let playlist = playlists.filter((playlist) => playlist.id == id)[0];
+        
+        // if (id.includes('trending')) {
+        //     playlist = this.props.trending.filter((playlist) => playlist.id == id)[0];
+        // }
 
         // console.log('using thisssss:', playlist)
 
@@ -74,7 +80,7 @@ export default class MyPlayList extends Component {
                     <SearchForm value={this.state.querySong} showQTable={this.showQTable} query={this.querySong} querySong={this.state.querySong} onUpdate={this.onUpdate} formType={'add-song'}/>
                     {!this.state.showQueryTable && <SearchForm value={this.state.searchSong}  searchSong={this.state.searchSong} onUpdate={(val) => {this.setState({searchSong:val})} }/>}
                     {!this.state.showQueryTable && <SongTable heart={this.state.heart} playlist={playlist} playSong={this.playSong} searchSong={this.state.searchSong}/>}
-                    {this.state.showQueryTable && <QuerySongTable showQTable={this.showQTable} id={id} querySong={this.state.querySongList} playSong={this.playSong} addSong={this.props.addSong}/>}
+                    {this.state.showQueryTable && <QuerySongTable user={this.props.user} id={id} showQTable={this.showQTable} querySong={this.state.querySongList} playSong={this.playSong} addSong={this.props.addSong}/>}
                     
                 </div>
             </div>
@@ -135,7 +141,13 @@ export class SongTable extends Component {
     
 
     render() {
-        let filtered = this.props.playlist.songs.filter((e) => {
+        let songKeys = Object.keys(this.props.playlist.songs || {});
+        let songArray = songKeys.map((key) => {
+            let songObj = this.props.playlist.songs[key];
+            songObj.id = key;
+            return songObj;
+        });
+        let filtered = songArray.filter((e) => {
             if(this.props.searchSong.length == 0) {
                 return true
             }
@@ -245,7 +257,19 @@ export class TableHeader extends Component {
         color: true
     }
     plusClick = () => {
+        console.log(this.props.id)
         this.setState({ heart: !this.state.heart })
+    }
+
+    addSong = () => {
+        let song = {
+            cover: this.props.song.cover,
+            name: this.props.song.name,
+            artist: this.props.song.artist,
+            preview: this.props.song.preview
+
+        }
+        firebase.database().ref("users").child(this.props.user.uid).child("playlists").child(this.props.id).child("songs").push(song);
     }
 
     render() {
@@ -256,7 +280,7 @@ export class TableHeader extends Component {
             <td>{this.props.song.name}</td>
             <td>{this.props.song.artist}</td>
             <td><Music url={this.props.song.preview}/></td>
-            <td><i onClick={()=> {this.props.addSong(this.props.song, this.props.id); this.plusClick()}} style={this.state.heart ? {color:'palevioletred'}:{color:'white'}} className="fa fa-plus-circle"></i></td>
+            <td><i onClick={()=> {this.plusClick(); this.addSong()}} style={this.state.heart ? {color:'palevioletred'}:{color:'white'}} className="fa fa-plus-circle"></i></td>
         </tr>
       )
     }
@@ -272,7 +296,7 @@ export class TableHeader extends Component {
     render() {
         let row = this.props.querySong.map((d,i) => {
             return (
-                <QuerySongList id={this.props.id} playlist={this.props.playlist} addSong={this.props.addSong} key={i} song={d} playSong={this.props.playSong}/>
+                <QuerySongList user={this.props.user} id={this.props.id} playlist={this.props.playlist} key={i} song={d} playSong={this.props.playSong}/>
             )
           });
 
