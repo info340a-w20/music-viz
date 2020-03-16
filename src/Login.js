@@ -27,6 +27,7 @@ if (!firebase.apps.length) {
               email: '',
               password: ''
           }
+          this.usersRef = firebase.database().ref("users")
       }
 
       login(e) {
@@ -39,7 +40,10 @@ if (!firebase.apps.length) {
 
       signup=(e) => {
           e.preventDefault();
-          firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).catch((error) => {
+          firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((user) => {
+            let currUserRef = firebase.database().ref("users").child(user.user.uid)
+            currUserRef.set({email: this.state.email})
+          }).catch((error) => {
               console.log(error);
           })
         //   let newUser = firebase.database().ref('user').child(this.state.email)

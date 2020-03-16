@@ -47,6 +47,7 @@ export class App extends React.Component {
     this.state = {
       isSignedIn: false,
       user:{},
+      uid: 0,
       currSong: {
         song: {
           title: "",
@@ -56,29 +57,44 @@ export class App extends React.Component {
         }
       },
   
-    playlists: [
-        {
-            id: 0,
-            cover: "https://images-na.ssl-images-amazon.com/images/I/919WO8q-nnL._SL1500_.jpg",
-            songs: [],
-            name: "Welcome: It's Time to Chill"
-        }
-    ],
-    playlistId: 1
+      playlists: [
+          {
+              id: 0,
+              cover: "https://images-na.ssl-images-amazon.com/images/I/919WO8q-nnL._SL1500_.jpg",
+              songs: [],
+              name: "Welcome: It's Time to Chill"
+          }
+      ],
+      playlistId: 1,
+      isSignedIn: false
     }
-
-    this.playlistElement = React.createRef();
-
+    // this.playlistRef = firebase.database().ref("playlists");
+    this.userRef = firebase.database().ref('users');
+    // this.playlistElement = React.createRef();
     // Create playlistRef to store the user and its playlist
-    this.playlistRef = firebase.database().ref("playlist")
+    // this.playlistRef = firebase.database().ref("playlist")
   }
 
   componentDidMount() {
     this.authListener();
     // this.getUserData();
+    this.unregisterAuthObserver = firebase.auth().onAuthStateChanged((user) => {                        
+      if(user) {
+          this.state.uid = user.uid;
+          const userRef = this.userRef.child(user.uid);
+          userRef.set({playlists: this.state.playlists});
+          // const playlistRef = this.userRef.child(user.uid)
+          // playlistRef.on("value", (snapshot) => {
+          //     console.log("the value of favorites/userid changed, so i reset the state")
+          //     this.setState({ playlists: snapshot.val() })
+          //     // playlistRef.set(this.state.playlists);
+          // })  
+      }        
+      this.setState({ isSignedIn: !!user })          
+    })
   }
   
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate() {
     // check on previous state
     // only write when it's different with the new state
     // if (prevState !== this.state) {
@@ -172,6 +188,9 @@ export class App extends React.Component {
         </div>
       );
     }
+
+    let userRef = this.userRef.child(this.state.uid);
+    userRef.set({playlists: this.state.playlists});
     // firebase.database().ref('/').set(this.state);
     // console.log('this',localStorage.user);
 
