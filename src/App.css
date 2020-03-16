@@ -311,7 +311,9 @@ button, #name, #url {
   /* margin-left: 9vw; */
 }
 
-
+.edit-btn:hover {
+  background-color: rgb(17, 148, 148);
+}
 
 /* ------------------------------------------ SongTable ------------------------------------------- */
 
@@ -480,7 +482,27 @@ main #heading {
 
 .fa-minus-circle:hover {
   transform: scale(1.1);
-}   
+}
+
+.back-wrapper {
+  display: flex;
+  margin-left: 9vw;
+  margin-top: 2em;
+}
+
+.back-btn {
+  color: white;
+  border-color: white;
+  background-color: teal;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-bottom: 0.6rem;
+  padding-top: 0.6rem;
+}
+
+.back-btn:hover {
+  background-color: rgb(18, 176, 176);
+}
 
 
 @media (max-width: 425px) {

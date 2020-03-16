@@ -84,7 +84,10 @@ export default class MyPlayList extends Component {
 
         return(
             <div>
-                <button onClick={this.back}>Back</button>
+                <div className="back-wrapper">
+                    <button className='back-btn' onClick={this.back}>Back</button>
+                </div>
+                
                 <div>
                     <Cover playlist={playlist}/>
                     <SearchForm value={this.state.querySong} showQTable={this.showQTable} query={this.querySong} querySong={this.state.querySong} onUpdate={this.onUpdate} formType={'add-song'}/>
