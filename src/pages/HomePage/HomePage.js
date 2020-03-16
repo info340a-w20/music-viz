@@ -18,13 +18,13 @@ export class HomePage extends React.Component {
     }
 
     componentWillMount() {
-        this.querySong("get your wish");
+        // this.querySong("get your wish");
     }
 
     changeControls(key, val) {
         let newState = {};
         newState[key] = val;
-        console.log(newState)
+        // console.log(newState)
         this.setState(newState);
     }
 
@@ -32,21 +32,23 @@ export class HomePage extends React.Component {
         this.setState({renderCanvas: {func}})
     }
 
-    querySong(query) {
-        // let baseUrl = 'https://cors-anywhere.herokuapp.com/https://api.deezer.com/search?q='
-        let songSearch = fetch('https://polar-falls-56753.herokuapp.com/?search=' +query)
-        .then((resp) => resp.json())
-        .then((data) => {
-            this.setState({songList: data.data});
-            // this.props.setSong(data.data[0])
-        }).catch(err => console.error(err));
-    }
+    // querySong(query) {
+    //     // let baseUrl = 'https://cors-anywhere.herokuapp.com/https://api.deezer.com/search?q='
+    //     let songSearch = fetch('https://polar-falls-56753.herokuapp.com/?search=' +query)
+    //     .then((resp) => resp.json())
+    //     .then((data) => {
+    //         this.setState({songList: data.data});
+    //         // this.props.setSong(data.data[0])
+    //     }).catch(err => console.error(err));
+    // }
 
     render() {
+        // console.log(this.props.playlistId)
+        // console.log(this.props.playlists[this.props.playlistId])
         return (
             <div>
-                <CardSection songList={this.state.songList} setSong={this.props.setSong} renderCanvas={this.state.renderCanvas} 
-                            color={this.state.color} width={this.state.width} />
+                <CardSection songList={this.props.playlists[this.props.playlistId]} setSong={this.props.setSong} renderCanvas={this.state.renderCanvas} 
+                            color={this.state.color} width={this.state.width} playlists ={this.props.playlists}/>
                 <div id={'currSong'}>
                     <CurrSongSection currSong={this.props.currSong} setSong={this.props.setSong}/>
                 </div>

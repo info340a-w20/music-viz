@@ -8,11 +8,11 @@ export class CurrSongSection extends React.Component {
         return(
             <div className={'d-flex justify-content-center m-3'}>
                 <div className={'p-4'}>
-                    <h3>{this.props.currSong.song.title}</h3>
-                    <p style={{textAlign: 'left'}}>{this.props.currSong.song.artist.name}</p>
+                    <h3>{this.props.currSong.name}</h3>
+                    <p style={{textAlign: 'left'}}>{this.props.currSong.artist}</p>
                 </div>
                 <div>
-                    <img src={this.props.currSong.song.album.cover} alt={this.props.currSong.song.title} />
+                    <img src={this.props.currSong.cover} alt={this.props.currSong.name} />
                 </div>
             </div>
         )

@@ -49,12 +49,16 @@ export class App extends React.Component {
       user:{},
       uid: 0,
       currSong: {
-        song: {
-          title: "",
-          artist: {name: ""},
-          album: {cover: ""},
-          preview: ""
-        }
+        artist: "",
+        cover: "",
+        name: "",
+        preview: ""
+        // song: {
+        //   title: "",
+        //   artist: {name: ""},
+        //   album: {cover: ""},
+        //   preview: ""
+        // }
       },
       
     playlists: [],
@@ -64,7 +68,6 @@ export class App extends React.Component {
     this.userRef = firebase.database().ref('users');
     // this.playlistElement = React.createRef();
     // Create playlistRef to store the user and its playlist
-    this.userRef = firebase.database().ref("users")
   }
 
   componentDidMount() {
@@ -145,7 +148,7 @@ export class App extends React.Component {
           <main className={'mb-5'}>
               <Switch>
                 <Route exact path='/'>
-                  <HomePage currSong={this.state.currSong} setSong={this.selectSong.bind(this)}/>
+                  <HomePage currSong={this.state.currSong} setSong={this.selectSong.bind(this)} playlistId={this.state.playlistId} playlists={this.state.playlists}/>
                 </Route>
                 <Route exact path='/playlist' render={() => <PlayListPage playlistId={this.state.playlistId} ref={this.playlistElement} playlists={this.state.playlists} user={this.state.user} addPlaylist={this.addPlaylist} 
                 trending={this.state.trending} save={this.save} removePlaylist={this.removePlaylist}/>} />

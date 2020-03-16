@@ -140,7 +140,7 @@ font-weight: bold;
 .card {
 width: 180px;
 height: 170px;
-max-width: 180px;
+/* max-width: 180px; */
 margin: 15px;
 position: relative;
 background: #000;
