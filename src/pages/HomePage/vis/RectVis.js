@@ -34,8 +34,8 @@ export class RectVis extends React.Component {
         audio.crossOrigin = "anonymous";
         // console.log("this should be the preview")
         // console.log(this.props.currSong);
-        if (this.props.currSong.song != undefined) {
-          audio.src = this.props.currSong.song.preview;
+        if (this.props.currSong != undefined) {
+          audio.src = this.props.currSong.preview;
         }
         // audio.pause();
         let playPromise = audio.load();

@@ -4,6 +4,8 @@ import { CurrSongSection } from './CurrSongSection';
 import { RectVis } from './vis/RectVis'
 import { VisSection } from './vis/VisSection';
 import { Controls } from './Controls';
+import firebase from "firebase";
+
 
 export class HomePage extends React.Component {
     constructor(props) {
@@ -15,6 +17,7 @@ export class HomePage extends React.Component {
             songList: [],
             renderCanvas: ""
         }
+        // const playlistRef = firebase.database().ref("users").child(this.props.uid).child("playlists").child(this.props.playlistId);
     }
 
     componentWillMount() {
@@ -45,10 +48,22 @@ export class HomePage extends React.Component {
     render() {
         // console.log(this.props.playlistId)
         // console.log(this.props.playlists[this.props.playlistId])
+        // console.log(playlistRef);
+        let playlistValue;
+        console.log(this.props.uid)
+        console.log(this.props.playlistId)
+        if (this.props.uid != undefined && this.props.playlistId != undefined) {
+            const playlistRef = firebase.database().ref('users').child(this.props.uid).child("playlists").child(this.props.playlistId);
+            playlistRef.on('value', (snapshot) => {
+            playlistValue = snapshot.val();
+            console.log(playlistValue)
+        })
+        }
+        
         return (
             <div>
-                <CardSection songList={this.props.playlists[this.props.playlistId]} setSong={this.props.setSong} renderCanvas={this.state.renderCanvas} 
-                            color={this.state.color} width={this.state.width} playlists ={this.props.playlists}/>
+                <CardSection songList={playlistValue} setSong={this.props.setSong} renderCanvas={this.state.renderCanvas} 
+                            color={this.state.color} width={this.state.width} playlists ={this.props.playlists} selectPlaylist={this.props.selectPlaylist}/>
                 <div id={'currSong'}>
                     <CurrSongSection currSong={this.props.currSong} setSong={this.props.setSong}/>
                 </div>

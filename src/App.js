@@ -62,7 +62,7 @@ export class App extends React.Component {
       },
       
     playlists: [],
-    playlistId: 1
+    playlistId: 0
     }
     // this.playlistRef = firebase.database().ref("playlists");
     this.userRef = firebase.database().ref('users');
@@ -93,7 +93,11 @@ export class App extends React.Component {
 
 
   selectSong(song) {
-    this.setState({currSong: {song}})
+    this.setState({currSong: song})
+  }
+
+  selectPlaylist(id) {
+    this.setState({playlistId: id})
   }
 
   authListener() {
@@ -148,7 +152,7 @@ export class App extends React.Component {
           <main className={'mb-5'}>
               <Switch>
                 <Route exact path='/'>
-                  <HomePage currSong={this.state.currSong} setSong={this.selectSong.bind(this)} playlistId={this.state.playlistId} playlists={this.state.playlists}/>
+                  <HomePage currSong={this.state.currSong} setSong={this.selectSong.bind(this)} uid={this.state.user.uid} playlistId={this.state.playlistId} playlists={this.state.playlists} selectPlaylist={this.selectPlaylist.bind(this)}/>
                 </Route>
                 <Route exact path='/playlist' render={() => <PlayListPage playlistId={this.state.playlistId} ref={this.playlistElement} playlists={this.state.playlists} user={this.state.user} addPlaylist={this.addPlaylist} 
                 trending={this.state.trending} save={this.save} removePlaylist={this.removePlaylist}/>} />
