@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding|Orbitron&display=swap');
 .App {
   text-align: center;
 }
@@ -34,6 +35,11 @@ main {
 
 body {
   color: white;
+  font-family: 'Nanum Gothic Coding', monospace;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  /* font-family: 'Orbitron', sans-serif; */
 }
 
 a {
@@ -120,9 +126,11 @@ a:hover {
 .wrapper {
 margin-top: 50px;
 }
+
 .wrapper_section_2 {
 margin-top: 10px;
 }
+
 .wrapper h1 {
 color: #fff;
 text-align: center;
@@ -130,11 +138,11 @@ font-weight: bold;
 }
 
 .card {
-width: 190px;
-height: 180px;
+width: 180px;
+height: 170px;
+max-width: 180px;
 margin: 15px;
 position: relative;
-min-width: 190px;
 background: #000;
 }
 .card:hover .overlayer {
@@ -159,7 +167,8 @@ visibility: hidden;
 .overlayer .fa-play-circle, .fa-plus-circle {
 color: #fff;
 font-size: 73px;
-margin-top: 53px;
+margin-top: 45px;
+margin-left: 25px;
 transition: 100ms ease-in-out;
 }
 .fa-play-circle:hover {
@@ -181,7 +190,7 @@ transform: scale(1.1);
 }
 
 .fa-plus-circle {
-  padding-left: 3rem;
+  padding-left: 1rem;
   margin: 0px;
   font-size: 50px;
   /* margin-bottom: auto; */
@@ -286,6 +295,22 @@ button, #name, #url {
   margin: 1rem;
 }
 
+.close {
+  color: rgb(252, 0, 0);
+  z-index: 0;
+  font-size: 10x;
+}
+
+
+.close:hover {
+  color: white;
+}
+
+.edit-btn {
+  display: inline-block;
+  /* margin-left: 9vw; */
+}
+
 
 
 /* ------------------------------------------ SongTable ------------------------------------------- */
@@ -317,6 +342,7 @@ tr:hover {
 
 .search-song {
   margin-left: 9vw;
+  margin-right: 10vw;
 }
 
 .search-song button {
@@ -341,6 +367,49 @@ tr:hover {
 .btn-playlist {
   color: white;
   background-color: teal;
+}
+
+.form-control {
+  /* display: block;
+  width: 100%; */
+  display: inline;
+  width: 60%;
+  height: calc(1.5em + .75rem + 2px);
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.cover-header {
+  font-size: 20px;
+}
+
+table {
+  font-size: 12px;
+}
+
+.fa {
+  font-size: 20px;
+}
+
+.fa-heart {
+  font-size: 15px;
+  margin-right: 1.2rem;
+}
+
+.fa-plus-circle.add-playlist {
+  font-size: 30px;
+}
+
+#mylist {
+  font-size: 30px;
 }
 
 /* ------------------------------------------ AboutPage ------------------------------------------- */
@@ -402,13 +471,68 @@ main #heading {
   text-align: center;
 }
 
+.search-edit {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 9vw;
+  margin-right: auto;
+}
+
+.fa-minus-circle:hover {
+  transform: scale(1.1);
+}   
+
+
 
 
 @media (min-width: 768px) 
 {
+
+  /* .card {
+    width: 190px;
+    height: 180px;
+    margin: 15px;
+    position: relative;
+    min-width: 190px;
+    background: #000;
+  } */
+
+  #mylist {
+    font-size: 40px;
+  }
+  .fa {
+    font-size: 40px;
+  }
+
+  .fa-heart{
+    font-size: 30px;
+  }
+
+  .cover-header {
+    font-size: 30px;
+  }
   .playlist-cover img {
     width: 15vw;
   }
+
+  table {
+    font-size: 18px;
+  }
+
+  .fa-plus-circle.add-playlist {
+    font-size: 40px;
+  }
+
+  .close {
+    color: rgb(252, 0, 0);
+    z-index: 0;
+    font-size: 20x;
+  }
+
+  .fa-window-close {
+    font-size: 20px;
+  }
+  
 }
 
 @media (min-width:992px)

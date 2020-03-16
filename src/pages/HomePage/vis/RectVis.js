@@ -35,7 +35,7 @@ export class RectVis extends React.Component {
         audio.src = this.props.currSong.song.preview;
         // audio.pause();
         let playPromise = audio.play();
-        if (playPromise == undefined) {
+        if (playPromise !== undefined) {
           playPromise.then(() => {
             audio.pause();
             // audio.play()
@@ -60,7 +60,7 @@ export class RectVis extends React.Component {
         this.canvas.height = window.innerHeight;
         var ctx = this.canvas.getContext("2d");
     
-        console.log("this is the source" + this.state.src)
+        // console.log("this is the source" + this.state.src)
         this.state.src.connect(analyser);
         analyser.connect(this.state.context.destination);
     
@@ -130,7 +130,7 @@ export class RectVis extends React.Component {
         // } else if (state.shape == "Triangle") {
           
         // } else if (state.shape == "Rectangle") {
-          console.log("state = Rectangle");
+          // console.log("state = Rectangle");
           var barWidth = 20;
           var barHeight = 20;
           var x = 0;     

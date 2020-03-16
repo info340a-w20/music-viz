@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import firebase from 'firebase'
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 
 const firebaseConfig = {
     apiKey: "AIzaSyD_QK46dNRRZMEEJbB1v8gsR-BH4di8cPQ",
@@ -26,6 +27,7 @@ if (!firebase.apps.length) {
               email: '',
               password: ''
           }
+          this.usersRef = firebase.database().ref("users")
       }
 
       login(e) {
@@ -38,9 +40,13 @@ if (!firebase.apps.length) {
 
       signup=(e) => {
           e.preventDefault();
-          firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).catch((error) => {
+          firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((user) => {
+            let currUserRef = firebase.database().ref("users").child(user.user.uid)
+            currUserRef.set({email: this.state.email})
+          }).catch((error) => {
               console.log(error);
           })
+        //   let newUser = firebase.database().ref('user').child(this.state.email)
       }
 
       handleChange(e) {
@@ -49,27 +55,30 @@ if (!firebase.apps.length) {
 
       render() {
           return(
-              <div className="col-md-6">
-                  <form>
-                      <div className="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input value={this.state.email} onChange={this.handleChange} type="email" name="email"
-                        className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                        placeholder="Enter email" />
-                        <small id="emailHelp" className="form-text text-muted">We won't share your email</small>
-                        
-                      </div>
-                      <div className="form-group">
-                      <label for="exampleInputPassword1"> Password: </label>
-                        <input value={this.state.password} onChange={this.handleChange} type="password" name="password"
-                        className="form-control" id="exampleInputPassword1"
-                        placeholder="Password" />
-                      </div>
-                      <button type="submit" onClick={this.login} className="btn btn-primary">Login</button>
-                      <button onClick={this.signup} style={{marginLeft:'25px'}} className="btn btn-success">Signup</button>
+            <div className={'d-flex flex-column align-items-center'}>
+                <h1 className="m-5">Welcome to our Music Visualizer and Playlist Maker!</h1>
+                <p>Please login or create an account.</p>
+                <div className="col-md-6">
+                    <form>
+                        <div className="form-group">
+                            <label for="exampleInputEmail1"> Email address: </label>
+                            <input value={this.state.email} onChange={this.handleChange} type="email" name="email"
+                            className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            placeholder="Enter email" />
+                            
+                        </div>
+                        <div className="form-group">
+                        <label for="exampleInputPassword1"> Password: </label>
+                            <input value={this.state.password} onChange={this.handleChange} type="password" name="password"
+                            className="form-control" id="exampleInputPassword1"
+                            placeholder="Password" />
+                        </div>
+                        <button type="submit" onClick={this.login} className="btn btn-primary">Login</button>
+                        <button onClick={this.signup} style={{marginLeft:'25px'}} className="btn btn-success">Signup</button>
 
-                  </form>
+                    </form>
 
+                </div>
               </div>
           )
       }

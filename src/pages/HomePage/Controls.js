@@ -34,7 +34,8 @@ export class Controls extends React.Component {
                         <MenuItem value={'Pink'}>Pink</MenuItem>
                     </Select>
                 </FormControl> */}
-                <SketchPicker className={'m-4'}/>
+                {/* <SketchPicker className={'m-4'}/> */}
+                <ColorPicker changeControls={this.props.changeControls}/>
                 <div className={'d-flex flex-column align-content-center m-4'}>
                     <Typography>Width</Typography>
                     <Slider style={{width: '15rem'}} min={1} max={10} step={.1} onChange={(event, newValue) => {this.props.changeControls('width', newValue)}} />
@@ -43,3 +44,24 @@ export class Controls extends React.Component {
         )
     }
 } 
+
+export class ColorPicker extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            barColor: "",
+        };
+    }
+
+    handleChangeComplete = (color) => {
+        this.setState({barColor : color.hex});
+        this.props.changeControls('color', this.state.barColor);
+    }
+
+    render() {
+        return (
+            <SketchPicker className={'m-4'} color={this.state.barColor} onChangeComplete={this.handleChangeComplete} />
+            // onChange={(event) => {this.props.changeControls('color', this.state.barColor)}} />
+        )
+    }
+}
